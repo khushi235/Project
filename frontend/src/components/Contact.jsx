@@ -45,7 +45,7 @@ const Contact = () => {
               </div>
               <div>
                 <h3 className="heading-3">Phone</h3>
-                <p className="body-regular">+1 (555) 123-4567</p>
+                <p className="body-regular">212-730-7778</p>
               </div>
             </div>
 
@@ -55,7 +55,7 @@ const Contact = () => {
               </div>
               <div>
                 <h3 className="heading-3">Email</h3>
-                <p className="body-regular">inquiries@lumierediamonds.com</p>
+                <p className="body-regular">allurediaminc@gmail.com</p>
               </div>
             </div>
 
@@ -65,7 +65,8 @@ const Contact = () => {
               </div>
               <div>
                 <h3 className="heading-3">Visit Our Showroom</h3>
-                <p className="body-regular">123 Fifth Avenue, New York, NY 10011</p>
+                <p className="body-regular">42 W 48 St #1203</p>
+                <p className="body-regular">New York, NY 10036</p>
                 <p className="body-small">By appointment only</p>
               </div>
             </div>
