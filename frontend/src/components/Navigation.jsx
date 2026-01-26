@@ -16,7 +16,7 @@ const Navigation = () => {
     <header className="navigation-header">
       <div className="navigation-container">
         <a href="#home" className="navigation-logo" onClick={(e) => { e.preventDefault(); scrollToSection('home'); }}>
-          LUMIÈRE DIAMONDS
+          ALLURE DIAM INC
         </a>
 
         {/* Desktop Navigation */}
