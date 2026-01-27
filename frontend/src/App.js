@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import "./App.css";
 import { BrowserRouter, Routes, Route } from "react-router-dom";
 import Navigation from "./components/Navigation";
@@ -7,17 +7,21 @@ import Collections from "./components/Collections";
 import About from "./components/About";
 import Contact from "./components/Contact";
 import Footer from "./components/Footer";
-import { Toaster } from "./components/ui/sonner";
+import AdminPanel from "./components/AdminPanel";
+import { Toaster } from "sonner";
 
 const Home = () => {
+  const [showAdmin, setShowAdmin] = useState(false);
+
   return (
     <div>
-      <Navigation />
+      <Navigation onAdminToggle={() => setShowAdmin(!showAdmin)} />
       <Hero />
       <Collections />
       <About />
       <Contact />
       <Footer />
+      {showAdmin && <AdminPanel onClose={() => setShowAdmin(false)} />}
     </div>
   );
 };
@@ -30,7 +34,7 @@ function App() {
           <Route path="/" element={<Home />} />
         </Routes>
       </BrowserRouter>
-      <Toaster />
+      <Toaster position="top-right" />
     </div>
   );
 }
