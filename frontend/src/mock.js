@@ -163,9 +163,30 @@ export const products = [
     image: 'https://images.unsplash.com/photo-1573408301185-9146fe634ad0?w=800&q=80',
     details: 'Complete diamond coverage in platinum'
   },
-  // Pendants
+  // Pendants - Cross
   {
     id: '16',
+    name: 'Classic Diamond Cross Pendant',
+    category: 'pendant',
+    subcategory: 'cross',
+    description: 'Elegant cross design adorned with brilliant diamonds',
+    price: 'Starting at $4,200',
+    image: 'https://images.unsplash.com/photo-1515562141207-7a88fb7ce338?w=800&q=80',
+    details: 'Timeless cross pendant in 18K gold'
+  },
+  {
+    id: '17',
+    name: 'Fancy Cross Pendant',
+    category: 'pendant',
+    subcategory: 'cross',
+    description: 'Ornate cross design with premium diamond setting',
+    price: 'Starting at $6,800',
+    image: 'https://images.unsplash.com/photo-1599643478518-a784e5dc4c8f?w=800&q=80',
+    details: 'Detailed cross design with white diamonds'
+  },
+  // Pendants - Solitaire
+  {
+    id: '18',
     name: 'Solitaire Diamond Pendant',
     category: 'pendant',
     subcategory: 'solitaire',
@@ -175,7 +196,39 @@ export const products = [
     details: 'GIA certified diamond with 18K chain'
   },
   {
-    id: '17',
+    id: '19',
+    name: 'Premium Solitaire Pendant',
+    category: 'pendant',
+    subcategory: 'solitaire',
+    description: 'Exceptional quality solitaire diamond pendant',
+    price: 'Starting at $5,500',
+    image: 'https://images.unsplash.com/photo-1599643478518-a784e5dc4c8f?w=800&q=80',
+    details: 'Premium certified diamond in platinum'
+  },
+  // Pendants - Diamond by Yard
+  {
+    id: '20',
+    name: 'Diamond by the Yard Necklace',
+    category: 'pendant',
+    subcategory: 'diamond-by-yard',
+    description: 'Delicate diamonds spaced along a fine chain',
+    price: 'Starting at $2,800',
+    image: 'https://images.unsplash.com/photo-1515562141207-7a88fb7ce338?w=800&q=80',
+    details: 'Multiple diamonds suspended on 18K chain'
+  },
+  {
+    id: '21',
+    name: 'Long Diamond by the Yard',
+    category: 'pendant',
+    subcategory: 'diamond-by-yard',
+    description: 'Extended length with multiple diamond stations',
+    price: 'Starting at $4,500',
+    image: 'https://images.unsplash.com/photo-1599643478518-a784e5dc4c8f?w=800&q=80',
+    details: 'Versatile length with evenly spaced diamonds'
+  },
+  // Pendants - Fancy
+  {
+    id: '22',
     name: 'Fancy Diamond Pendant',
     category: 'pendant',
     subcategory: 'fancy',
@@ -183,6 +236,16 @@ export const products = [
     price: 'Starting at $5,200',
     image: 'https://images.unsplash.com/photo-1599643478518-a784e5dc4c8f?w=800&q=80',
     details: 'Unique design in 18K white gold'
+  },
+  {
+    id: '23',
+    name: 'Designer Fancy Pendant',
+    category: 'pendant',
+    subcategory: 'fancy',
+    description: 'Exclusive designer piece with intricate details',
+    price: 'Starting at $7,500',
+    image: 'https://images.unsplash.com/photo-1515562141207-7a88fb7ce338?w=800&q=80',
+    details: 'Custom fancy design with superior craftsmanship'
   }
 ];
 
