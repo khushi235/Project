@@ -119,6 +119,16 @@ export const products = [
     image: 'https://images.unsplash.com/photo-1605100804763-247f67b3557e?w=800&q=80',
     details: 'Premium round diamonds in various widths'
   },
+  {
+    id: '11b',
+    name: 'Mixed Cut Eternity Band',
+    category: 'ring',
+    subcategory: 'eternity-round',
+    description: 'Alternating round brilliant and baguette-cut diamonds',
+    price: 'Contact for pricing',
+    image: 'https://customer-assets.emergentagent.com/job_luxury-jewels-33/artifacts/0gnkq5r7_R05111-US6.1527.jpg',
+    details: 'Elegant mixed-cut design in white gold'
+  },
   // Rings - Eternity Band Emerald
   {
     id: '12',
