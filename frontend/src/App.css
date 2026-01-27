@@ -724,7 +724,7 @@ body {
   align-items: center;
   gap: 6px;
   transition: opacity 0.2s;
-  font-family: 'Cormorant Garamond', serif;
+  font-family: 'Roboto', sans-serif;
 }
 
 .admin-logout-btn:hover {
