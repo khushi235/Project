@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
-import { Menu, X, ShoppingBag } from 'lucide-react';
+import { Menu, X, Settings } from 'lucide-react';
 
-const Navigation = () => {
+const Navigation = ({ onAdminToggle }) => {
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
 
   const scrollToSection = (sectionId) => {
@@ -32,28 +32,39 @@ const Navigation = () => {
           </a>
         </nav>
 
-        {/* Mobile Menu Toggle */}
-        <button 
-          className="mobile-menu-toggle"
-          onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
-          aria-label="Toggle menu"
-        >
-          {mobileMenuOpen ? <X size={24} /> : <Menu size={24} />}
-        </button>
+        <div className=\"navigation-utilities\">
+          <button className=\"admin-toggle-btn\" onClick={onAdminToggle}>
+            <Settings size={18} style={{ marginRight: '8px' }} />
+            Admin
+          </button>
+          
+          {/* Mobile Menu Toggle */}
+          <button 
+            className=\"mobile-menu-toggle\"
+            onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
+            aria-label=\"Toggle menu\"
+          >
+            {mobileMenuOpen ? <X size={24} /> : <Menu size={24} />}
+          </button>
+        </div>
       </div>
 
       {/* Mobile Navigation */}
       {mobileMenuOpen && (
-        <nav className="mobile-menu">
-          <a href="#collections" className="mobile-menu-link" onClick={(e) => { e.preventDefault(); scrollToSection('collections'); }}>
+        <nav className=\"mobile-menu\">
+          <a href=\"#collections\" className=\"mobile-menu-link\" onClick={(e) => { e.preventDefault(); scrollToSection('collections'); }}>
             Collections
           </a>
-          <a href="#about" className="mobile-menu-link" onClick={(e) => { e.preventDefault(); scrollToSection('about'); }}>
+          <a href=\"#about\" className=\"mobile-menu-link\" onClick={(e) => { e.preventDefault(); scrollToSection('about'); }}>
             Our Story
           </a>
-          <a href="#contact" className="mobile-menu-link" onClick={(e) => { e.preventDefault(); scrollToSection('contact'); }}>
+          <a href=\"#contact\" className=\"mobile-menu-link\" onClick={(e) => { e.preventDefault(); scrollToSection('contact'); }}>
             Contact
           </a>
+          <button className=\"admin-toggle-btn\" style={{ width: '100%', marginTop: '16px' }} onClick={() => { onAdminToggle(); setMobileMenuOpen(false); }}>
+            <Settings size={18} style={{ marginRight: '8px' }} />
+            Admin Panel
+          </button>
         </nav>
       )}
     </header>
