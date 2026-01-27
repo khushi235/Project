@@ -127,7 +127,7 @@ body {
   letter-spacing: 0.12em;
   color: var(--text-primary);
   text-decoration: none;
-  font-family: 'Playfair Display', serif;
+  font-family: 'Roboto', sans-serif;
 }
 
 .navigation-menu {
