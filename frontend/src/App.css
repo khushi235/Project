@@ -965,7 +965,7 @@ body {
   font-size: 12px;
   font-weight: 500;
   transition: all 0.2s;
-  font-family: 'Cormorant Garamond', serif;
+  font-family: 'Roboto', sans-serif;
 }
 
 .admin-edit-inline-btn:hover {
