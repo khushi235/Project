@@ -574,6 +574,11 @@ body {
     gap: 16px;
   }
 
+  .grid-two-column {
+    grid-template-columns: 1fr;
+    gap: 40px;
+  }
+
   .about-section,
   .contact-section {
     margin: 0 24px;
