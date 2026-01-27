@@ -78,8 +78,13 @@ async def get_status_checks():
     
     return status_checks
 
-# Include the router in the main app
+# Include the main API router
 app.include_router(api_router)
+
+# Include feature routers (these already have /api prefix in their router definition)
+app.include_router(products.router)
+app.include_router(categories.router)
+app.include_router(contact.router)
 
 app.add_middleware(
     CORSMiddleware,
