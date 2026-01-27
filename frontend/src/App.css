@@ -667,15 +667,15 @@ body {
 @media (max-width: 640px) {
   .container,
   .navigation-container {
-    padding: 0 20px;
+    padding: 0 16px;
   }
 
   .hero-section {
-    padding: 80px 0 60px;
+    padding: 60px 0 40px;
   }
 
   .hero-large {
-    font-size: 28px;
+    font-size: 30px;
   }
 
   .hero-medium {
@@ -683,33 +683,52 @@ body {
   }
 
   .body-large {
-    font-size: 16px;
+    font-size: 17px;
   }
 
   .section-padding {
-    padding: 60px 0;
+    padding: 40px 0;
   }
 
   .grid-product-showcase {
     grid-template-columns: repeat(2, 1fr);
-    gap: 16px;
+    gap: 12px;
   }
 
   .product-card-image-wrapper {
-    height: 180px;
+    height: 160px;
   }
 
   .product-card-content {
-    padding: 12px;
+    padding: 10px;
+  }
+
+  .product-card-title {
+    font-size: 15px;
+  }
+
+  .product-card-details {
+    font-size: 13px;
+  }
+
+  .product-card-price {
+    font-size: 14px;
+  }
+
+  .about-section,
+  .contact-section {
+    margin: 0 16px;
+    padding: 40px 24px;
+    border-radius: 12px;
   }
 
   .values-grid {
     grid-template-columns: 1fr;
-    gap: 32px;
+    gap: 24px;
   }
 
   .contact-form {
-    padding: 32px 24px;
+    padding: 28px 20px;
   }
 
   .btn-primary {
@@ -718,16 +737,16 @@ body {
   }
 
   .category-filter {
-    gap: 12px;
+    gap: 8px;
   }
 
   .category-btn {
     padding: 10px 16px;
-    font-size: 13px;
+    font-size: 14px;
   }
 
   .mobile-menu {
-    padding: 24px 20px;
+    padding: 16px;
   }
 }
 
