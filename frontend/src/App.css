@@ -866,7 +866,7 @@ body {
   transition: opacity 0.2s;
   font-size: 14px;
   font-weight: 500;
-  font-family: 'Cormorant Garamond', serif;
+  font-family: 'Roboto', sans-serif;
 }
 
 .file-input-label:hover {
