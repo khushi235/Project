@@ -775,7 +775,7 @@ body {
   color: var(--text-secondary);
   border-bottom: 2px solid transparent;
   transition: all 0.2s;
-  font-family: 'Cormorant Garamond', serif;
+  font-family: 'Roboto', sans-serif;
 }
 
 .admin-tab:hover {
