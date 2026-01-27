@@ -394,6 +394,13 @@ body {
   padding: 60px 40px;
 }
 
+.grid-two-column {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 60px;
+  align-items: start;
+}
+
 .contact-header {
   text-align: center;
   margin-bottom: 48px;
