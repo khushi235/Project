@@ -1,47 +1,24 @@
 import React from 'react';
-import { brandStory } from '../mock';
-import { Award, Heart, Gem } from 'lucide-react';
+import { Phone } from 'lucide-react';
 
 const About = () => {
-  const icons = {
-    'Ethical Sourcing': Heart,
-    'Master Craftsmanship': Award,
-    'Timeless Design': Gem
-  };
-
   return (
     <section id="about" className="section-padding about-section">
       <div className="container">
-        <div className="grid-two-column">
-          <div className="about-content">
-            <h2 className="hero-medium">{brandStory.title}</h2>
-            <p className="about-subtitle body-large">{brandStory.subtitle}</p>
-            <p className="body-regular about-description">
-              {brandStory.description}
-            </p>
-          </div>
-          <div className="about-image-wrapper">
-            <img 
-              src="https://images.unsplash.com/photo-1617038260897-41a1f14a8ca0?w=800&q=80" 
-              alt="Diamond craftsmanship"
-              className="about-image"
-            />
-          </div>
-        </div>
-
-        <div className="values-grid">
-          {brandStory.values.map((value, index) => {
-            const Icon = icons[value.title] || Gem;
-            return (
-              <div key={index} className="value-card">
-                <div className="value-icon">
-                  <Icon size={32} strokeWidth={1.5} />
-                </div>
-                <h3 className="heading-3">{value.title}</h3>
-                <p className="body-regular">{value.description}</p>
-              </div>
-            );
-          })}
+        <div className="about-content-center">
+          <h2 className="hero-medium">Premium Loose Diamonds Available</h2>
+          <p className="about-description body-large">
+            We specialize in offering high-quality loose diamonds at competitive prices. 
+            Whether you're looking for the perfect stone for a custom engagement ring or seeking 
+            investment-grade diamonds, our extensive collection ensures you'll find exactly what you need.
+          </p>
+          <p className="about-description body-large" style={{ marginTop: '20px' }}>
+            Contact us today to receive a personalized quote tailored to your specifications and budget.
+          </p>
+          <a href="tel:212-730-7778" className="btn-primary" style={{ marginTop: '32px' }}>
+            <Phone size={18} style={{ marginRight: '8px' }} />
+            Call for Quote: 212-730-7778
+          </a>
         </div>
       </div>
     </section>
