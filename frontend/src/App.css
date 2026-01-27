@@ -202,17 +202,17 @@ body {
   margin-right: auto;
 }
 
-/* Buttons - Sharp, Minimal Design */
+/* Buttons - Rounded Design */
 .btn-primary {
   background: transparent;
   color: var(--interactive-base);
-  border: 1px solid var(--interactive-base);
-  border-radius: 0px;
-  padding: 18px 32px;
-  min-width: 210px;
-  height: 56px;
-  font-size: 15px;
-  font-weight: 500;
+  border: 2px solid var(--interactive-base);
+  border-radius: 8px;
+  padding: 14px 28px;
+  min-width: 200px;
+  height: 52px;
+  font-size: 16px;
+  font-weight: 600;
   cursor: pointer;
   transition: all 0.2s cubic-bezier(.645,.045,.355,1);
   text-decoration: none;
@@ -224,7 +224,7 @@ body {
 
 .btn-primary:hover {
   background: var(--interactive-base);
-  color: var(--bg-primary);
+  color: white;
 }
 
 /* Collections Section */
