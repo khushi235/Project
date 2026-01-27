@@ -12,6 +12,7 @@ const AdminPanel = ({ onClose, onLogout }) => {
   const [categories, setCategories] = useState([]);
   const [contacts, setContacts] = useState([]);
   const [loading, setLoading] = useState(false);
+  const [sortBy, setSortBy] = useState('name'); // name, category, price
   
   // Product form state
   const [productForm, setProductForm] = useState({
