@@ -15,6 +15,7 @@ const Home = () => {
   const [showAdminLogin, setShowAdminLogin] = useState(false);
   const [showAdminPanel, setShowAdminPanel] = useState(false);
   const [isAuthenticated, setIsAuthenticated] = useState(false);
+  const [refreshKey, setRefreshKey] = useState(0);
 
   useEffect(() => {
     // Check if user is already logged in
@@ -59,11 +60,17 @@ const Home = () => {
     toast.success('Logged out successfully');
   };
 
+  const handleAdminClose = () => {
+    setShowAdminPanel(false);
+    // Refresh the collections when admin panel closes
+    setRefreshKey(prev => prev + 1);
+  };
+
   return (
     <div>
       <Navigation onAdminToggle={handleAdminToggle} />
       <Hero />
-      <Collections />
+      <Collections key={refreshKey} />
       <About />
       <Contact />
       <Footer />
@@ -77,7 +84,7 @@ const Home = () => {
       
       {showAdminPanel && (
         <AdminPanel 
-          onClose={() => setShowAdminPanel(false)} 
+          onClose={handleAdminClose} 
           onLogout={handleLogout}
         />
       )}
