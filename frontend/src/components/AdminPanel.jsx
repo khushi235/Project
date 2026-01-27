@@ -1,12 +1,12 @@
 import React, { useState, useEffect } from 'react';
-import { X, Plus, Edit2, Trash2, Save, Upload } from 'lucide-react';
+import { X, Plus, Edit2, Trash2, Save, Upload, LogOut } from 'lucide-react';
 import axios from 'axios';
 import { toast } from 'sonner';
 
 const BACKEND_URL = process.env.REACT_APP_BACKEND_URL;
 const API = `${BACKEND_URL}/api`;
 
-const AdminPanel = ({ onClose }) => {
+const AdminPanel = ({ onClose, onLogout }) => {
   const [activeTab, setActiveTab] = useState('products');
   const [products, setProducts] = useState([]);
   const [categories, setCategories] = useState([]);
