@@ -114,7 +114,7 @@ const Collections = () => {
                     className=\"product-card-image\" 
                     src={product.image} 
                     alt={product.name}
-                    loading=\"lazy\"
+                    loading="lazy"
                   />
                 </div>
                 <div className=\"product-card-content\">
