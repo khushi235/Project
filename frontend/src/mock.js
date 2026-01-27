@@ -296,7 +296,9 @@ export const categories = [
     id: 'pendant', 
     name: 'Pendants',
     subcategories: [
+      { id: 'cross', name: 'Cross' },
       { id: 'solitaire', name: 'Solitaire' },
+      { id: 'diamond-by-yard', name: 'Diamond by Yard' },
       { id: 'fancy', name: 'Fancy' }
     ]
   }
