@@ -32,17 +32,17 @@ const Navigation = ({ onAdminToggle }) => {
           </a>
         </nav>
 
-        <div className=\"navigation-utilities\">
-          <button className=\"admin-toggle-btn\" onClick={onAdminToggle}>
+        <div className="navigation-utilities">
+          <button className="admin-toggle-btn" onClick={onAdminToggle}>
             <Settings size={18} style={{ marginRight: '8px' }} />
             Admin
           </button>
           
           {/* Mobile Menu Toggle */}
           <button 
-            className=\"mobile-menu-toggle\"
+            className="mobile-menu-toggle"
             onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
-            aria-label=\"Toggle menu\"
+            aria-label="Toggle menu"
           >
             {mobileMenuOpen ? <X size={24} /> : <Menu size={24} />}
           </button>
@@ -51,17 +51,17 @@ const Navigation = ({ onAdminToggle }) => {
 
       {/* Mobile Navigation */}
       {mobileMenuOpen && (
-        <nav className=\"mobile-menu\">
-          <a href=\"#collections\" className=\"mobile-menu-link\" onClick={(e) => { e.preventDefault(); scrollToSection('collections'); }}>
+        <nav className="mobile-menu">
+          <a href="#collections" className="mobile-menu-link" onClick={(e) => { e.preventDefault(); scrollToSection('collections'); }}>
             Collections
           </a>
-          <a href=\"#about\" className=\"mobile-menu-link\" onClick={(e) => { e.preventDefault(); scrollToSection('about'); }}>
+          <a href="#about" className="mobile-menu-link" onClick={(e) => { e.preventDefault(); scrollToSection('about'); }}>
             Our Story
           </a>
-          <a href=\"#contact\" className=\"mobile-menu-link\" onClick={(e) => { e.preventDefault(); scrollToSection('contact'); }}>
+          <a href="#contact" className="mobile-menu-link" onClick={(e) => { e.preventDefault(); scrollToSection('contact'); }}>
             Contact
           </a>
-          <button className=\"admin-toggle-btn\" style={{ width: '100%', marginTop: '16px' }} onClick={() => { onAdminToggle(); setMobileMenuOpen(false); }}>
+          <button className="admin-toggle-btn" style={{ width: '100%', marginTop: '16px' }} onClick={() => { onAdminToggle(); setMobileMenuOpen(false); }}>
             <Settings size={18} style={{ marginRight: '8px' }} />
             Admin Panel
           </button>
