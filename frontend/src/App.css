@@ -283,7 +283,7 @@ body {
   color: var(--text-secondary);
   cursor: pointer;
   transition: all 0.2s ease;
-  font-family: 'Cormorant Garamond', serif;
+  font-family: 'Roboto', sans-serif;
 }
 
 .subcategory-btn:hover,
