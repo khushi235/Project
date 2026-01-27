@@ -346,20 +346,13 @@ body {
 .product-card-title {
   font-size: 16px;
   font-weight: 500;
-  margin-bottom: 6px;
+  margin-bottom: 8px;
   color: var(--text-primary);
 }
 
-.product-card-description {
-  font-size: 13px;
-  color: var(--text-secondary);
-  margin-bottom: 8px;
-  line-height: 1.5;
-}
-
 .product-card-details {
-  margin-bottom: 10px;
-  color: var(--text-light);
+  margin-bottom: 8px;
+  color: var(--text-secondary);
   font-size: 12px;
 }
 
