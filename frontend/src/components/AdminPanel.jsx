@@ -362,19 +362,23 @@ const AdminPanel = ({ onClose }) => {
                     <div className="admin-product-grid">
                       {products.map(product => (
                         <div key={product.id} className="admin-product-card">
+                          <div className="admin-product-badge">
+                            <button onClick={() => handleEditProduct(product)} className="admin-edit-badge" title="Edit Product">
+                              <Edit2 size={14} />
+                              Edit
+                            </button>
+                            <button onClick={() => handleDeleteProduct(product.id)} className="admin-delete-badge" title="Delete Product">
+                              <Trash2 size={14} />
+                            </button>
+                          </div>
                           <img src={product.image} alt={product.name} className="admin-product-image" />
                           <div className="admin-product-info">
                             <h4>{product.name}</h4>
                             <p className="body-small">{product.details}</p>
                             <p className="body-small">{product.price}</p>
-                          </div>
-                          <div className="admin-product-actions">
-                            <button onClick={() => handleEditProduct(product)} className="admin-icon-btn">
-                              <Edit2 size={16} />
-                            </button>
-                            <button onClick={() => handleDeleteProduct(product.id)} className="admin-icon-btn delete">
-                              <Trash2 size={16} />
-                            </button>
+                            <p className="body-small" style={{ fontSize: '11px', color: 'var(--text-light)' }}>
+                              {product.category} - {product.subcategory}
+                            </p>
                           </div>
                         </div>
                       ))}
