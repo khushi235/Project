@@ -9,7 +9,7 @@ export const products = [
     description: 'A timeless piece featuring brilliant-cut diamonds in a continuous strand',
     price: 'Starting at $8,500',
     image: 'https://images.unsplash.com/photo-1599643478518-a784e5dc4c8f?w=800&q=80',
-    details: '18K white gold with ethically sourced diamonds'
+    details: '5.0 ct total weight'
   },
   {
     id: '2',
@@ -19,7 +19,7 @@ export const products = [
     description: 'Exceptional clarity and brilliance in every stone',
     price: 'Starting at $12,000',
     image: 'https://images.unsplash.com/photo-1515562141207-7a88fb7ce338?w=800&q=80',
-    details: 'Premium round brilliant diamonds, 18K gold'
+    details: '7.5 ct total weight'
   },
   // Necklaces - Buttercup
   {
@@ -30,7 +30,7 @@ export const products = [
     description: 'Elegant buttercup setting showcasing diamond brilliance',
     price: 'Starting at $9,800',
     image: 'https://images.unsplash.com/photo-1599643478518-a784e5dc4c8f?w=800&q=80',
-    details: 'Vintage-inspired buttercup design in 18K gold'
+    details: '6.0 ct total weight'
   },
   // Necklaces - Fancy
   {
@@ -41,7 +41,7 @@ export const products = [
     description: 'Unique design with exceptional craftsmanship',
     price: 'Starting at $15,000',
     image: 'https://images.unsplash.com/photo-1515562141207-7a88fb7ce338?w=800&q=80',
-    details: 'Custom fancy design with premium diamonds'
+    details: '8.5 ct total weight'
   },
   // Bracelets - Tennis
   {
@@ -52,7 +52,7 @@ export const products = [
     description: 'A refined piece that gracefully adorns the wrist',
     price: 'Starting at $6,500',
     image: 'https://images.unsplash.com/photo-1611591437281-460bfbe1220a?w=800&q=80',
-    details: 'Hand-selected diamonds in platinum setting'
+    details: '3.5 ct total weight'
   },
   {
     id: '6',
@@ -62,7 +62,7 @@ export const products = [
     description: 'Timeless sophistication in a continuous diamond setting',
     price: 'Starting at $5,800',
     image: 'https://images.unsplash.com/photo-1573408301185-9146fe634ad0?w=800&q=80',
-    details: 'Secure clasp with safety latch'
+    details: '3.0 ct total weight'
   },
   // Bracelets - Buttercup
   {
@@ -73,7 +73,7 @@ export const products = [
     description: 'Vintage buttercup setting for timeless elegance',
     price: 'Starting at $7,200',
     image: 'https://images.unsplash.com/photo-1611591437281-460bfbe1220a?w=800&q=80',
-    details: 'Classic buttercup style in 18K gold'
+    details: '4.0 ct total weight'
   },
   // Bracelets - Bezel
   {
@@ -84,7 +84,7 @@ export const products = [
     description: 'Modern bezel setting for secure diamond placement',
     price: 'Starting at $6,800',
     image: 'https://images.unsplash.com/photo-1573408301185-9146fe634ad0?w=800&q=80',
-    details: 'Contemporary bezel design in platinum'
+    details: '3.8 ct total weight'
   },
   // Bracelets - Fancy with Color Diamond
   {
@@ -95,7 +95,7 @@ export const products = [
     description: 'Rare color diamonds in exquisite design',
     price: 'Starting at $18,500',
     image: 'https://images.unsplash.com/photo-1611591437281-460bfbe1220a?w=800&q=80',
-    details: 'Natural fancy color diamonds, 18K gold'
+    details: '5.5 ct total weight'
   },
   // Bracelets - Fancy Designs
   {
@@ -106,7 +106,7 @@ export const products = [
     description: 'Unique artistic design with premium diamonds',
     price: 'Starting at $9,500',
     image: 'https://images.unsplash.com/photo-1573408301185-9146fe634ad0?w=800&q=80',
-    details: 'Custom design with white diamonds'
+    details: '4.5 ct total weight'
   },
   // Rings - Eternity Band Round
   {
@@ -117,7 +117,7 @@ export const products = [
     description: 'Round brilliant diamonds circling the entire band',
     price: 'Starting at $4,200',
     image: 'https://images.unsplash.com/photo-1605100804763-247f67b3557e?w=800&q=80',
-    details: 'Premium round diamonds in various widths'
+    details: '2.0 ct total weight'
   },
   {
     id: '11b',
@@ -127,7 +127,7 @@ export const products = [
     description: 'Alternating round brilliant and baguette-cut diamonds',
     price: 'Contact for pricing',
     image: 'https://customer-assets.emergentagent.com/job_luxury-jewels-33/artifacts/0gnkq5r7_R05111-US6.1527.jpg',
-    details: 'Elegant mixed-cut design in white gold'
+    details: '2.5 ct total weight'
   },
   // Rings - Eternity Band Emerald
   {
@@ -138,7 +138,7 @@ export const products = [
     description: 'Elegant emerald cut diamonds in continuous setting',
     price: 'Starting at $5,500',
     image: 'https://images.unsplash.com/photo-1603561591411-07134e71a2a9?w=800&q=80',
-    details: 'Emerald cut diamonds in platinum'
+    details: '2.8 ct total weight'
   },
   // Rings - Fancy
   {
@@ -149,7 +149,7 @@ export const products = [
     description: 'Unique design with exceptional center stone',
     price: 'Starting at $7,500',
     image: 'https://images.unsplash.com/photo-1605100804763-247f67b3557e?w=800&q=80',
-    details: 'Custom fancy design with GIA certification'
+    details: '1.5 ct center stone'
   },
   // Bangles - Half Bangle
   {
@@ -160,7 +160,7 @@ export const products = [
     description: 'Diamonds adorning half the bangle for elegant versatility',
     price: 'Starting at $8,200',
     image: 'https://images.unsplash.com/photo-1611591437281-460bfbe1220a?w=800&q=80',
-    details: 'Half-set diamonds in 18K gold'
+    details: '4.5 ct total weight'
   },
   // Bangles - All the Way
   {
@@ -171,7 +171,7 @@ export const products = [
     description: 'Diamonds encircling the entire bangle for maximum brilliance',
     price: 'Starting at $12,500',
     image: 'https://images.unsplash.com/photo-1573408301185-9146fe634ad0?w=800&q=80',
-    details: 'Complete diamond coverage in platinum'
+    details: '8.0 ct total weight'
   },
   // Pendants - Cross
   {
@@ -182,7 +182,7 @@ export const products = [
     description: 'Elegant cross design adorned with brilliant diamonds',
     price: 'Starting at $4,200',
     image: 'https://images.unsplash.com/photo-1515562141207-7a88fb7ce338?w=800&q=80',
-    details: 'Timeless cross pendant in 18K gold'
+    details: '1.2 ct total weight'
   },
   {
     id: '17',
@@ -192,7 +192,7 @@ export const products = [
     description: 'Ornate cross design with premium diamond setting',
     price: 'Starting at $6,800',
     image: 'https://images.unsplash.com/photo-1599643478518-a784e5dc4c8f?w=800&q=80',
-    details: 'Detailed cross design with white diamonds'
+    details: '2.0 ct total weight'
   },
   // Pendants - Solitaire
   {
@@ -203,7 +203,7 @@ export const products = [
     description: 'A single exceptional diamond suspended elegantly',
     price: 'Starting at $3,500',
     image: 'https://images.unsplash.com/photo-1515562141207-7a88fb7ce338?w=800&q=80',
-    details: 'GIA certified diamond with 18K chain'
+    details: '0.75 ct'
   },
   {
     id: '19',
@@ -213,7 +213,7 @@ export const products = [
     description: 'Exceptional quality solitaire diamond pendant',
     price: 'Starting at $5,500',
     image: 'https://images.unsplash.com/photo-1599643478518-a784e5dc4c8f?w=800&q=80',
-    details: 'Premium certified diamond in platinum'
+    details: '1.0 ct'
   },
   // Pendants - Diamond by Yard
   {
@@ -224,7 +224,7 @@ export const products = [
     description: 'Delicate diamonds spaced along a fine chain',
     price: 'Starting at $2,800',
     image: 'https://images.unsplash.com/photo-1515562141207-7a88fb7ce338?w=800&q=80',
-    details: 'Multiple diamonds suspended on 18K chain'
+    details: '1.5 ct total weight'
   },
   {
     id: '21',
@@ -234,7 +234,7 @@ export const products = [
     description: 'Extended length with multiple diamond stations',
     price: 'Starting at $4,500',
     image: 'https://images.unsplash.com/photo-1599643478518-a784e5dc4c8f?w=800&q=80',
-    details: 'Versatile length with evenly spaced diamonds'
+    details: '2.5 ct total weight'
   },
   // Pendants - Fancy
   {
@@ -245,7 +245,7 @@ export const products = [
     description: 'Artistic design with premium diamond centerpiece',
     price: 'Starting at $5,200',
     image: 'https://images.unsplash.com/photo-1599643478518-a784e5dc4c8f?w=800&q=80',
-    details: 'Unique design in 18K white gold'
+    details: '1.8 ct total weight'
   },
   {
     id: '23',
@@ -255,7 +255,7 @@ export const products = [
     description: 'Exclusive designer piece with intricate details',
     price: 'Starting at $7,500',
     image: 'https://images.unsplash.com/photo-1515562141207-7a88fb7ce338?w=800&q=80',
-    details: 'Custom fancy design with superior craftsmanship'
+    details: '2.2 ct total weight'
   }
 ];
 
