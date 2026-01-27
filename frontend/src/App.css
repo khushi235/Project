@@ -1126,7 +1126,7 @@ body {
   font-weight: 600;
   cursor: pointer;
   transition: all 0.3s ease;
-  font-family: 'Cormorant Garamond', serif;
+  font-family: 'Roboto', sans-serif;
   border-radius: 25px;
   box-shadow: 0 4px 15px rgba(102, 126, 234, 0.3);
   display: flex;
@@ -1148,7 +1148,7 @@ body {
   font-weight: 500;
   color: var(--text-primary);
   cursor: pointer;
-  font-family: 'Cormorant Garamond', serif;
+  font-family: 'Roboto', sans-serif;
   transition: border-color 0.2s;
 }
 
