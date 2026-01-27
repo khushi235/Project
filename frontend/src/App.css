@@ -1033,6 +1033,7 @@ body {
   padding: 60px;
   font-size: 18px;
   color: var(--text-secondary);
+  font-family: 'Roboto', sans-serif;
 }
 
 .subcategory-input-group {
