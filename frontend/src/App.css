@@ -1168,18 +1168,37 @@ body {
 
 .admin-toggle-btn {
   background: var(--interactive-base);
-  color: var(--bg-primary);
+  color: white;
   border: none;
   padding: 10px 20px;
-  font-size: 14px;
-  font-weight: 500;
+  font-size: 15px;
+  font-weight: 600;
   cursor: pointer;
   transition: opacity 0.2s;
   font-family: 'Cormorant Garamond', serif;
+  border-radius: 6px;
 }
 
 .admin-toggle-btn:hover {
   opacity: 0.8;
+}
+
+.sort-select {
+  padding: 8px 16px;
+  border: 1px solid var(--border-medium);
+  border-radius: 6px;
+  background: white;
+  font-size: 14px;
+  font-weight: 500;
+  color: var(--text-primary);
+  cursor: pointer;
+  font-family: 'Cormorant Garamond', serif;
+  transition: border-color 0.2s;
+}
+
+.sort-select:focus {
+  outline: none;
+  border-color: var(--interactive-base);
 }
 
 @media (max-width: 1024px) {
