@@ -466,18 +466,19 @@ const AdminPanel = ({ onClose }) => {
                       {categories.filter(c => c.id !== 'all').map(category => (
                         <div key={category.id} className="category-card">
                           <div className="category-info">
-                            <h4>{category.name}</h4>
+                            <div style={{ display: 'flex', alignItems: 'center', gap: '12px' }}>
+                              <h4>{category.name}</h4>
+                              <button onClick={() => handleEditCategory(category)} className="admin-edit-inline-btn" title="Edit Category">
+                                <Edit2 size={14} />
+                                Edit
+                              </button>
+                              <button onClick={() => handleDeleteCategory(category.id)} className="admin-delete-inline-btn" title="Delete Category">
+                                <Trash2 size={14} />
+                              </button>
+                            </div>
                             <p className="body-small">
                               {category.subcategories.length} subcategories: {category.subcategories.map(s => s.name).join(', ')}
                             </p>
-                          </div>
-                          <div className="admin-product-actions">
-                            <button onClick={() => handleEditCategory(category)} className="admin-icon-btn">
-                              <Edit2 size={16} />
-                            </button>
-                            <button onClick={() => handleDeleteCategory(category.id)} className="admin-icon-btn delete">
-                              <Trash2 size={16} />
-                            </button>
                           </div>
                         </div>
                       ))}
