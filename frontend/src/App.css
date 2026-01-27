@@ -558,15 +558,6 @@ body {
     font-size: 32px;
   }
 
-  .grid-two-column {
-    grid-template-columns: 1fr;
-    gap: 40px;
-  }
-
-  .about-image-wrapper {
-    height: 350px;
-  }
-
   .section-padding {
     padding: 50px 0;
   }
@@ -580,35 +571,6 @@ body {
   .contact-section {
     margin: 0 24px;
     padding: 48px 32px;
-  }
-
-  .desktop-menu {
-    display: none;
-  }
-
-  .mobile-menu-toggle {
-    display: block;
-  }
-
-  .mobile-menu {
-    display: block;
-    background: var(--bg-primary);
-    border-top: 1px solid var(--border-light);
-    padding: 20px 32px;
-  }
-
-  .mobile-menu-link {
-    display: block;
-    padding: 14px 0;
-    color: var(--text-primary);
-    text-decoration: none;
-    font-size: 16px;
-    font-weight: 500;
-    border-bottom: 1px solid var(--border-light);
-  }
-
-  .mobile-menu-link:last-child {
-    border-bottom: none;
   }
 }
 
