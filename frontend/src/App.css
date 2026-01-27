@@ -666,8 +666,16 @@ body {
   }
 
   .grid-product-showcase {
-    grid-template-columns: 1fr;
-    gap: 32px;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 16px;
+  }
+
+  .product-card-image-wrapper {
+    height: 180px;
+  }
+
+  .product-card-content {
+    padding: 12px;
   }
 
   .values-grid {
