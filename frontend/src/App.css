@@ -4,28 +4,28 @@
 @import url('https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@300;400;500;600&display=swap');
 @import url('https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;500;600;700&display=swap');
 
-/* Root Variables - Warm Neutral Palette */
+/* Root Variables - Warm Neutral Palette with Light Blue Background */
 :root {
-  /* Primary Backgrounds - Warm foundation */
-  --bg-primary: #fffef2;
-  --bg-secondary: #f6f5e8;
-  --bg-subtle: #ebeade;
+  /* Primary Backgrounds - Light blue aesthetic */
+  --bg-primary: #f0f7ff;
+  --bg-secondary: #e6f2ff;
+  --bg-subtle: #d9ecff;
   
   /* Text Hierarchy - Rich contrast */
-  --text-primary: #333333;
-  --text-secondary: #666666;
-  --text-light: #bcbbb4;
+  --text-primary: #1a1a1a;
+  --text-secondary: #4a4a4a;
+  --text-light: #8a8a8a;
   --text-meta: #4a4a4a;
   
   /* Interactive States */
-  --interactive-base: #333333;
-  --interactive-hover: #000000;
+  --interactive-base: #2c3e50;
+  --interactive-hover: #1a252f;
   --focus-outline: #252525;
   
   /* Borders & Separators */
-  --border-light: #bcbbb4;
-  --border-medium: #cccccc;
-  --border-subtle: rgba(51,51,51,0.2);
+  --border-light: #c7ddf5;
+  --border-medium: #b0d0f0;
+  --border-subtle: rgba(44,62,80,0.15);
 }
 
 /* Global Styles */
