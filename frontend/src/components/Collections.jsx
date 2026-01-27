@@ -85,7 +85,6 @@ const Collections = () => {
                 </div>
                 <div className="product-card-content">
                   <h3 className="product-card-title">{product.name}</h3>
-                  <p className="product-card-description">{product.description}</p>
                   <p className="product-card-details body-small">{product.details}</p>
                   <p className="product-card-price">{product.price}</p>
                 </div>
