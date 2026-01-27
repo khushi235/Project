@@ -205,9 +205,15 @@ const AdminPanel = ({ onClose, onLogout }) => {
       <div className="admin-panel">
         <div className="admin-header">
           <h2 className="hero-medium">Admin Panel</h2>
-          <button onClick={onClose} className="admin-close-btn">
-            <X size={24} />
-          </button>
+          <div style={{ display: 'flex', gap: '12px', alignItems: 'center' }}>
+            <button onClick={onLogout} className="admin-logout-btn" title="Logout">
+              <LogOut size={18} />
+              Logout
+            </button>
+            <button onClick={onClose} className="admin-close-btn">
+              <X size={24} />
+            </button>
+          </div>
         </div>
 
         <div className="admin-tabs">
