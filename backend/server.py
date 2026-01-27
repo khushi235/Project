@@ -23,8 +23,16 @@ mongo_url = os.environ['MONGO_URL']
 client = AsyncIOMotorClient(mongo_url)
 db = client[os.environ['DB_NAME']]
 
+# Inject database into route modules
+products.set_db(db)
+categories.set_db(db)
+contact.set_db(db)
+
 # Create the main app without a prefix
 app = FastAPI()
+
+# Mount uploads directory for serving images
+app.mount("/api/uploads", StaticFiles(directory="/app/backend/uploads"), name="uploads")
 
 # Create a router with the /api prefix
 api_router = APIRouter(prefix="/api")
