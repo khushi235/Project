@@ -371,22 +371,25 @@ body {
 
 /* About Section */
 .about-section {
-  background: var(--bg-secondary);
+  background: white;
+  border-radius: 16px;
+  margin: 0 40px;
+  padding: 60px 40px;
 }
 
 .grid-two-column {
   display: grid;
   grid-template-columns: 1fr 1fr;
-  gap: 80px;
+  gap: 60px;
   align-items: center;
 }
 
 .about-content h2 {
-  margin-bottom: 16px;
+  margin-bottom: 12px;
 }
 
 .about-subtitle {
-  margin-bottom: 24px;
+  margin-bottom: 20px;
   color: var(--text-primary);
 }
 
@@ -396,8 +399,9 @@ body {
 
 .about-image-wrapper {
   width: 100%;
-  height: 500px;
+  height: 450px;
   overflow: hidden;
+  border-radius: 12px;
 }
 
 .about-image {
@@ -409,19 +413,21 @@ body {
 .values-grid {
   display: grid;
   grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-  gap: 40px;
-  margin-top: 80px;
+  gap: 32px;
+  margin-top: 60px;
 }
 
 .value-card {
   text-align: center;
-  padding: 40px 24px;
+  padding: 32px 20px;
+  background: var(--bg-secondary);
+  border-radius: 12px;
 }
 
 .value-icon {
-  width: 64px;
-  height: 64px;
-  margin: 0 auto 24px;
+  width: 56px;
+  height: 56px;
+  margin: 0 auto 20px;
   display: flex;
   align-items: center;
   justify-content: center;
@@ -429,7 +435,7 @@ body {
 }
 
 .value-card h3 {
-  margin-bottom: 12px;
+  margin-bottom: 10px;
 }
 
 /* Contact Section */
