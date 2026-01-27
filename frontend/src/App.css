@@ -1073,6 +1073,7 @@ body {
   background: var(--bg-primary);
   border: 1px solid var(--border-light);
   font-size: 14px;
+  font-family: 'Roboto', sans-serif;
 }
 
 .btn-remove {
