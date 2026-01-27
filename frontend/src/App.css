@@ -225,13 +225,8 @@ body {
   padding: 60px 0;
 }
 
-.collections-header {
-  text-align: center;
-  margin-bottom: 40px;
-}
-
-.collections-subtitle {
-  margin-top: 12px;
+.section-padding-small {
+  padding: 30px 0;
 }
 
 /* Category Filter */
