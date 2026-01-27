@@ -201,6 +201,18 @@ const AdminPanel = ({ onClose, onLogout }) => {
     return cat ? cat.subcategories : [];
   };
 
+  const getSortedProducts = () => {
+    const sorted = [...products];
+    if (sortBy === 'name') {
+      sorted.sort((a, b) => a.name.localeCompare(b.name));
+    } else if (sortBy === 'category') {
+      sorted.sort((a, b) => a.category.localeCompare(b.category));
+    } else if (sortBy === 'price') {
+      sorted.sort((a, b) => a.price.localeCompare(b.price));
+    }
+    return sorted;
+  };
+
   return (
     <div className="admin-panel-overlay">
       <div className="admin-panel">
