@@ -52,26 +52,26 @@ const Collections = () => {
 
   if (loading) {
     return (
-      <section id=\"collections\" className=\"section-padding\">
-        <div className=\"container\">
-          <div className=\"admin-loading\">Loading collections...</div>
+      <section id="collections" className="section-padding">
+        <div className="container">
+          <div className="admin-loading">Loading collections...</div>
         </div>
       </section>
     );
   }
 
   return (
-    <section id=\"collections\" className=\"section-padding\">
-      <div className=\"container\">
-        <div className=\"collections-header\">
-          <h2 className=\"hero-medium\">Our Collections</h2>
-          <p className=\"body-large collections-subtitle\">
+    <section id="collections" className="section-padding">
+      <div className="container">
+        <div className="collections-header">
+          <h2 className="hero-medium">Our Collections</h2>
+          <p className="body-large collections-subtitle">
             Each piece meticulously crafted to perfection
           </p>
         </div>
 
         {/* Main Category Filter */}
-        <div className=\"category-filter\">
+        <div className="category-filter">
           {categories.map(category => (
             <button 
               key={category.id}
@@ -85,7 +85,7 @@ const Collections = () => {
 
         {/* Subcategory Filter */}
         {hasSubcategories && (
-          <div className=\"subcategory-filter\">
+          <div className="subcategory-filter">
             <button 
               className={`subcategory-btn ${selectedSubcategory === 'all' ? 'active' : ''}`}
               onClick={() => handleSubcategoryChange('all')}
@@ -105,28 +105,28 @@ const Collections = () => {
         )}
 
         {/* Product Grid */}
-        <div className=\"grid-product-showcase\">
+        <div className="grid-product-showcase">
           {filteredProducts.length > 0 ? (
             filteredProducts.map(product => (
-              <div key={product.id} className=\"product-card hover-lift\">
-                <div className=\"product-card-image-wrapper\">
+              <div key={product.id} className="product-card hover-lift">
+                <div className="product-card-image-wrapper">
                   <img 
-                    className=\"product-card-image\" 
+                    className="product-card-image" 
                     src={product.image} 
                     alt={product.name}
                     loading="lazy"
                   />
                 </div>
-                <div className=\"product-card-content\">
-                  <h3 className=\"product-card-title\">{product.name}</h3>
-                  <p className=\"product-card-details body-small\">{product.details}</p>
-                  <p className=\"product-card-price\">{product.price}</p>
+                <div className="product-card-content">
+                  <h3 className="product-card-title">{product.name}</h3>
+                  <p className="product-card-details body-small">{product.details}</p>
+                  <p className="product-card-price">{product.price}</p>
                 </div>
               </div>
             ))
           ) : (
-            <div className=\"no-products\">
-              <p className=\"body-large\">No products found in this category.</p>
+            <div className="no-products">
+              <p className="body-large">No products found in this category.</p>
             </div>
           )}
         </div>
