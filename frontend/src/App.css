@@ -581,19 +581,19 @@ body {
   }
 
   .hero-section {
-    padding: 60px 0 40px;
+    padding: 30px 0 20px;
   }
 
   .hero-large {
-    font-size: 30px;
-  }
-
-  .hero-medium {
     font-size: 28px;
   }
 
+  .hero-medium {
+    font-size: 26px;
+  }
+
   .body-large {
-    font-size: 17px;
+    font-size: 16px;
   }
 
   .section-padding {
@@ -632,11 +632,6 @@ body {
     border-radius: 12px;
   }
 
-  .values-grid {
-    grid-template-columns: 1fr;
-    gap: 24px;
-  }
-
   .contact-form {
     padding: 28px 20px;
   }
@@ -653,10 +648,6 @@ body {
   .category-btn {
     padding: 10px 16px;
     font-size: 14px;
-  }
-
-  .mobile-menu {
-    padding: 16px;
   }
 }
 
