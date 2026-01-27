@@ -212,7 +212,7 @@ body {
   display: inline-flex;
   align-items: center;
   justify-content: center;
-  font-family: 'Cormorant Garamond', serif;
+  font-family: 'Roboto', sans-serif;
 }
 
 .btn-primary:hover {
