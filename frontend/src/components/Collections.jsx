@@ -61,15 +61,8 @@ const Collections = () => {
   }
 
   return (
-    <section id="collections" className="section-padding">
+    <section id="collections" className="section-padding-small">
       <div className="container">
-        <div className="collections-header">
-          <h2 className="hero-medium">Our Collections</h2>
-          <p className="body-large collections-subtitle">
-            Each piece meticulously crafted to perfection
-          </p>
-        </div>
-
         {/* Main Category Filter */}
         <div className="category-filter">
           {categories.map(category => (
