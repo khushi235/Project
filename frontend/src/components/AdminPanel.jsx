@@ -377,9 +377,23 @@ const AdminPanel = ({ onClose, onLogout }) => {
                   </div>
 
                   <div className="admin-list-container">
-                    <h3 className="heading-3">All Products ({products.length})</h3>
+                    <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginBottom: '16px' }}>
+                      <h3 className="heading-3">All Products ({products.length})</h3>
+                      <div style={{ display: 'flex', gap: '8px', alignItems: 'center' }}>
+                        <label className="body-small" style={{ color: 'var(--text-secondary)' }}>Sort by:</label>
+                        <select 
+                          value={sortBy} 
+                          onChange={(e) => setSortBy(e.target.value)}
+                          className="sort-select"
+                        >
+                          <option value="name">Name</option>
+                          <option value="category">Category</option>
+                          <option value="price">Price</option>
+                        </select>
+                      </div>
+                    </div>
                     <div className="admin-product-grid">
-                      {products.map(product => (
+                      {getSortedProducts().map(product => (
                         <div key={product.id} className="admin-product-card">
                           <div className="admin-product-badge">
                             <button onClick={() => handleEditProduct(product)} className="admin-edit-badge" title="Edit Product">
