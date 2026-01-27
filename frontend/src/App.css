@@ -1055,6 +1055,7 @@ body {
   align-items: center;
   justify-content: center;
   transition: opacity 0.2s;
+  font-family: 'Roboto', sans-serif;
 }
 
 .btn-icon-add:hover {
