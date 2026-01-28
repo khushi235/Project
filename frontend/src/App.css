@@ -700,12 +700,13 @@ body {
   }
 
   .category-filter {
-    gap: 8px;
+    gap: 6px;
+    padding: 6px 12px;
   }
 
   .category-btn {
-    padding: 10px 16px;
-    font-size: 14px;
+    padding: 8px 14px;
+    font-size: 13px;
   }
 }
 
