@@ -111,23 +111,30 @@ const Collections = () => {
         {/* Product Grid */}
         <div className="grid-product-showcase">
           {filteredProducts.length > 0 ? (
-            filteredProducts.map(product => (
-              <div key={product.id} className="product-card hover-lift" data-testid={`product-card-${product.id}`}>
-                <div className="product-card-image-wrapper">
-                  <img 
-                    className="product-card-image" 
-                    src={product.image} 
-                    alt={product.name}
-                    loading="lazy"
-                  />
+            filteredProducts.map(product => {
+              // Format details: convert "X.X ct total weight" to "X.X cttw"
+              const formattedDetails = product.details 
+                ? product.details.replace('ct total weight', 'cttw')
+                : '';
+              
+              return (
+                <div key={product.id} className="product-card hover-lift" data-testid={`product-card-${product.id}`}>
+                  <div className="product-card-image-wrapper">
+                    <img 
+                      className="product-card-image" 
+                      src={product.image} 
+                      alt={product.name}
+                      loading="lazy"
+                    />
+                  </div>
+                  <div className="product-card-content">
+                    <h3 className="product-card-title">{product.name}</h3>
+                    <p className="product-card-details body-small">{formattedDetails}</p>
+                    <p className="product-card-price">{product.price}</p>
+                  </div>
                 </div>
-                <div className="product-card-content">
-                  <h3 className="product-card-title">{product.name}</h3>
-                  <p className="product-card-details body-small">{product.details}</p>
-                  <p className="product-card-price">{product.price}</p>
-                </div>
-              </div>
-            ))
+              );
+            })
           ) : (
             <div className="no-products">
               <p className="body-large">No products found in this category.</p>
