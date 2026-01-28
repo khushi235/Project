@@ -518,7 +518,7 @@ body {
 }
 
 .contact-label {
-  font-size: 14px;
+  font-size: 15px;
   font-weight: 500;
   color: var(--text-primary);
   margin-bottom: 4px;
@@ -526,14 +526,14 @@ body {
 }
 
 .contact-value {
-  font-size: 13px;
+  font-size: 14px;
   color: var(--text-secondary);
   font-family: 'Roboto', sans-serif;
   line-height: 1.5;
 }
 
 .contact-note {
-  font-size: 12px;
+  font-size: 13px;
   color: var(--text-light);
   font-family: 'Roboto', sans-serif;
   margin-top: 2px;
@@ -598,7 +598,7 @@ body {
 }
 
 .footer-brand {
-  font-size: 15px;
+  font-size: 16px;
   font-weight: 500;
   letter-spacing: 0.1em;
   margin-bottom: 8px;
@@ -608,14 +608,14 @@ body {
 }
 
 .footer-description {
-  font-size: 13px;
+  font-size: 14px;
   color: var(--text-secondary);
   max-width: 280px;
   font-family: 'Roboto', sans-serif;
 }
 
 .footer-heading {
-  font-size: 13px;
+  font-size: 14px;
   font-weight: 500;
   margin-bottom: 10px;
   color: var(--text-primary);
@@ -634,7 +634,7 @@ body {
   gap: 6px;
   color: var(--text-secondary);
   text-decoration: none;
-  font-size: 13px;
+  font-size: 14px;
   font-weight: 400;
   transition: color 0.2s ease;
   font-family: 'Roboto', sans-serif;
@@ -645,7 +645,7 @@ body {
 }
 
 .footer-text {
-  font-size: 13px;
+  font-size: 14px;
   color: var(--text-secondary);
   font-family: 'Roboto', sans-serif;
   line-height: 1.6;
@@ -658,7 +658,7 @@ body {
 }
 
 .footer-copyright {
-  font-size: 12px;
+  font-size: 13px;
   color: var(--text-light);
   font-family: 'Roboto', sans-serif;
 }
