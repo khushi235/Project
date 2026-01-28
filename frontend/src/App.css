@@ -103,20 +103,21 @@ body {
 
 /* Navigation */
 .navigation-header {
-  background: var(--bg-primary);
-  border-bottom: 1px solid var(--border-light);
-  padding: 18px 0;
+  background: white;
+  border-bottom: none;
+  padding: 14px 40px;
   position: sticky;
-  top: 0;
+  top: 12px;
   z-index: 100;
-  backdrop-filter: blur(12px);
-  background: rgba(240, 247, 255, 0.95);
+  margin: 12px 40px 0;
+  border-radius: 50px;
+  box-shadow: 0 2px 20px rgba(44, 62, 80, 0.08);
 }
 
 .navigation-container {
   max-width: 1400px;
   margin: 0 auto;
-  padding: 0 40px;
+  padding: 0;
   display: flex;
   align-items: center;
   justify-content: center;
@@ -124,9 +125,9 @@ body {
 }
 
 .navigation-logo {
-  font-size: 18px;
+  font-size: 16px;
   font-weight: 500;
-  letter-spacing: 0.15em;
+  letter-spacing: 0.18em;
   color: var(--text-primary);
   text-decoration: none;
   font-family: 'Roboto', sans-serif;
@@ -184,7 +185,7 @@ body {
 
 /* Hero Section */
 .hero-section {
-  padding: 40px 0 30px;
+  padding: 24px 0 16px;
   background: var(--bg-primary);
 }
 
@@ -225,11 +226,11 @@ body {
 
 /* Collections Section */
 .section-padding {
-  padding: 60px 0;
+  padding: 40px 0;
 }
 
 .section-padding-small {
-  padding: 30px 0;
+  padding: 16px 0 40px;
 }
 
 /* Category Filter */
@@ -1244,24 +1245,24 @@ body {
   background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
   color: white;
   border: none;
-  padding: 8px 16px;
-  font-size: 12px;
+  padding: 6px 14px;
+  font-size: 11px;
   font-weight: 500;
   cursor: pointer;
   transition: all 0.3s ease;
   font-family: 'Roboto', sans-serif;
   border-radius: 20px;
-  box-shadow: 0 2px 10px rgba(102, 126, 234, 0.25);
+  box-shadow: 0 2px 8px rgba(102, 126, 234, 0.25);
   display: flex;
   align-items: center;
-  gap: 5px;
+  gap: 4px;
   position: absolute;
-  right: 40px;
+  right: 0;
 }
 
 .admin-toggle-btn:hover {
   transform: translateY(-1px);
-  box-shadow: 0 4px 15px rgba(102, 126, 234, 0.35);
+  box-shadow: 0 4px 12px rgba(102, 126, 234, 0.35);
 }
 
 .sort-select {
