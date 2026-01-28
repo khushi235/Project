@@ -661,6 +661,20 @@ body {
   line-height: 1.6;
 }
 
+.footer-note {
+  font-size: 13px;
+  color: var(--text-light);
+  font-family: 'Roboto', sans-serif;
+  font-style: italic;
+  margin-top: 4px;
+}
+
+.footer-address {
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+}
+
 .footer-bottom {
   padding-top: 20px;
   border-top: 1px solid var(--border-light);
