@@ -259,12 +259,12 @@ body {
   border-color: var(--interactive-base);
 }
 
-/* Subcategory Filter - Checkbox Style */
+/* Subcategory Filter - Checkbox Style (Compact) */
 .subcategory-filter {
   display: flex;
   justify-content: center;
-  gap: 16px;
-  margin-bottom: 32px;
+  gap: 10px;
+  margin-bottom: 28px;
   flex-wrap: wrap;
   padding: 0 20px;
 }
@@ -272,13 +272,13 @@ body {
 .subcategory-checkbox-label {
   display: flex;
   align-items: center;
-  gap: 8px;
-  padding: 10px 18px;
-  background: var(--bg-secondary);
-  border: 1px solid var(--border-light);
-  border-radius: 6px;
-  font-size: 15px;
-  font-weight: 500;
+  gap: 6px;
+  padding: 6px 14px;
+  background: transparent;
+  border: 1px dashed var(--border-medium);
+  border-radius: 20px;
+  font-size: 13px;
+  font-weight: 400;
   color: var(--text-secondary);
   cursor: pointer;
   transition: all 0.2s ease;
@@ -288,19 +288,21 @@ body {
 
 .subcategory-checkbox-label:hover {
   border-color: var(--interactive-base);
+  border-style: solid;
   color: var(--text-primary);
 }
 
 .subcategory-checkbox-label.checked {
-  background: var(--text-primary);
+  background: var(--interactive-base);
   color: white;
-  border-color: var(--text-primary);
+  border-color: var(--interactive-base);
+  border-style: solid;
 }
 
 .subcategory-checkbox {
-  width: 16px;
-  height: 16px;
-  accent-color: var(--text-primary);
+  width: 14px;
+  height: 14px;
+  accent-color: var(--interactive-base);
   cursor: pointer;
 }
 
