@@ -1,5 +1,5 @@
 import React from 'react';
-import { Mail, Phone, MapPin } from 'lucide-react';
+import { Mail, Phone } from 'lucide-react';
 
 const Footer = () => {
   const currentYear = new Date().getFullYear();
@@ -8,13 +8,6 @@ const Footer = () => {
     <footer className="footer">
       <div className="container">
         <div className="footer-content">
-          <div className="footer-section">
-            <h3 className="footer-brand">Allure Diam Inc</h3>
-            <p className="footer-description">
-              Exceptional diamond jewelry crafted with precision and care
-            </p>
-          </div>
-
           <div className="footer-section">
             <h4 className="footer-heading">Visit Our Showroom</h4>
             <div className="footer-address">
