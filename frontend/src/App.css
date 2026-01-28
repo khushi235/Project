@@ -385,6 +385,7 @@ body {
   color: var(--text-primary);
   font-family: 'Roboto', sans-serif;
   letter-spacing: 0.02em;
+  transition: font-size 0.2s ease;
 }
 
 .product-card-details {
@@ -393,6 +394,7 @@ body {
   font-size: 14px;
   font-weight: 600;
   font-family: 'Roboto', sans-serif;
+  transition: font-size 0.2s ease;
 }
 
 .product-card-price {
@@ -400,6 +402,13 @@ body {
   font-weight: 600;
   color: var(--text-primary);
   font-family: 'Roboto', sans-serif;
+  transition: font-size 0.2s ease;
+}
+
+.product-card:hover .product-card-title,
+.product-card:hover .product-card-details,
+.product-card:hover .product-card-price {
+  font-size: 15px;
 }
 
 /* About Section */
