@@ -105,12 +105,12 @@ body {
 .navigation-header {
   background: var(--bg-primary);
   border-bottom: 1px solid var(--border-light);
-  padding: 24px 0;
+  padding: 18px 0;
   position: sticky;
   top: 0;
   z-index: 100;
   backdrop-filter: blur(12px);
-  background: rgba(255, 254, 242, 0.95);
+  background: rgba(240, 247, 255, 0.95);
 }
 
 .navigation-container {
@@ -119,16 +119,18 @@ body {
   padding: 0 40px;
   display: flex;
   align-items: center;
-  justify-content: space-between;
+  justify-content: center;
+  position: relative;
 }
 
 .navigation-logo {
-  font-size: 24px;
-  font-weight: 700;
-  letter-spacing: 0.12em;
+  font-size: 18px;
+  font-weight: 500;
+  letter-spacing: 0.15em;
   color: var(--text-primary);
   text-decoration: none;
   font-family: 'Roboto', sans-serif;
+  text-transform: uppercase;
 }
 
 .navigation-menu {
@@ -397,23 +399,23 @@ body {
 /* About Section */
 .about-section {
   background: white;
-  border-radius: 16px;
+  border-radius: 12px;
   margin: 0 40px;
-  padding: 60px 40px;
+  padding: 40px 32px;
 }
 
 .about-with-image {
   display: grid;
-  grid-template-columns: 400px 1fr;
-  gap: 50px;
+  grid-template-columns: 280px 1fr;
+  gap: 36px;
   align-items: center;
 }
 
 .about-image-container {
   width: 100%;
-  height: 400px;
+  height: 280px;
   overflow: hidden;
-  border-radius: 12px;
+  border-radius: 10px;
 }
 
 .loose-diamond-image {
@@ -427,9 +429,41 @@ body {
   margin-bottom: 24px;
 }
 
+.about-title {
+  font-size: 22px;
+  font-weight: 500;
+  color: var(--text-primary);
+  margin-bottom: 16px;
+  font-family: 'Roboto', sans-serif;
+  letter-spacing: 0.01em;
+}
+
 .about-description {
-  line-height: 1.8;
+  font-size: 14px;
+  line-height: 1.7;
   color: var(--text-secondary);
+  font-family: 'Roboto', sans-serif;
+}
+
+.btn-quote {
+  display: inline-flex;
+  align-items: center;
+  background: transparent;
+  color: var(--interactive-base);
+  border: 1.5px solid var(--interactive-base);
+  border-radius: 25px;
+  padding: 10px 20px;
+  font-size: 13px;
+  font-weight: 500;
+  cursor: pointer;
+  transition: all 0.2s ease;
+  text-decoration: none;
+  font-family: 'Roboto', sans-serif;
+}
+
+.btn-quote:hover {
+  background: var(--interactive-base);
+  color: white;
 }
 
 /* Contact Section */
@@ -1174,22 +1208,24 @@ body {
   background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
   color: white;
   border: none;
-  padding: 12px 28px;
-  font-size: 15px;
-  font-weight: 600;
+  padding: 8px 16px;
+  font-size: 12px;
+  font-weight: 500;
   cursor: pointer;
   transition: all 0.3s ease;
   font-family: 'Roboto', sans-serif;
-  border-radius: 25px;
-  box-shadow: 0 4px 15px rgba(102, 126, 234, 0.3);
+  border-radius: 20px;
+  box-shadow: 0 2px 10px rgba(102, 126, 234, 0.25);
   display: flex;
   align-items: center;
-  gap: 8px;
+  gap: 5px;
+  position: absolute;
+  right: 40px;
 }
 
 .admin-toggle-btn:hover {
-  transform: translateY(-2px);
-  box-shadow: 0 6px 20px rgba(102, 126, 234, 0.4);
+  transform: translateY(-1px);
+  box-shadow: 0 4px 15px rgba(102, 126, 234, 0.35);
 }
 
 .sort-select {
