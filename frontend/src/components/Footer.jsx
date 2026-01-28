@@ -1,5 +1,5 @@
 import React from 'react';
-import { Mail, Phone } from 'lucide-react';
+import { Mail, Phone, MapPin } from 'lucide-react';
 
 const Footer = () => {
   const currentYear = new Date().getFullYear();
@@ -13,6 +13,15 @@ const Footer = () => {
             <p className="footer-description">
               Exceptional diamond jewelry crafted with precision and care
             </p>
+          </div>
+
+          <div className="footer-section">
+            <h4 className="footer-heading">Visit Our Showroom</h4>
+            <div className="footer-address">
+              <p className="footer-text">42 W 48 St #1203</p>
+              <p className="footer-text">New York, NY 10036</p>
+              <p className="footer-note">By appointment only</p>
+            </div>
           </div>
 
           <div className="footer-section">

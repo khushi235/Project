@@ -5,7 +5,6 @@ import Navigation from "./components/Navigation";
 import Hero from "./components/Hero";
 import Collections from "./components/Collections";
 import About from "./components/About";
-import Contact from "./components/Contact";
 import Footer from "./components/Footer";
 import AdminPanel from "./components/AdminPanel";
 import AdminLogin from "./components/AdminLogin";
@@ -72,7 +71,6 @@ const Home = () => {
       <Hero />
       <Collections key={refreshKey} />
       <About />
-      <Contact />
       <Footer />
       
       {showAdminLogin && (
