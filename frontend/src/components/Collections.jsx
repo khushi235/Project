@@ -7,7 +7,7 @@ const API = `${BACKEND_URL}/api`;
 
 const Collections = () => {
   const [selectedCategory, setSelectedCategory] = useState('all');
-  const [selectedSubcategory, setSelectedSubcategory] = useState('all');
+  const [selectedSubcategories, setSelectedSubcategories] = useState([]);
   const [products, setProducts] = useState([]);
   const [categories, setCategories] = useState([]);
   const [loading, setLoading] = useState(true);
@@ -37,17 +37,24 @@ const Collections = () => {
 
   const filteredProducts = products.filter(product => {
     if (selectedCategory === 'all') return true;
-    if (selectedSubcategory === 'all') return product.category === selectedCategory;
-    return product.category === selectedCategory && product.subcategory === selectedSubcategory;
+    if (product.category !== selectedCategory) return false;
+    if (selectedSubcategories.length === 0) return true;
+    return selectedSubcategories.includes(product.subcategory);
   });
 
   const handleCategoryChange = (categoryId) => {
     setSelectedCategory(categoryId);
-    setSelectedSubcategory('all');
+    setSelectedSubcategories([]);
   };
 
-  const handleSubcategoryChange = (subcategoryId) => {
-    setSelectedSubcategory(subcategoryId);
+  const handleSubcategoryToggle = (subcategoryId) => {
+    setSelectedSubcategories(prev => {
+      if (prev.includes(subcategoryId)) {
+        return prev.filter(id => id !== subcategoryId);
+      } else {
+        return [...prev, subcategoryId];
+      }
+    });
   };
 
   if (loading) {
@@ -70,30 +77,34 @@ const Collections = () => {
               key={category.id}
               className={`category-btn ${selectedCategory === category.id ? 'active' : ''}`}
               onClick={() => handleCategoryChange(category.id)}
+              data-testid={`category-btn-${category.id}`}
             >
               {category.name}
             </button>
           ))}
         </div>
 
-        {/* Subcategory Filter */}
+        {/* Subcategory Filter with Checkboxes */}
         {hasSubcategories && (
           <div className="subcategory-filter">
-            <button 
-              className={`subcategory-btn ${selectedSubcategory === 'all' ? 'active' : ''}`}
-              onClick={() => handleSubcategoryChange('all')}
-            >
-              All {currentCategory.name}
-            </button>
-            {currentCategory.subcategories.map(subcategory => (
-              <button 
-                key={subcategory.id}
-                className={`subcategory-btn ${selectedSubcategory === subcategory.id ? 'active' : ''}`}
-                onClick={() => handleSubcategoryChange(subcategory.id)}
-              >
-                {subcategory.name}
-              </button>
-            ))}
+            {currentCategory.subcategories.map(subcategory => {
+              const isChecked = selectedSubcategories.includes(subcategory.id);
+              return (
+                <label 
+                  key={subcategory.id}
+                  className={`subcategory-checkbox-label ${isChecked ? 'checked' : ''}`}
+                  data-testid={`subcategory-checkbox-${subcategory.id}`}
+                >
+                  <input
+                    type="checkbox"
+                    className="subcategory-checkbox"
+                    checked={isChecked}
+                    onChange={() => handleSubcategoryToggle(subcategory.id)}
+                  />
+                  {subcategory.name}
+                </label>
+              );
+            })}
           </div>
         )}
 
@@ -101,7 +112,7 @@ const Collections = () => {
         <div className="grid-product-showcase">
           {filteredProducts.length > 0 ? (
             filteredProducts.map(product => (
-              <div key={product.id} className="product-card hover-lift">
+              <div key={product.id} className="product-card hover-lift" data-testid={`product-card-${product.id}`}>
                 <div className="product-card-image-wrapper">
                   <img 
                     className="product-card-image" 
