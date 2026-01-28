@@ -9,8 +9,8 @@ const Footer = () => {
       <div className="container">
         <div className="footer-content">
           <div className="footer-section">
-            <h3 className="footer-brand">ALLURE DIAM INC</h3>
-            <p className="body-small footer-description">
+            <h3 className="footer-brand">Allure Diam Inc</h3>
+            <p className="footer-description">
               Exceptional diamond jewelry crafted with precision and care
             </p>
           </div>
@@ -19,11 +19,11 @@ const Footer = () => {
             <h4 className="footer-heading">Contact</h4>
             <div className="footer-contact">
               <a href="tel:+12127307778" className="footer-link">
-                <Phone size={16} />
+                <Phone size={14} />
                 212-730-7778
               </a>
               <a href="mailto:allurediaminc@gmail.com" className="footer-link">
-                <Mail size={16} />
+                <Mail size={14} />
                 allurediaminc@gmail.com
               </a>
             </div>
@@ -31,14 +31,14 @@ const Footer = () => {
 
           <div className="footer-section">
             <h4 className="footer-heading">Hours</h4>
-            <p className="body-small">Monday - Friday: 9:30am - 6pm</p>
-            <p className="body-small">Saturday: Closed</p>
-            <p className="body-small">Sunday: Closed</p>
+            <p className="footer-text">Monday - Friday: 9:30am - 6pm</p>
+            <p className="footer-text">Saturday: Closed</p>
+            <p className="footer-text">Sunday: Closed</p>
           </div>
         </div>
 
         <div className="footer-bottom">
-          <p className="body-small">
+          <p className="footer-copyright">
             © {currentYear} Allure Diam Inc. All rights reserved.
           </p>
         </div>
