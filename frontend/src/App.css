@@ -389,14 +389,14 @@ body {
 .product-card-details {
   margin-bottom: 4px;
   color: var(--text-secondary);
-  font-size: 13px;
-  font-weight: 400;
+  font-size: 14px;
+  font-weight: 500;
   font-family: 'Roboto', sans-serif;
 }
 
 .product-card-price {
-  font-size: 13px;
-  font-weight: 400;
+  font-size: 14px;
+  font-weight: 500;
   color: var(--text-secondary);
   font-family: 'Roboto', sans-serif;
 }
