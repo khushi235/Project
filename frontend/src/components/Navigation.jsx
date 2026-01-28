@@ -8,15 +8,13 @@ const Navigation = ({ onAdminToggle }) => {
     <header className="navigation-header">
       <div className="navigation-container">
         <a href="#home" className="navigation-logo">
-          ALLURE DIAM INC
+          Allure Diam Inc
         </a>
 
-        <div className="navigation-utilities">
-          <button className="admin-toggle-btn" onClick={onAdminToggle}>
-            <Settings size={18} style={{ marginRight: '8px' }} />
-            Admin
-          </button>
-        </div>
+        <button className="admin-toggle-btn" onClick={onAdminToggle}>
+          <Settings size={16} />
+          Admin
+        </button>
       </div>
     </header>
   );
