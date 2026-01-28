@@ -234,29 +234,44 @@ body {
 .category-filter {
   display: flex;
   justify-content: center;
-  gap: 12px;
+  gap: 8px;
   margin-bottom: 24px;
   flex-wrap: wrap;
+  padding: 8px 16px;
+  background: rgba(255, 255, 255, 0.6);
+  backdrop-filter: blur(8px);
+  border-radius: 50px;
+  width: fit-content;
+  margin-left: auto;
+  margin-right: auto;
+  box-shadow: 0 2px 20px rgba(44, 62, 80, 0.08);
 }
 
 .category-btn {
-  background: white;
-  border: 1px solid var(--border-medium);
-  border-radius: 8px;
-  padding: 12px 24px;
-  font-size: 16px;
-  font-weight: 600;
-  color: var(--text-primary);
+  background: transparent;
+  border: none;
+  border-radius: 30px;
+  padding: 10px 22px;
+  font-size: 14px;
+  font-weight: 500;
+  color: var(--text-secondary);
   cursor: pointer;
-  transition: all 0.2s ease;
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
   font-family: 'Roboto', sans-serif;
+  position: relative;
+  letter-spacing: 0.02em;
 }
 
-.category-btn:hover,
+.category-btn:hover {
+  color: var(--text-primary);
+  background: rgba(44, 62, 80, 0.06);
+}
+
 .category-btn.active {
-  background: var(--interactive-base);
+  background: linear-gradient(135deg, #2c3e50 0%, #1a252f 100%);
   color: white;
-  border-color: var(--interactive-base);
+  box-shadow: 0 4px 15px rgba(44, 62, 80, 0.25);
+  transform: scale(1.02);
 }
 
 /* Subcategory Filter - Checkbox Style (Compact) */
