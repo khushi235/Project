@@ -8,7 +8,7 @@ const About = () => {
         <div className="about-with-image">
           <div className="about-image-container">
             <img 
-              src="https://customer-assets.emergentagent.com/job_luxury-jewels-33/artifacts/f3q7z732_Screenshot%20%2864%29.png" 
+              src="https://customer-assets.emergentagent.com/job_4ee70d39-c1b9-4af8-8734-be9fa9a39713/artifacts/rz6yvzrz_Screenshot%20%2864%29.png" 
               alt="Premium loose diamond"
               className="loose-diamond-image"
             />
