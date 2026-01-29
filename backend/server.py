@@ -12,7 +12,7 @@ import uuid
 from datetime import datetime, timezone
 
 # Import route modules
-from routes import products, categories, contact
+from routes import products, categories, contact, subcategory_pricing
 
 
 ROOT_DIR = Path(__file__).parent
@@ -85,6 +85,7 @@ app.include_router(api_router)
 app.include_router(products.router)
 app.include_router(categories.router)
 app.include_router(contact.router)
+app.include_router(subcategory_pricing.router)
 
 app.add_middleware(
     CORSMiddleware,
