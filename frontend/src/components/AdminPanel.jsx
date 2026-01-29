@@ -6,13 +6,17 @@ import { toast } from 'sonner';
 const BACKEND_URL = process.env.REACT_APP_BACKEND_URL;
 const API = `${BACKEND_URL}/api`;
 
+// Categories that use subcategory pricing
+const PRICING_CATEGORIES = ['necklace', 'bracelet', 'bangle'];
+
 const AdminPanel = ({ onClose, onLogout }) => {
   const [activeTab, setActiveTab] = useState('products');
   const [products, setProducts] = useState([]);
   const [categories, setCategories] = useState([]);
   const [contacts, setContacts] = useState([]);
+  const [subcategoryPricing, setSubcategoryPricing] = useState([]);
   const [loading, setLoading] = useState(false);
-  const [sortBy, setSortBy] = useState('name'); // name, category, price
+  const [sortBy, setSortBy] = useState('name');
   
   // Product form state
   const [productForm, setProductForm] = useState({
@@ -34,6 +38,17 @@ const AdminPanel = ({ onClose, onLogout }) => {
   const [newSubcategory, setNewSubcategory] = useState({ id: '', name: '' });
   const [editingCategory, setEditingCategory] = useState(null);
 
+  // Subcategory Pricing form state
+  const [pricingForm, setPricingForm] = useState({
+    category_id: '',
+    subcategory_id: '',
+    subcategory_name: '',
+    image_url: '',
+    price_table: []
+  });
+  const [newPriceRow, setNewPriceRow] = useState({ cttw: '', price: '' });
+  const [editingPricing, setEditingPricing] = useState(null);
+
   useEffect(() => {
     fetchData();
   }, [activeTab]);
@@ -52,6 +67,13 @@ const AdminPanel = ({ onClose, onLogout }) => {
       } else if (activeTab === 'contacts') {
         const res = await axios.get(`${API}/contact`);
         setContacts(res.data);
+      } else if (activeTab === 'pricing') {
+        const [catRes, pricingRes] = await Promise.all([
+          axios.get(`${API}/categories`),
+          axios.get(`${API}/subcategory-pricing`)
+        ]);
+        setCategories(catRes.data);
+        setSubcategoryPricing(pricingRes.data);
       }
     } catch (error) {
       toast.error('Failed to fetch data');
@@ -61,7 +83,7 @@ const AdminPanel = ({ onClose, onLogout }) => {
   };
 
   // Image upload handler
-  const handleImageUpload = async (e) => {
+  const handleImageUpload = async (e, forPricing = false) => {
     const file = e.target.files[0];
     if (!file) return;
 
@@ -73,7 +95,12 @@ const AdminPanel = ({ onClose, onLogout }) => {
       const res = await axios.post(`${API}/products/upload-image`, formData, {
         headers: { 'Content-Type': 'multipart/form-data' }
       });
-      setProductForm({ ...productForm, image: `${BACKEND_URL}${res.data.image_url}` });
+      const imageUrl = `${BACKEND_URL}${res.data.image_url}`;
+      if (forPricing) {
+        setPricingForm({ ...pricingForm, image_url: imageUrl });
+      } else {
+        setProductForm({ ...productForm, image: imageUrl });
+      }
       toast.success('Image uploaded successfully');
     } catch (error) {
       toast.error('Failed to upload image');
@@ -196,9 +223,78 @@ const AdminPanel = ({ onClose, onLogout }) => {
     }
   };
 
-  const getSubcategories = () => {
-    const cat = categories.find(c => c.id === productForm.category);
+  // Subcategory Pricing CRUD operations
+  const handlePricingSubmit = async (e) => {
+    e.preventDefault();
+    try {
+      if (editingPricing) {
+        await axios.put(`${API}/subcategory-pricing/${editingPricing.id}`, {
+          image_url: pricingForm.image_url,
+          price_table: pricingForm.price_table
+        });
+        toast.success('Pricing updated successfully');
+      } else {
+        await axios.post(`${API}/subcategory-pricing`, pricingForm);
+        toast.success('Pricing added successfully');
+      }
+      setPricingForm({ category_id: '', subcategory_id: '', subcategory_name: '', image_url: '', price_table: [] });
+      setEditingPricing(null);
+      fetchData();
+    } catch (error) {
+      toast.error('Failed to save pricing');
+      console.error(error);
+    }
+  };
+
+  const handleEditPricing = (pricing) => {
+    setEditingPricing(pricing);
+    setPricingForm({
+      category_id: pricing.category_id,
+      subcategory_id: pricing.subcategory_id,
+      subcategory_name: pricing.subcategory_name,
+      image_url: pricing.image_url,
+      price_table: pricing.price_table || []
+    });
+  };
+
+  const handleDeletePricing = async (id) => {
+    if (!window.confirm('Are you sure you want to delete this pricing?')) return;
+    try {
+      await axios.delete(`${API}/subcategory-pricing/${id}`);
+      toast.success('Pricing deleted successfully');
+      fetchData();
+    } catch (error) {
+      toast.error('Failed to delete pricing');
+      console.error(error);
+    }
+  };
+
+  const handleAddPriceRow = () => {
+    if (!newPriceRow.cttw || !newPriceRow.price) {
+      toast.error('Please fill in both CTTW and Price');
+      return;
+    }
+    setPricingForm({
+      ...pricingForm,
+      price_table: [...pricingForm.price_table, newPriceRow]
+    });
+    setNewPriceRow({ cttw: '', price: '' });
+  };
+
+  const handleRemovePriceRow = (index) => {
+    const updated = [...pricingForm.price_table];
+    updated.splice(index, 1);
+    setPricingForm({ ...pricingForm, price_table: updated });
+  };
+
+  const getSubcategories = (forPricing = false) => {
+    const categoryId = forPricing ? pricingForm.category_id : productForm.category;
+    const cat = categories.find(c => c.id === categoryId);
     return cat ? cat.subcategories : [];
+  };
+
+  const getPricingCategories = () => {
+    return categories.filter(c => PRICING_CATEGORIES.includes(c.id));
   };
 
   const getSortedProducts = () => {
@@ -237,6 +333,12 @@ const AdminPanel = ({ onClose, onLogout }) => {
             Products
           </button>
           <button 
+            className={`admin-tab ${activeTab === 'pricing' ? 'active' : ''}`}
+            onClick={() => setActiveTab('pricing')}
+          >
+            Price Tables
+          </button>
+          <button 
             className={`admin-tab ${activeTab === 'categories' ? 'active' : ''}`}
             onClick={() => setActiveTab('categories')}
           >
@@ -260,6 +362,9 @@ const AdminPanel = ({ onClose, onLogout }) => {
                 <div className="admin-section">
                   <div className="admin-form-container">
                     <h3 className="heading-3">{editingProduct ? 'Edit Product' : 'Add New Product'}</h3>
+                    <p className="body-small" style={{ marginBottom: '16px', color: 'var(--text-light)' }}>
+                      For Rings & Pendants only. Use "Price Tables" tab for Necklaces, Bracelets & Bangles.
+                    </p>
                     <form onSubmit={handleProductSubmit} className="admin-form">
                       <div className="form-row">
                         <div className="form-group">
@@ -284,7 +389,7 @@ const AdminPanel = ({ onClose, onLogout }) => {
                             required
                           >
                             <option value="">Select Category</option>
-                            {categories.filter(c => c.id !== 'all').map(cat => (
+                            {categories.filter(c => c.id !== 'all' && !PRICING_CATEGORIES.includes(c.id)).map(cat => (
                               <option key={cat.id} value={cat.id}>{cat.name}</option>
                             ))}
                           </select>
@@ -339,7 +444,7 @@ const AdminPanel = ({ onClose, onLogout }) => {
                           <input
                             type="file"
                             accept="image/*"
-                            onChange={handleImageUpload}
+                            onChange={(e) => handleImageUpload(e, false)}
                             className="file-input"
                             id="image-upload"
                           />
@@ -378,7 +483,7 @@ const AdminPanel = ({ onClose, onLogout }) => {
 
                   <div className="admin-list-container">
                     <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginBottom: '16px' }}>
-                      <h3 className="heading-3">All Products ({products.length})</h3>
+                      <h3 className="heading-3">All Products ({products.filter(p => !PRICING_CATEGORIES.includes(p.category)).length})</h3>
                       <div style={{ display: 'flex', gap: '8px', alignItems: 'center' }}>
                         <label className="body-small" style={{ color: 'var(--text-secondary)' }}>Sort by:</label>
                         <select 
@@ -393,7 +498,7 @@ const AdminPanel = ({ onClose, onLogout }) => {
                       </div>
                     </div>
                     <div className="admin-product-grid">
-                      {getSortedProducts().map(product => (
+                      {getSortedProducts().filter(p => !PRICING_CATEGORIES.includes(p.category)).map(product => (
                         <div key={product.id} className="admin-product-card">
                           <div className="admin-product-badge">
                             <button onClick={() => handleEditProduct(product)} className="admin-edit-badge" title="Edit Product">
@@ -412,6 +517,162 @@ const AdminPanel = ({ onClose, onLogout }) => {
                             <p className="body-small" style={{ fontSize: '11px', color: 'var(--text-light)' }}>
                               {product.category} - {product.subcategory}
                             </p>
+                          </div>
+                        </div>
+                      ))}
+                    </div>
+                  </div>
+                </div>
+              )}
+
+              {/* Subcategory Pricing Tab */}
+              {activeTab === 'pricing' && (
+                <div className="admin-section">
+                  <div className="admin-form-container">
+                    <h3 className="heading-3">{editingPricing ? 'Edit Price Table' : 'Add New Price Table'}</h3>
+                    <p className="body-small" style={{ marginBottom: '16px', color: 'var(--text-light)' }}>
+                      For Necklaces, Bracelets & Bangles subcategories
+                    </p>
+                    <form onSubmit={handlePricingSubmit} className="admin-form">
+                      <div className="form-row">
+                        <div className="form-group">
+                          <label className="form-label">Category</label>
+                          <select
+                            className="form-input"
+                            value={pricingForm.category_id}
+                            onChange={(e) => setPricingForm({ ...pricingForm, category_id: e.target.value, subcategory_id: '', subcategory_name: '' })}
+                            required
+                            disabled={editingPricing}
+                          >
+                            <option value="">Select Category</option>
+                            {getPricingCategories().map(cat => (
+                              <option key={cat.id} value={cat.id}>{cat.name}</option>
+                            ))}
+                          </select>
+                        </div>
+
+                        <div className="form-group">
+                          <label className="form-label">Subcategory</label>
+                          <select
+                            className="form-input"
+                            value={pricingForm.subcategory_id}
+                            onChange={(e) => {
+                              const sub = getSubcategories(true).find(s => s.id === e.target.value);
+                              setPricingForm({ 
+                                ...pricingForm, 
+                                subcategory_id: e.target.value,
+                                subcategory_name: sub ? sub.name : ''
+                              });
+                            }}
+                            required
+                            disabled={!pricingForm.category_id || editingPricing}
+                          >
+                            <option value="">Select Subcategory</option>
+                            {getSubcategories(true).map(sub => (
+                              <option key={sub.id} value={sub.id}>{sub.name}</option>
+                            ))}
+                          </select>
+                        </div>
+                      </div>
+
+                      <div className="form-group">
+                        <label className="form-label">Subcategory Image</label>
+                        <div className="image-upload-wrapper">
+                          <input
+                            type="file"
+                            accept="image/*"
+                            onChange={(e) => handleImageUpload(e, true)}
+                            className="file-input"
+                            id="pricing-image-upload"
+                          />
+                          <label htmlFor="pricing-image-upload" className="file-input-label">
+                            <Upload size={20} />
+                            {uploading ? 'Uploading...' : 'Upload Image'}
+                          </label>
+                          {pricingForm.image_url && (
+                            <div className="image-preview">
+                              <img src={pricingForm.image_url} alt="Preview" />
+                            </div>
+                          )}
+                        </div>
+                      </div>
+
+                      <div className="form-group">
+                        <label className="form-label">Price Table (CTTW & Price)</label>
+                        <div className="price-row-input">
+                          <input
+                            type="text"
+                            className="form-input"
+                            placeholder="CTTW (e.g., 3)"
+                            value={newPriceRow.cttw}
+                            onChange={(e) => setNewPriceRow({ ...newPriceRow, cttw: e.target.value })}
+                          />
+                          <input
+                            type="text"
+                            className="form-input"
+                            placeholder="Price (e.g., $3,500)"
+                            value={newPriceRow.price}
+                            onChange={(e) => setNewPriceRow({ ...newPriceRow, price: e.target.value })}
+                          />
+                          <button type="button" onClick={handleAddPriceRow} className="btn-icon-add">
+                            <Plus size={20} />
+                          </button>
+                        </div>
+                        {pricingForm.price_table.length > 0 && (
+                          <div className="price-rows-list">
+                            {pricingForm.price_table.map((row, index) => (
+                              <div key={index} className="price-row-item">
+                                <span><strong>{row.cttw}</strong> cttw - {row.price}</span>
+                                <button type="button" onClick={() => handleRemovePriceRow(index)} className="btn-remove">
+                                  <X size={16} />
+                                </button>
+                              </div>
+                            ))}
+                          </div>
+                        )}
+                      </div>
+
+                      <div className="form-actions">
+                        <button type="submit" className="btn-primary">
+                          <Save size={16} />
+                          {editingPricing ? 'Update Price Table' : 'Add Price Table'}
+                        </button>
+                        {editingPricing && (
+                          <button
+                            type="button"
+                            className="btn-secondary"
+                            onClick={() => {
+                              setEditingPricing(null);
+                              setPricingForm({ category_id: '', subcategory_id: '', subcategory_name: '', image_url: '', price_table: [] });
+                            }}
+                          >
+                            Cancel
+                          </button>
+                        )}
+                      </div>
+                    </form>
+                  </div>
+
+                  <div className="admin-list-container">
+                    <h3 className="heading-3">All Price Tables ({subcategoryPricing.length})</h3>
+                    <div className="admin-pricing-grid">
+                      {subcategoryPricing.map(pricing => (
+                        <div key={pricing.id} className="admin-pricing-card">
+                          <img src={pricing.image_url} alt={pricing.subcategory_name} className="admin-pricing-image" />
+                          <div className="admin-pricing-info">
+                            <h4>{pricing.subcategory_name}</h4>
+                            <p className="admin-pricing-table-preview">
+                              {pricing.price_table?.length || 0} price rows
+                            </p>
+                            <div className="admin-pricing-actions">
+                              <button onClick={() => handleEditPricing(pricing)} className="admin-edit-inline-btn">
+                                <Edit2 size={14} />
+                                Edit
+                              </button>
+                              <button onClick={() => handleDeletePricing(pricing.id)} className="admin-delete-inline-btn">
+                                <Trash2 size={14} />
+                              </button>
+                            </div>
                           </div>
                         </div>
                       ))}
