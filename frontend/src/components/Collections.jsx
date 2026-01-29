@@ -50,7 +50,7 @@ const Collections = () => {
   // Filter products for non-pricing categories
   const filteredProducts = products.filter(product => {
     if (selectedCategory === 'all') {
-      // For "All Collections", exclude products from pricing categories
+      // For "All Collections", only show products from non-pricing categories
       return !PRICING_CATEGORIES.includes(product.category);
     }
     if (isPricingCategory) return false; // Don't show individual products for pricing categories
@@ -58,6 +58,9 @@ const Collections = () => {
     if (selectedSubcategories.length === 0) return true;
     return selectedSubcategories.includes(product.subcategory);
   });
+
+  // Get all pricing data for "All Collections" view
+  const allPricingData = selectedCategory === 'all' ? subcategoryPricing : [];
 
   const handleCategoryChange = (categoryId) => {
     setSelectedCategory(categoryId);
