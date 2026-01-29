@@ -168,32 +168,57 @@ const Collections = () => {
         {/* Regular Product Grid - For Rings, Pendants, and All Collections */}
         {!isPricingCategory && (
           <div className="grid-product-showcase">
-            {filteredProducts.length > 0 ? (
-              filteredProducts.map(product => {
-                // Format details: convert "X.X ct total weight" to "X.X cttw"
-                const formattedDetails = product.details 
-                  ? product.details.replace('ct total weight', 'cttw')
-                  : '';
-                
-                return (
-                  <div key={product.id} className="product-card hover-lift" data-testid={`product-card-${product.id}`}>
-                    <div className="product-card-image-wrapper">
-                      <img 
-                        className="product-card-image" 
-                        src={product.image} 
-                        alt={product.name}
-                        loading="lazy"
-                      />
-                    </div>
-                    <div className="product-card-content">
-                      <h3 className="product-card-title">{product.name}</h3>
-                      <p className="product-card-details body-small">{formattedDetails}</p>
-                      <p className="product-card-price">{product.price}</p>
-                    </div>
+            {/* Show pricing cards in All Collections */}
+            {selectedCategory === 'all' && allPricingData.map(pricing => (
+              <div key={pricing.id} className="product-card hover-lift" data-testid={`pricing-card-${pricing.id}`}>
+                <div className="product-card-image-wrapper">
+                  <img 
+                    className="product-card-image" 
+                    src={pricing.image_url} 
+                    alt={pricing.subcategory_name}
+                    loading="lazy"
+                  />
+                </div>
+                <div className="product-card-content">
+                  <h3 className="product-card-title">{pricing.subcategory_name}</h3>
+                  <button 
+                    className="btn-price-quote"
+                    onClick={() => handleShowPriceQuote(pricing)}
+                  >
+                    Show Price Quote
+                  </button>
+                </div>
+              </div>
+            ))}
+            
+            {/* Show regular products */}
+            {filteredProducts.map(product => {
+              // Format details: convert "X.X ct total weight" to "X.X cttw"
+              const formattedDetails = product.details 
+                ? product.details.replace('ct total weight', 'cttw')
+                : '';
+              
+              return (
+                <div key={product.id} className="product-card hover-lift" data-testid={`product-card-${product.id}`}>
+                  <div className="product-card-image-wrapper">
+                    <img 
+                      className="product-card-image" 
+                      src={product.image} 
+                      alt={product.name}
+                      loading="lazy"
+                    />
                   </div>
-                );
-              })
-            ) : (
+                  <div className="product-card-content">
+                    <h3 className="product-card-title">{product.name}</h3>
+                    <p className="product-card-details body-small">{formattedDetails}</p>
+                    <p className="product-card-price">{product.price}</p>
+                  </div>
+                </div>
+              );
+            })}
+            
+            {/* No items message */}
+            {filteredProducts.length === 0 && allPricingData.length === 0 && (
               <div className="no-products">
                 <p className="body-large">No products found in this category.</p>
               </div>
