@@ -302,7 +302,7 @@ body::after {
 
 /* Navigation */
 .navigation-header {
-  background: linear-gradient(135deg, #1a1a1a 0%, #2a2a2a 50%, #1a1a1a 100%);
+  background: linear-gradient(135deg, #2c3e50 0%, #34495e 50%, #2c3e50 100%);
   border-bottom: 1px solid rgba(255, 255, 255, 0.1);
   padding: 24px 60px;
   position: sticky;
@@ -310,7 +310,7 @@ body::after {
   z-index: 100;
   display: flex;
   justify-content: center;
-  box-shadow: 0 4px 30px rgba(0, 0, 0, 0.4), inset 0 1px 0 rgba(255, 255, 255, 0.05);
+  box-shadow: 0 4px 30px rgba(0, 0, 0, 0.3), inset 0 1px 0 rgba(255, 255, 255, 0.05);
   overflow: hidden;
 }
 
@@ -324,9 +324,9 @@ body::after {
   background: linear-gradient(
     90deg,
     transparent 0%,
-    rgba(255, 255, 255, 0.05) 25%,
-    rgba(255, 255, 255, 0.1) 50%,
-    rgba(255, 255, 255, 0.05) 75%,
+    rgba(100, 200, 255, 0.08) 25%,
+    rgba(255, 255, 255, 0.12) 50%,
+    rgba(150, 100, 255, 0.08) 75%,
     transparent 100%
   );
   animation: headerShimmer 4s ease-in-out infinite;
