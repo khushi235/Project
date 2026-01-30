@@ -5,8 +5,11 @@ import { X } from 'lucide-react';
 const formatPrice = (price) => {
   if (!price) return '';
   const priceStr = String(price).trim();
-  if (priceStr.startsWith('$')) return priceStr;
-  return `$${priceStr}`;
+  // If it already contains $ or is text like "Contact for pricing", return as is
+  if (priceStr.includes('$') || priceStr.toLowerCase().includes('contact')) return priceStr;
+  // If it starts with a number, add $
+  if (/^\d/.test(priceStr)) return `$${priceStr}`;
+  return priceStr;
 };
 
 const PriceQuoteModal = ({ pricing, onClose }) => {
