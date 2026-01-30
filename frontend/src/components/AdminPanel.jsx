@@ -630,7 +630,7 @@ const AdminPanel = ({ onClose, onLogout }) => {
                           <div className="price-rows-list">
                             {pricingForm.price_table.map((row, index) => (
                               <div key={index} className="price-row-item">
-                                <span><strong>{row.cttw}</strong> cttw - {row.price}</span>
+                                <span><strong>{row.cttw}</strong> cttw - {formatPrice(row.price)}</span>
                                 <button type="button" onClick={() => handleRemovePriceRow(index)} className="btn-remove">
                                   <X size={16} />
                                 </button>
