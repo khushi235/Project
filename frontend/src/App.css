@@ -515,12 +515,12 @@ body::after {
   align-items: center;
   gap: 6px;
   padding: 6px 14px;
-  background: transparent;
-  border: 1px dashed var(--border-medium);
+  background: rgba(26, 26, 46, 0.6);
+  border: 1px dashed rgba(255, 215, 0, 0.3);
   border-radius: 20px;
   font-size: 13px;
   font-weight: 400;
-  color: var(--text-secondary);
+  color: rgba(255, 255, 255, 0.7);
   cursor: pointer;
   transition: all 0.2s ease;
   font-family: 'Roboto', sans-serif;
@@ -528,27 +528,27 @@ body::after {
 }
 
 .subcategory-checkbox-label:hover {
-  border-color: var(--interactive-base);
+  border-color: #ffd700;
   border-style: solid;
-  color: var(--text-primary);
+  color: #ffd700;
 }
 
 .subcategory-checkbox-label.checked {
-  background: var(--interactive-base);
-  color: white;
-  border-color: var(--interactive-base);
+  background: linear-gradient(135deg, #ffd700 0%, #b8860b 100%);
+  color: #1a1a2e;
+  border-color: #ffd700;
   border-style: solid;
 }
 
 .subcategory-checkbox {
   width: 14px;
   height: 14px;
-  accent-color: var(--interactive-base);
+  accent-color: #ffd700;
   cursor: pointer;
 }
 
 .subcategory-checkbox-label.checked .subcategory-checkbox {
-  accent-color: white;
+  accent-color: #1a1a2e;
 }
 
 .no-products {
