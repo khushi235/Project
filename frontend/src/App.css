@@ -302,15 +302,15 @@ body::after {
 
 /* Navigation */
 .navigation-header {
-  background: linear-gradient(135deg, #2c3e50 0%, #34495e 50%, #2c3e50 100%);
-  border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+  background: rgba(255, 255, 255, 0.95);
+  border-bottom: 1px solid rgba(180, 160, 150, 0.2);
   padding: 24px 60px;
   position: sticky;
   top: 0;
   z-index: 100;
   display: flex;
   justify-content: center;
-  box-shadow: 0 4px 30px rgba(0, 0, 0, 0.3), inset 0 1px 0 rgba(255, 255, 255, 0.05);
+  box-shadow: 0 4px 30px rgba(100, 80, 70, 0.08);
   overflow: hidden;
 }
 
@@ -324,9 +324,9 @@ body::after {
   background: linear-gradient(
     90deg,
     transparent 0%,
-    rgba(100, 200, 255, 0.08) 25%,
-    rgba(255, 255, 255, 0.12) 50%,
-    rgba(150, 100, 255, 0.08) 75%,
+    rgba(200, 180, 170, 0.15) 25%,
+    rgba(255, 255, 255, 0.3) 50%,
+    rgba(180, 170, 190, 0.15) 75%,
     transparent 100%
   );
   animation: headerShimmer 4s ease-in-out infinite;
@@ -352,22 +352,11 @@ body::after {
   font-size: 34px;
   font-weight: 600;
   letter-spacing: 0.08em;
-  color: transparent;
+  color: #5a4a42;
   text-decoration: none;
   font-family: 'Playfair Display', serif;
-  background: linear-gradient(135deg, #fff 0%, #ccc 30%, #fff 50%, #ccc 70%, #fff 100%);
-  background-size: 200% auto;
-  -webkit-background-clip: text;
-  background-clip: text;
-  animation: silverShimmer 3s linear infinite;
-  text-shadow: 0 0 30px rgba(255, 255, 255, 0.2);
   position: relative;
   z-index: 1;
-}
-
-@keyframes silverShimmer {
-  0% { background-position: 0% center; }
-  100% { background-position: 200% center; }
 }
 
 @keyframes shimmer {
