@@ -1519,24 +1519,26 @@ body::after {
 }
 
 .admin-icon-btn {
-  background: var(--bg-primary);
-  border: 1px solid var(--border-medium);
+  background: white;
+  border: 1px solid rgba(90, 74, 66, 0.2);
   padding: 8px;
   cursor: pointer;
   display: flex;
   align-items: center;
   justify-content: center;
-  transition: all 0.2s;
+  transition: all 0.3s ease;
+  border-radius: 8px;
 }
 
 .admin-icon-btn:hover {
-  background: var(--interactive-base);
-  color: var(--bg-primary);
+  background: linear-gradient(135deg, #6b5b52 0%, #5a4a42 100%);
+  color: white;
+  border-color: transparent;
 }
 
 .admin-icon-btn.delete:hover {
-  background: #ba3e2b;
-  border-color: #ba3e2b;
+  background: linear-gradient(135deg, #c94a35 0%, #ba3e2b 100%);
+  border-color: transparent;
   color: white;
 }
 
@@ -1555,20 +1557,23 @@ body::after {
 }
 
 .btn-icon-add {
-  background: var(--interactive-base);
-  color: var(--bg-primary);
+  background: linear-gradient(135deg, #8b7355 0%, #6b5b52 50%, #5a4a42 100%);
+  color: white;
   border: none;
   padding: 10px;
   cursor: pointer;
   display: flex;
   align-items: center;
   justify-content: center;
-  transition: opacity 0.2s;
+  transition: all 0.3s ease;
   font-family: 'Roboto', sans-serif;
+  border-radius: 10px;
+  box-shadow: 0 4px 15px rgba(90, 74, 66, 0.25);
 }
 
 .btn-icon-add:hover {
-  opacity: 0.8;
+  transform: translateY(-2px);
+  box-shadow: 0 6px 20px rgba(90, 74, 66, 0.35);
 }
 
 .subcategory-list {
@@ -1582,11 +1587,13 @@ body::after {
   display: flex;
   justify-content: space-between;
   align-items: center;
-  padding: 8px 12px;
-  background: var(--bg-primary);
-  border: 1px solid var(--border-light);
+  padding: 10px 14px;
+  background: white;
+  border: 1px solid rgba(90, 74, 66, 0.1);
   font-size: 14px;
   font-family: 'Roboto', sans-serif;
+  border-radius: 10px;
+  box-shadow: 0 2px 8px rgba(90, 74, 66, 0.05);
 }
 
 .btn-remove {
@@ -1595,11 +1602,13 @@ body::after {
   cursor: pointer;
   color: var(--text-secondary);
   padding: 4px;
-  transition: color 0.2s;
+  transition: all 0.3s ease;
+  border-radius: 50%;
 }
 
 .btn-remove:hover {
   color: #ba3e2b;
+  background: rgba(186, 62, 43, 0.1);
 }
 
 .category-list, .contact-list {
@@ -1614,8 +1623,16 @@ body::after {
   justify-content: space-between;
   align-items: flex-start;
   padding: 20px;
-  background: var(--bg-secondary);
-  border: 1px solid var(--border-light);
+  background: white;
+  border: 1px solid rgba(90, 74, 66, 0.1);
+  border-radius: 16px;
+  box-shadow: 0 4px 20px rgba(90, 74, 66, 0.08);
+  transition: all 0.3s ease;
+}
+
+.category-card:hover, .contact-card:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 8px 30px rgba(90, 74, 66, 0.12);
 }
 
 .category-info, .contact-info {
