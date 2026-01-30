@@ -93,7 +93,7 @@ const PriceQuoteModal = ({ pricing, onClose }) => {
               </table>
             </div>
             
-            <p className="price-quote-note">Contact us for custom orders and special requests</p>
+            <p className="price-quote-note">*Prices may vary depending on customization and current market rates.</p>
           </div>
         </div>
       </div>
