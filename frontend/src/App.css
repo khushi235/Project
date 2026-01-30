@@ -1573,7 +1573,7 @@ body::after {
 /* Price Quote Button */
 .btn-price-quote {
   display: inline-block;
-  background: linear-gradient(135deg, #2c3e50 0%, #34495e 100%);
+  background: linear-gradient(135deg, #6b5b52 0%, #5a4a42 100%);
   color: #fff;
   border: none;
   border-radius: 20px;
@@ -1588,7 +1588,7 @@ body::after {
 
 .btn-price-quote:hover {
   transform: scale(1.05);
-  box-shadow: 0 4px 15px rgba(44, 62, 80, 0.4);
+  box-shadow: 0 4px 15px rgba(90, 74, 66, 0.35);
 }
 
 /* Price Quote Modal */
