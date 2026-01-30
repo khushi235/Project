@@ -12,8 +12,26 @@ const formatPrice = (price) => {
   return priceStr;
 };
 
+// Helper to extract numeric value from CTTW string for sorting
+const extractNumericCttw = (cttw) => {
+  if (!cttw) return 0;
+  const cttwStr = String(cttw).trim();
+  // Extract the first number found in the string
+  const match = cttwStr.match(/[\d.]+/);
+  return match ? parseFloat(match[0]) : 0;
+};
+
+// Sort price table by CTTW numerically
+const sortPriceTable = (priceTable) => {
+  if (!priceTable || !Array.isArray(priceTable)) return [];
+  return [...priceTable].sort((a, b) => extractNumericCttw(a.cttw) - extractNumericCttw(b.cttw));
+};
+
 const PriceQuoteModal = ({ pricing, onClose }) => {
   if (!pricing) return null;
+
+  // Sort the price table by CTTW numerically
+  const sortedPriceTable = sortPriceTable(pricing.price_table);
 
   return (
     <div className="price-quote-overlay" onClick={onClose}>
@@ -44,7 +62,7 @@ const PriceQuoteModal = ({ pricing, onClose }) => {
                   </tr>
                 </thead>
                 <tbody>
-                  {pricing.price_table && pricing.price_table.map((row, index) => (
+                  {sortedPriceTable.map((row, index) => (
                     <tr key={index}>
                       <td>{row.cttw}</td>
                       <td>{formatPrice(row.price)}</td>
