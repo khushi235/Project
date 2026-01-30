@@ -521,7 +521,7 @@ const AdminPanel = ({ onClose, onLogout }) => {
                           <div className="admin-product-info">
                             <h4>{product.name}</h4>
                             <p className="body-small">{product.details}</p>
-                            <p className="body-small">{product.price}</p>
+                            <p className="body-small">{formatPrice(product.price)}</p>
                             <p className="body-small" style={{ fontSize: '11px', color: 'var(--text-light)' }}>
                               {product.category} - {product.subcategory}
                             </p>
