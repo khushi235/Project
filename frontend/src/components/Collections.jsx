@@ -221,7 +221,7 @@ const Collections = () => {
                   <div className="product-card-content">
                     <h3 className="product-card-title">{product.name}</h3>
                     <p className="product-card-details body-small">{formattedDetails}</p>
-                    <p className="product-card-price">{product.price}</p>
+                    <p className="product-card-price">{formatPrice(product.price)}</p>
                   </div>
                 </div>
               );
