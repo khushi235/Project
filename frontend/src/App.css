@@ -1501,8 +1501,8 @@ body::after {
 }
 
 .admin-toggle-btn {
-  background: linear-gradient(135deg, #ffd700 0%, #b8860b 100%);
-  color: #1a1a2e;
+  background: linear-gradient(135deg, #fff 0%, #ccc 100%);
+  color: #1a1a1a;
   border: none;
   padding: 10px 20px;
   font-size: 14px;
@@ -1511,7 +1511,7 @@ body::after {
   transition: all 0.3s ease;
   font-family: 'Roboto', sans-serif;
   border-radius: 25px;
-  box-shadow: 0 4px 15px rgba(255, 215, 0, 0.3);
+  box-shadow: 0 4px 15px rgba(255, 255, 255, 0.2);
   display: flex;
   align-items: center;
   gap: 6px;
@@ -1522,7 +1522,7 @@ body::after {
 
 .admin-toggle-btn:hover {
   transform: translateY(-2px);
-  box-shadow: 0 6px 25px rgba(255, 215, 0, 0.5);
+  box-shadow: 0 6px 25px rgba(255, 255, 255, 0.3);
 }
 
 .sort-select {
