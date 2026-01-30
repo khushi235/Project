@@ -82,7 +82,7 @@ const PriceQuoteModal = ({ pricing, onClose }) => {
                       {showTwoColumns ? (
                         <>
                           <td>{formatPrice(row.price_hi_si)}</td>
-                          <td>{formatPrice(row.price_fg_si)}</td>
+                          <td>{formatPrice(row.price_fg_si || row.price)}</td>
                         </>
                       ) : (
                         <td>{formatPrice(row.price_fg_si || row.price)}</td>
