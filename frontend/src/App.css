@@ -41,6 +41,120 @@ body {
   -moz-osx-font-smoothing: grayscale;
   background: var(--bg-primary);
   color: var(--text-primary);
+  min-height: 100vh;
+  position: relative;
+  overflow-x: hidden;
+}
+
+/* Animated Background */
+body::before {
+  content: '';
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: 
+    radial-gradient(ellipse at 20% 20%, rgba(200, 220, 255, 0.6) 0%, transparent 50%),
+    radial-gradient(ellipse at 80% 80%, rgba(180, 210, 250, 0.5) 0%, transparent 50%),
+    radial-gradient(ellipse at 40% 70%, rgba(220, 235, 255, 0.4) 0%, transparent 40%),
+    radial-gradient(ellipse at 70% 30%, rgba(190, 215, 245, 0.5) 0%, transparent 45%);
+  animation: backgroundShift 15s ease-in-out infinite;
+  z-index: -2;
+  pointer-events: none;
+}
+
+body::after {
+  content: '';
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: 
+    radial-gradient(circle at 10% 90%, rgba(255, 255, 255, 0.8) 0%, transparent 25%),
+    radial-gradient(circle at 90% 10%, rgba(255, 255, 255, 0.6) 0%, transparent 30%);
+  animation: backgroundGlow 8s ease-in-out infinite alternate;
+  z-index: -1;
+  pointer-events: none;
+}
+
+@keyframes backgroundShift {
+  0%, 100% {
+    transform: scale(1) rotate(0deg);
+    opacity: 1;
+  }
+  25% {
+    transform: scale(1.05) rotate(1deg);
+    opacity: 0.9;
+  }
+  50% {
+    transform: scale(1.1) rotate(0deg);
+    opacity: 1;
+  }
+  75% {
+    transform: scale(1.05) rotate(-1deg);
+    opacity: 0.9;
+  }
+}
+
+@keyframes backgroundGlow {
+  0% {
+    opacity: 0.3;
+    transform: translateX(-20px) translateY(-20px);
+  }
+  100% {
+    opacity: 0.6;
+    transform: translateX(20px) translateY(20px);
+  }
+}
+
+/* Floating Diamond Particles */
+.App {
+  position: relative;
+}
+
+.App::before,
+.App::after {
+  content: '◇';
+  position: fixed;
+  font-size: 20px;
+  color: rgba(180, 200, 230, 0.3);
+  animation: floatDiamond 20s ease-in-out infinite;
+  pointer-events: none;
+  z-index: -1;
+}
+
+.App::before {
+  top: 20%;
+  left: 10%;
+  animation-delay: 0s;
+}
+
+.App::after {
+  top: 60%;
+  right: 15%;
+  animation-delay: -10s;
+  font-size: 16px;
+}
+
+@keyframes floatDiamond {
+  0%, 100% {
+    transform: translateY(0) rotate(0deg) scale(1);
+    opacity: 0.3;
+  }
+  25% {
+    transform: translateY(-30px) rotate(90deg) scale(1.2);
+    opacity: 0.5;
+  }
+  50% {
+    transform: translateY(-10px) rotate(180deg) scale(1);
+    opacity: 0.4;
+  }
+  75% {
+    transform: translateY(-40px) rotate(270deg) scale(1.1);
+    opacity: 0.6;
+  }
 }
 
 /* Typography Scale */
