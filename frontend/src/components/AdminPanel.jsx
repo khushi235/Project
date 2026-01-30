@@ -627,7 +627,9 @@ const AdminPanel = ({ onClose, onLogout }) => {
                       </div>
 
                       <div className="form-group">
-                        <label className="form-label">Price Table (CTTW & Price)</label>
+                        <label className="form-label">
+                          Price Table {needsTwoPriceColumns(pricingForm.category_id) ? '(CTTW, HI-SI Price, FG-SI Price)' : '(CTTW & Price)'}
+                        </label>
                         <div className="price-row-input">
                           <input
                             type="text"
@@ -636,13 +638,32 @@ const AdminPanel = ({ onClose, onLogout }) => {
                             value={newPriceRow.cttw}
                             onChange={(e) => setNewPriceRow({ ...newPriceRow, cttw: e.target.value })}
                           />
-                          <input
-                            type="text"
-                            className="form-input"
-                            placeholder="Price (e.g., $3,500)"
-                            value={newPriceRow.price}
-                            onChange={(e) => setNewPriceRow({ ...newPriceRow, price: e.target.value })}
-                          />
+                          {needsTwoPriceColumns(pricingForm.category_id) ? (
+                            <>
+                              <input
+                                type="text"
+                                className="form-input"
+                                placeholder="HI-SI Price"
+                                value={newPriceRow.price_hi_si}
+                                onChange={(e) => setNewPriceRow({ ...newPriceRow, price_hi_si: e.target.value })}
+                              />
+                              <input
+                                type="text"
+                                className="form-input"
+                                placeholder="FG-SI Price"
+                                value={newPriceRow.price_fg_si}
+                                onChange={(e) => setNewPriceRow({ ...newPriceRow, price_fg_si: e.target.value })}
+                              />
+                            </>
+                          ) : (
+                            <input
+                              type="text"
+                              className="form-input"
+                              placeholder="Price (e.g., $3,500)"
+                              value={newPriceRow.price_fg_si}
+                              onChange={(e) => setNewPriceRow({ ...newPriceRow, price_fg_si: e.target.value })}
+                            />
+                          )}
                           <button type="button" onClick={handleAddPriceRow} className="btn-icon-add">
                             <Plus size={20} />
                           </button>
@@ -651,7 +672,14 @@ const AdminPanel = ({ onClose, onLogout }) => {
                           <div className="price-rows-list">
                             {pricingForm.price_table.map((row, index) => (
                               <div key={index} className="price-row-item">
-                                <span><strong>{row.cttw}</strong> cttw - {formatPrice(row.price)}</span>
+                                <span>
+                                  <strong>{row.cttw}</strong> cttw
+                                  {needsTwoPriceColumns(pricingForm.category_id) ? (
+                                    <> - HI-SI: {formatPrice(row.price_hi_si) || '-'} | FG-SI: {formatPrice(row.price_fg_si) || '-'}</>
+                                  ) : (
+                                    <> - {formatPrice(row.price_fg_si || row.price)}</>
+                                  )}
+                                </span>
                                 <button type="button" onClick={() => handleRemovePriceRow(index)} className="btn-remove">
                                   <X size={16} />
                                 </button>
