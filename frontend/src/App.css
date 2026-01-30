@@ -1661,14 +1661,16 @@ body::after {
   100% { background-position: 0% 50%; }
 }
 
-/* Price Quote Modal */
+/* Price Quote Modal - Magical Design */
 .price-quote-overlay {
   position: fixed;
   top: 0;
   left: 0;
   right: 0;
   bottom: 0;
-  background: rgba(0, 0, 0, 0.8);
+  background: rgba(0, 0, 0, 0.7);
+  backdrop-filter: blur(8px);
+  -webkit-backdrop-filter: blur(8px);
   z-index: 1000;
   display: flex;
   align-items: center;
@@ -1677,32 +1679,46 @@ body::after {
 }
 
 .price-quote-modal {
-  background: white;
-  border-radius: 16px;
+  background: linear-gradient(145deg, rgba(255, 255, 255, 0.95) 0%, rgba(250, 248, 245, 0.98) 100%);
+  border-radius: 20px;
   max-width: 600px;
   width: 100%;
   max-height: 90vh;
   overflow-y: auto;
   position: relative;
+  box-shadow: 0 25px 80px rgba(90, 74, 66, 0.3), 0 0 0 1px rgba(255, 255, 255, 0.5) inset;
+  animation: modalAppear 0.4s ease-out;
+}
+
+@keyframes modalAppear {
+  0% { 
+    opacity: 0; 
+    transform: scale(0.9) translateY(20px);
+  }
+  100% { 
+    opacity: 1; 
+    transform: scale(1) translateY(0);
+  }
 }
 
 .price-quote-close {
   position: absolute;
   top: 16px;
   right: 16px;
-  background: none;
+  background: rgba(90, 74, 66, 0.1);
   border: none;
   cursor: pointer;
   color: var(--text-secondary);
-  padding: 8px;
+  padding: 10px;
   border-radius: 50%;
-  transition: all 0.2s;
+  transition: all 0.3s ease;
   z-index: 10;
 }
 
 .price-quote-close:hover {
-  background: var(--bg-secondary);
+  background: rgba(90, 74, 66, 0.2);
   color: var(--text-primary);
+  transform: rotate(90deg);
 }
 
 .price-quote-content {
@@ -1713,7 +1729,18 @@ body::after {
   width: 100%;
   height: 300px;
   overflow: hidden;
-  border-radius: 16px 16px 0 0;
+  border-radius: 20px 20px 0 0;
+  position: relative;
+}
+
+.price-quote-image-container::after {
+  content: '';
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  height: 60px;
+  background: linear-gradient(transparent, rgba(255, 255, 255, 0.8));
 }
 
 .price-quote-image {
@@ -1728,65 +1755,108 @@ body::after {
 }
 
 .price-quote-title {
-  font-size: 24px;
+  font-size: 26px;
   font-weight: 600;
   color: var(--text-primary);
   margin-bottom: 8px;
-  font-family: 'Roboto', sans-serif;
+  font-family: 'Playfair Display', serif;
 }
 
 .price-quote-subtitle {
   font-size: 14px;
   color: var(--text-secondary);
-  margin-bottom: 20px;
+  margin-bottom: 24px;
   font-family: 'Roboto', sans-serif;
   text-transform: uppercase;
-  letter-spacing: 0.1em;
+  letter-spacing: 0.15em;
 }
 
 .price-quote-table-container {
   overflow-x: auto;
+  border-radius: 16px;
+  background: linear-gradient(135deg, rgba(245, 240, 235, 0.8) 0%, rgba(235, 228, 220, 0.9) 100%);
+  padding: 4px;
+  box-shadow: 0 4px 20px rgba(90, 74, 66, 0.1) inset;
 }
 
 .price-quote-table {
   width: 100%;
-  border-collapse: collapse;
+  border-collapse: separate;
+  border-spacing: 0;
   font-family: 'Roboto', sans-serif;
+  border-radius: 12px;
+  overflow: hidden;
 }
 
 .price-quote-table th {
-  background: var(--bg-secondary);
-  padding: 14px 20px;
-  font-size: 14px;
+  background: linear-gradient(135deg, #6b5b52 0%, #5a4a42 100%);
+  padding: 16px 24px;
+  font-size: 13px;
   font-weight: 600;
-  color: var(--text-primary);
+  color: white;
   text-align: center;
-  border-bottom: 2px solid var(--border-medium);
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+}
+
+.price-quote-table th:first-child {
+  border-radius: 10px 0 0 0;
+}
+
+.price-quote-table th:last-child {
+  border-radius: 0 10px 0 0;
 }
 
 .price-quote-table td {
-  padding: 14px 20px;
+  padding: 16px 24px;
   font-size: 15px;
   font-weight: 500;
   color: var(--text-primary);
   text-align: center;
-  border-bottom: 1px solid var(--border-light);
+  background: rgba(255, 255, 255, 0.7);
+  border-bottom: 1px solid rgba(90, 74, 66, 0.1);
+  transition: all 0.3s ease;
 }
 
 .price-quote-table tr:last-child td {
   border-bottom: none;
 }
 
-.price-quote-table tr:hover td {
-  background: var(--bg-primary);
+.price-quote-table tr:last-child td:first-child {
+  border-radius: 0 0 0 10px;
+}
+
+.price-quote-table tr:last-child td:last-child {
+  border-radius: 0 0 10px 0;
+}
+
+.price-quote-table tbody tr {
+  transition: all 0.3s ease;
+}
+
+.price-quote-table tbody tr:hover td {
+  background: linear-gradient(135deg, rgba(215, 140, 155, 0.15) 0%, rgba(130, 175, 165, 0.15) 100%);
+  transform: scale(1.01);
+}
+
+.price-quote-table tbody tr:nth-child(even) td {
+  background: rgba(250, 248, 245, 0.9);
+}
+
+.price-quote-table tbody tr:nth-child(even):hover td {
+  background: linear-gradient(135deg, rgba(215, 140, 155, 0.15) 0%, rgba(130, 175, 165, 0.15) 100%);
 }
 
 .price-quote-note {
   font-size: 13px;
   color: var(--text-light);
-  margin-top: 20px;
+  margin-top: 24px;
   font-style: italic;
   font-family: 'Roboto', sans-serif;
+  padding: 12px 20px;
+  background: rgba(90, 74, 66, 0.05);
+  border-radius: 20px;
+  display: inline-block;
 }
 
 /* Admin Subcategory Pricing Styles */
