@@ -13,10 +13,11 @@ const PRICING_CATEGORIES = ['necklace', 'bracelet', 'bangle'];
 const formatPrice = (price) => {
   if (!price) return '';
   const priceStr = String(price).trim();
-  // If it already starts with $ or contains "Starting at $" or similar, return as is
-  if (priceStr.includes('$')) return priceStr;
-  // If it's just a number or starts with a number, add $
-  return `$${priceStr}`;
+  // If it already contains $ or is text like "Contact for pricing", return as is
+  if (priceStr.includes('$') || priceStr.toLowerCase().includes('contact')) return priceStr;
+  // If it starts with a number, add $
+  if (/^\d/.test(priceStr)) return `$${priceStr}`;
+  return priceStr;
 };
 
 const Collections = () => {
