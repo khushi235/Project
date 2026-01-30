@@ -218,27 +218,20 @@ body::after {
 
 /* Navigation */
 .navigation-header {
-  background: rgba(255, 255, 255, 0.85);
-  backdrop-filter: blur(20px);
-  -webkit-backdrop-filter: blur(20px);
-  border-bottom: none;
-  padding: 20px 40px;
+  background: white;
+  border-bottom: 1px solid var(--border-light);
+  padding: 24px 60px;
   position: sticky;
-  top: 12px;
+  top: 0;
   z-index: 100;
-  margin: 12px 40px 0;
-  border-radius: 50px;
-  box-shadow: 0 8px 32px rgba(44, 62, 80, 0.1), 0 0 0 1px rgba(255, 255, 255, 0.5);
-  transition: all 0.3s ease;
-}
-
-.navigation-header:hover {
-  box-shadow: 0 12px 40px rgba(44, 62, 80, 0.15), 0 0 0 1px rgba(255, 255, 255, 0.6);
-  transform: translateY(-2px);
+  display: flex;
+  justify-content: center;
+  box-shadow: 0 2px 20px rgba(44, 62, 80, 0.08);
 }
 
 .navigation-container {
   max-width: 1400px;
+  width: 100%;
   margin: 0 auto;
   padding: 0;
   display: flex;
@@ -248,13 +241,13 @@ body::after {
 }
 
 .navigation-logo {
-  font-size: 28px;
-  font-weight: 700;
-  letter-spacing: 0.05em;
+  font-size: 32px;
+  font-weight: 600;
+  letter-spacing: 0.08em;
   color: var(--text-primary);
   text-decoration: none;
-  font-family: 'Great Vibes', cursive;
-  text-shadow: 0 0 20px rgba(138, 138, 138, 0.2);
+  font-family: 'Playfair Display', serif;
+  text-transform: none;
 }
 
 @keyframes shimmer {
