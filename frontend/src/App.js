@@ -2,7 +2,6 @@ import React, { useState, useEffect } from "react";
 import "./App.css";
 import { BrowserRouter, Routes, Route } from "react-router-dom";
 import Navigation from "./components/Navigation";
-import Hero from "./components/Hero";
 import Collections from "./components/Collections";
 import About from "./components/About";
 import Footer from "./components/Footer";
@@ -68,7 +67,6 @@ const Home = () => {
   return (
     <div>
       <Navigation onAdminToggle={handleAdminToggle} />
-      <Hero />
       <Collections key={refreshKey} />
       <About />
       <Footer />

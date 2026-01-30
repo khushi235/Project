@@ -8,7 +8,7 @@ const Navigation = ({ onAdminToggle }) => {
     <header className="navigation-header">
       <div className="navigation-container">
         <a href="#home" className="navigation-logo">
-          ALLURE DIAM INC
+          Allure Diam Inc
         </a>
 
         <button className="admin-toggle-btn" onClick={onAdminToggle}>
