@@ -40,14 +40,14 @@ body {
   font-family: 'Roboto', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
-  background: linear-gradient(135deg, #f5f0eb 0%, #e8e0d8 50%, #f5f0eb 100%);
+  background: linear-gradient(180deg, #f8f4f0 0%, #efe8e2 50%, #f5f0eb 100%);
   color: var(--text-primary);
   min-height: 100vh;
   position: relative;
   overflow-x: hidden;
 }
 
-/* Northern Lights Aurora Effect - Warm Palette */
+/* Northern Lights Aurora Effect - Soft Warm Palette with Visible Waves */
 body::before {
   content: '';
   position: fixed;
@@ -58,22 +58,23 @@ body::before {
   background: 
     linear-gradient(125deg, 
       transparent 0%, 
-      rgba(180, 140, 120, 0.12) 15%, 
-      transparent 30%,
-      rgba(160, 130, 150, 0.1) 45%,
-      transparent 60%,
-      rgba(140, 160, 150, 0.08) 75%,
-      transparent 90%
+      rgba(200, 160, 140, 0.35) 10%, 
+      rgba(180, 140, 160, 0.25) 25%,
+      transparent 40%,
+      rgba(140, 170, 160, 0.3) 55%,
+      rgba(160, 150, 180, 0.25) 70%,
+      transparent 85%
     ),
     linear-gradient(240deg, 
       transparent 0%, 
-      rgba(200, 170, 150, 0.1) 20%, 
-      transparent 40%,
-      rgba(170, 150, 170, 0.08) 60%,
-      transparent 80%
+      rgba(190, 150, 170, 0.3) 15%, 
+      transparent 35%,
+      rgba(170, 180, 160, 0.25) 50%,
+      rgba(200, 170, 150, 0.3) 70%,
+      transparent 90%
     );
-  background-size: 400% 400%;
-  animation: auroraWarm 12s ease-in-out infinite;
+  background-size: 300% 300%;
+  animation: auroraWarm 8s ease-in-out infinite;
   z-index: -3;
   pointer-events: none;
 }
@@ -88,19 +89,23 @@ body::after {
   background: 
     linear-gradient(45deg, 
       transparent 0%, 
-      rgba(190, 160, 140, 0.15) 20%, 
-      transparent 40%,
-      rgba(160, 140, 160, 0.12) 60%,
-      transparent 80%
+      rgba(180, 150, 170, 0.4) 15%, 
+      rgba(160, 180, 160, 0.3) 30%,
+      transparent 45%,
+      rgba(200, 160, 140, 0.35) 60%,
+      rgba(170, 150, 180, 0.3) 75%,
+      transparent 90%
     ),
     linear-gradient(180deg,
-      rgba(180, 150, 130, 0.08) 0%,
-      transparent 30%,
-      rgba(150, 140, 160, 0.06) 60%,
+      rgba(190, 160, 150, 0.25) 0%,
+      transparent 20%,
+      rgba(160, 180, 170, 0.3) 40%,
+      transparent 60%,
+      rgba(180, 150, 170, 0.25) 80%,
       transparent 100%
     );
-  background-size: 300% 300%;
-  animation: auroraWave2 15s ease-in-out infinite reverse;
+  background-size: 250% 250%;
+  animation: auroraWave2 10s ease-in-out infinite reverse;
   z-index: -2;
   pointer-events: none;
 }
@@ -108,42 +113,46 @@ body::after {
 @keyframes auroraWarm {
   0% {
     background-position: 0% 50%;
-    opacity: 0.7;
+    opacity: 0.8;
   }
   25% {
-    background-position: 50% 100%;
+    background-position: 50% 0%;
     opacity: 1;
   }
   50% {
     background-position: 100% 50%;
-    opacity: 0.8;
+    opacity: 0.9;
   }
   75% {
-    background-position: 50% 0%;
+    background-position: 50% 100%;
     opacity: 1;
   }
   100% {
     background-position: 0% 50%;
-    opacity: 0.7;
+    opacity: 0.8;
   }
 }
 
 @keyframes auroraWave2 {
   0% {
     background-position: 0% 0%;
-    transform: translateY(0) translateX(0);
+    transform: translateY(0) scale(1);
   }
-  33% {
-    background-position: 100% 50%;
-    transform: translateY(-30px) translateX(20px);
+  25% {
+    background-position: 100% 25%;
+    transform: translateY(-20px) scale(1.05);
   }
-  66% {
+  50% {
     background-position: 50% 100%;
-    transform: translateY(15px) translateX(-15px);
+    transform: translateY(10px) scale(1);
+  }
+  75% {
+    background-position: 0% 75%;
+    transform: translateY(-15px) scale(1.03);
   }
   100% {
     background-position: 0% 0%;
-    transform: translateY(0) translateX(0);
+    transform: translateY(0) scale(1);
   }
 }
 
