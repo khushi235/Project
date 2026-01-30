@@ -1,6 +1,14 @@
 import React from 'react';
 import { X } from 'lucide-react';
 
+// Helper to ensure price has $ sign
+const formatPrice = (price) => {
+  if (!price) return '';
+  const priceStr = String(price).trim();
+  if (priceStr.startsWith('$')) return priceStr;
+  return `$${priceStr}`;
+};
+
 const PriceQuoteModal = ({ pricing, onClose }) => {
   if (!pricing) return null;
 
@@ -36,7 +44,7 @@ const PriceQuoteModal = ({ pricing, onClose }) => {
                   {pricing.price_table && pricing.price_table.map((row, index) => (
                     <tr key={index}>
                       <td>{row.cttw}</td>
-                      <td>{row.price}</td>
+                      <td>{formatPrice(row.price)}</td>
                     </tr>
                   ))}
                 </tbody>
