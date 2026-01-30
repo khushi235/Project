@@ -1975,10 +1975,17 @@ body::after {
 }
 
 .admin-pricing-card {
-  background: var(--bg-secondary);
-  border: 1px solid var(--border-light);
-  border-radius: 12px;
+  background: white;
+  border: 1px solid rgba(90, 74, 66, 0.1);
+  border-radius: 16px;
   overflow: hidden;
+  box-shadow: 0 4px 20px rgba(90, 74, 66, 0.08);
+  transition: all 0.3s ease;
+}
+
+.admin-pricing-card:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 8px 30px rgba(90, 74, 66, 0.15);
 }
 
 .admin-pricing-image {
@@ -2014,26 +2021,37 @@ body::after {
   gap: 8px;
   align-items: center;
   margin-bottom: 8px;
+  flex-wrap: wrap;
 }
 
 .price-row-input input {
   flex: 1;
+  min-width: 100px;
 }
 
 .price-rows-list {
   margin-top: 12px;
-  max-height: 200px;
+  max-height: 250px;
   overflow-y: auto;
+  border-radius: 12px;
+  background: rgba(255, 255, 255, 0.5);
+  padding: 8px;
 }
 
 .price-row-item {
   display: flex;
   justify-content: space-between;
   align-items: center;
-  padding: 8px 12px;
-  background: var(--bg-primary);
-  border: 1px solid var(--border-light);
-  margin-bottom: 4px;
-  font-size: 14px;
+  padding: 10px 14px;
+  background: white;
+  border: 1px solid rgba(90, 74, 66, 0.1);
+  margin-bottom: 6px;
+  font-size: 13px;
+  border-radius: 10px;
+  box-shadow: 0 2px 8px rgba(90, 74, 66, 0.05);
+}
+
+.price-row-item:last-child {
+  margin-bottom: 0;
 }
 
