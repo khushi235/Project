@@ -1233,36 +1233,55 @@ body::after {
 
 .admin-tabs {
   display: flex;
-  gap: 8px;
-  padding: 0 40px;
-  border-bottom: 1px solid var(--border-light);
-  background: var(--bg-secondary);
+  gap: 4px;
+  padding: 16px 40px;
+  border-bottom: 1px solid rgba(90, 74, 66, 0.1);
+  background: linear-gradient(135deg, rgba(245, 240, 235, 0.8) 0%, rgba(235, 228, 220, 0.9) 100%);
 }
 
 .admin-tab {
-  padding: 16px 24px;
-  background: none;
+  padding: 12px 24px;
+  background: transparent;
   border: none;
   cursor: pointer;
-  font-size: 15px;
+  font-size: 14px;
   font-weight: 500;
   color: var(--text-secondary);
-  border-bottom: 2px solid transparent;
-  transition: all 0.2s;
+  border-radius: 25px;
+  transition: all 0.3s ease;
   font-family: 'Roboto', sans-serif;
+  position: relative;
+  overflow: hidden;
+}
+
+.admin-tab::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: -100%;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.5), transparent);
+  transition: left 0.5s ease;
 }
 
 .admin-tab:hover {
   color: var(--text-primary);
+  background: rgba(255, 255, 255, 0.5);
+}
+
+.admin-tab:hover::before {
+  left: 100%;
 }
 
 .admin-tab.active {
-  color: var(--text-primary);
-  border-bottom-color: var(--text-primary);
+  background: linear-gradient(135deg, #8b7355 0%, #6b5b52 50%, #5a4a42 100%);
+  color: #fff;
+  box-shadow: 0 4px 15px rgba(90, 74, 66, 0.3);
 }
 
 .admin-content {
-  padding: 40px;
+  padding: 32px 40px;
 }
 
 .admin-section {
@@ -1272,7 +1291,7 @@ body::after {
 
 .admin-form-container {
   flex: 1;
-  max-width: 500px;
+  max-width: 550px;
 }
 
 .admin-list-container {
@@ -1280,9 +1299,11 @@ body::after {
 }
 
 .admin-form {
-  background: var(--bg-secondary);
+  background: linear-gradient(135deg, rgba(245, 240, 235, 0.6) 0%, rgba(235, 228, 220, 0.7) 100%);
   padding: 24px;
   margin-top: 16px;
+  border-radius: 16px;
+  border: 1px solid rgba(90, 74, 66, 0.1);
 }
 
 .form-row {
@@ -1298,20 +1319,22 @@ body::after {
 }
 
 .btn-secondary {
-  background: transparent;
+  background: rgba(255, 255, 255, 0.8);
   color: var(--text-primary);
-  border: 1px solid var(--border-medium);
-  border-radius: 0px;
-  padding: 14px 24px;
-  font-size: 15px;
+  border: 1px solid rgba(90, 74, 66, 0.2);
+  border-radius: 25px;
+  padding: 12px 24px;
+  font-size: 14px;
   font-weight: 500;
   cursor: pointer;
-  transition: all 0.2s;
+  transition: all 0.3s ease;
   font-family: 'Roboto', sans-serif;
 }
 
 .btn-secondary:hover {
-  background: var(--bg-subtle);
+  background: rgba(255, 255, 255, 1);
+  transform: translateY(-2px);
+  box-shadow: 0 4px 15px rgba(90, 74, 66, 0.15);
 }
 
 .image-upload-wrapper {
