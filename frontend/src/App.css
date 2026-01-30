@@ -511,22 +511,52 @@ body::after {
   font-weight: 500;
   color: #6b5b52;
   cursor: pointer;
-  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+  transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
   font-family: 'Roboto', sans-serif;
   position: relative;
   letter-spacing: 0.02em;
+  overflow: hidden;
+}
+
+.category-btn::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: -100%;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.5), transparent);
+  transition: left 0.5s ease;
 }
 
 .category-btn:hover {
   color: #5a4a42;
-  background: rgba(90, 74, 66, 0.08);
+  background: rgba(90, 74, 66, 0.1);
+  transform: translateY(-2px);
+}
+
+.category-btn:hover::before {
+  left: 100%;
 }
 
 .category-btn.active {
-  background: linear-gradient(135deg, #6b5b52 0%, #5a4a42 100%);
+  background: linear-gradient(135deg, #8b7355 0%, #6b5b52 50%, #5a4a42 100%);
+  background-size: 200% 200%;
   color: #fff;
-  box-shadow: 0 4px 15px rgba(90, 74, 66, 0.25);
+  box-shadow: 0 4px 20px rgba(90, 74, 66, 0.35);
   transform: scale(1.02);
+  animation: activeBtnGlow 3s ease-in-out infinite;
+}
+
+@keyframes activeBtnGlow {
+  0%, 100% { 
+    box-shadow: 0 4px 20px rgba(90, 74, 66, 0.35);
+    background-position: 0% 50%;
+  }
+  50% { 
+    box-shadow: 0 6px 25px rgba(90, 74, 66, 0.5);
+    background-position: 100% 50%;
+  }
 }
 
 /* Subcategory Filter - Checkbox Style (Compact) */
