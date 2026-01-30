@@ -842,7 +842,7 @@ body::after {
   font-weight: 500;
   letter-spacing: 0.1em;
   margin-bottom: 8px;
-  color: #ffd700;
+  color: #fff;
   font-family: 'Playfair Display', serif;
   text-transform: uppercase;
 }
@@ -858,7 +858,7 @@ body::after {
   font-size: 14px;
   font-weight: 500;
   margin-bottom: 10px;
-  color: #ffd700;
+  color: #fff;
   font-family: 'Roboto', sans-serif;
 }
 
@@ -881,7 +881,7 @@ body::after {
 }
 
 .footer-link:hover {
-  color: #ffd700;
+  color: #fff;
 }
 
 .footer-text {
@@ -907,7 +907,7 @@ body::after {
 
 .footer-bottom {
   padding-top: 20px;
-  border-top: 1px solid rgba(255, 215, 0, 0.1);
+  border-top: 1px solid rgba(255, 255, 255, 0.1);
   text-align: center;
 }
 
