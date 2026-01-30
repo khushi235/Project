@@ -5,12 +5,12 @@
 @import url('https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;500;600;700&display=swap');
 @import url('https://fonts.googleapis.com/css2?family=Great+Vibes&display=swap');
 
-/* Root Variables - Warm Neutral Palette with Light Blue Background */
+/* Root Variables - Warm Neutral Palette with Deeper Sky Blue Background */
 :root {
-  /* Primary Backgrounds - Light blue aesthetic */
-  --bg-primary: #f0f7ff;
-  --bg-secondary: #e6f2ff;
-  --bg-subtle: #d9ecff;
+  /* Primary Backgrounds - Deeper sky blue aesthetic */
+  --bg-primary: #d4e8f8;
+  --bg-secondary: #c5ddf2;
+  --bg-subtle: #b6d2ec;
   
   /* Text Hierarchy - Rich contrast */
   --text-primary: #1a1a1a;
@@ -24,8 +24,8 @@
   --focus-outline: #252525;
   
   /* Borders & Separators */
-  --border-light: #c7ddf5;
-  --border-medium: #b0d0f0;
+  --border-light: #a8c8e8;
+  --border-medium: #96bce0;
   --border-subtle: rgba(44,62,80,0.15);
 }
 
