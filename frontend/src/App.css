@@ -523,7 +523,7 @@ body::after {
 
 .category-btn.active {
   background: linear-gradient(135deg, #fff 0%, #ccc 100%);
-  color: #1a1a1a;
+  color: #2c3e50;
   box-shadow: 0 4px 15px rgba(255, 255, 255, 0.2);
   transform: scale(1.02);
 }
