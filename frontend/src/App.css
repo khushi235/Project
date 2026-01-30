@@ -425,11 +425,12 @@ body::after {
   margin-bottom: 0;
 }
 
-/* Buttons - Rounded Design */
+/* Buttons - Magical Animated Design */
 .btn-primary {
-  background: transparent;
-  color: var(--interactive-base);
-  border: 2px solid var(--interactive-base);
+  background: linear-gradient(135deg, rgba(107, 91, 82, 0.9) 0%, rgba(90, 74, 66, 0.95) 50%, rgba(107, 91, 82, 0.9) 100%);
+  background-size: 200% 200%;
+  color: white;
+  border: none;
   border-radius: 8px;
   padding: 14px 28px;
   min-width: 200px;
@@ -437,17 +438,36 @@ body::after {
   font-size: 16px;
   font-weight: 600;
   cursor: pointer;
-  transition: all 0.2s cubic-bezier(.645,.045,.355,1);
+  transition: all 0.4s cubic-bezier(.645,.045,.355,1);
   text-decoration: none;
   display: inline-flex;
   align-items: center;
   justify-content: center;
   font-family: 'Roboto', sans-serif;
+  position: relative;
+  overflow: hidden;
+  box-shadow: 0 4px 15px rgba(90, 74, 66, 0.3);
+}
+
+.btn-primary::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: -100%;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.3), transparent);
+  transition: left 0.5s ease;
 }
 
 .btn-primary:hover {
-  background: var(--interactive-base);
-  color: white;
+  background-position: 100% 50%;
+  transform: translateY(-3px);
+  box-shadow: 0 8px 25px rgba(90, 74, 66, 0.4);
+}
+
+.btn-primary:hover::before {
+  left: 100%;
 }
 
 /* Collections Section */
