@@ -3,8 +3,9 @@ import { X } from 'lucide-react';
 
 // Helper to ensure price has $ sign
 const formatPrice = (price) => {
-  if (!price) return '';
+  if (!price) return '-';
   const priceStr = String(price).trim();
+  if (priceStr === '') return '-';
   // If it already contains $ or is text like "Contact for pricing", return as is
   if (priceStr.includes('$') || priceStr.toLowerCase().includes('contact')) return priceStr;
   // If it starts with a number, add $
@@ -27,11 +28,17 @@ const sortPriceTable = (priceTable) => {
   return [...priceTable].sort((a, b) => extractNumericCttw(a.cttw) - extractNumericCttw(b.cttw));
 };
 
+// Check if category needs two price columns
+const needsTwoPriceColumns = (categoryId) => {
+  return ['necklace', 'bracelet'].includes(categoryId);
+};
+
 const PriceQuoteModal = ({ pricing, onClose }) => {
   if (!pricing) return null;
 
   // Sort the price table by CTTW numerically
   const sortedPriceTable = sortPriceTable(pricing.price_table);
+  const showTwoColumns = needsTwoPriceColumns(pricing.category_id);
 
   return (
     <div className="price-quote-overlay" onClick={onClose}>
@@ -58,14 +65,28 @@ const PriceQuoteModal = ({ pricing, onClose }) => {
                 <thead>
                   <tr>
                     <th>CTTW</th>
-                    <th>Price</th>
+                    {showTwoColumns ? (
+                      <>
+                        <th>Price (HI-SI)</th>
+                        <th>Price (FG-SI)</th>
+                      </>
+                    ) : (
+                      <th>Price</th>
+                    )}
                   </tr>
                 </thead>
                 <tbody>
                   {sortedPriceTable.map((row, index) => (
                     <tr key={index}>
                       <td>{row.cttw}</td>
-                      <td>{formatPrice(row.price)}</td>
+                      {showTwoColumns ? (
+                        <>
+                          <td>{formatPrice(row.price_hi_si)}</td>
+                          <td>{formatPrice(row.price_fg_si)}</td>
+                        </>
+                      ) : (
+                        <td>{formatPrice(row.price_fg_si || row.price)}</td>
+                      )}
                     </tr>
                   ))}
                 </tbody>
