@@ -9,6 +9,16 @@ const API = `${BACKEND_URL}/api`;
 // Categories that use subcategory pricing layout
 const PRICING_CATEGORIES = ['necklace', 'bracelet', 'bangle'];
 
+// Helper to ensure price has $ sign
+const formatPrice = (price) => {
+  if (!price) return '';
+  const priceStr = String(price).trim();
+  // If it already starts with $ or contains "Starting at $" or similar, return as is
+  if (priceStr.includes('$')) return priceStr;
+  // If it's just a number or starts with a number, add $
+  return `$${priceStr}`;
+};
+
 const Collections = () => {
   const [selectedCategory, setSelectedCategory] = useState('all');
   const [selectedSubcategories, setSelectedSubcategories] = useState([]);
