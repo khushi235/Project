@@ -40,14 +40,14 @@ body {
   font-family: 'Roboto', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
-  background: linear-gradient(180deg, #f5f0eb 0%, #ebe4dd 100%);
+  background: linear-gradient(180deg, #f0e8e0 0%, #e5ddd5 100%);
   color: var(--text-primary);
   min-height: 100vh;
   position: relative;
   overflow-x: hidden;
 }
 
-/* Northern Lights Aurora Effect - Dramatic Soft Warm Waves */
+/* Northern Lights Aurora Effect - VIBRANT Warm Waves */
 body::before {
   content: '';
   position: fixed;
@@ -56,19 +56,20 @@ body::before {
   right: 0;
   bottom: 0;
   background: 
-    linear-gradient(110deg, 
+    linear-gradient(105deg, 
       transparent 0%, 
-      rgba(210, 160, 150, 0.5) 8%, 
-      rgba(180, 140, 170, 0.45) 18%,
-      transparent 30%,
-      rgba(150, 180, 170, 0.5) 42%,
-      rgba(170, 160, 190, 0.45) 55%,
-      transparent 70%,
-      rgba(200, 150, 160, 0.4) 82%,
-      transparent 95%
+      rgba(220, 120, 140, 0.7) 8%, 
+      rgba(180, 100, 180, 0.65) 18%,
+      transparent 28%,
+      rgba(100, 180, 160, 0.7) 40%,
+      rgba(140, 120, 200, 0.65) 52%,
+      transparent 65%,
+      rgba(230, 140, 120, 0.6) 78%,
+      rgba(200, 120, 180, 0.55) 90%,
+      transparent 100%
     );
   background-size: 200% 200%;
-  animation: auroraWarm 6s ease-in-out infinite;
+  animation: auroraWarm 5s ease-in-out infinite;
   z-index: -3;
   pointer-events: none;
 }
@@ -81,19 +82,19 @@ body::after {
   right: 0;
   bottom: 0;
   background: 
-    linear-gradient(250deg, 
+    linear-gradient(255deg, 
       transparent 0%, 
-      rgba(190, 150, 180, 0.55) 10%, 
-      rgba(160, 190, 170, 0.45) 22%,
-      transparent 38%,
-      rgba(210, 170, 150, 0.5) 52%,
-      rgba(170, 150, 190, 0.45) 68%,
-      transparent 82%,
-      rgba(180, 170, 160, 0.4) 92%,
+      rgba(200, 100, 160, 0.7) 10%, 
+      rgba(100, 200, 180, 0.65) 22%,
+      transparent 35%,
+      rgba(240, 160, 120, 0.7) 48%,
+      rgba(160, 100, 200, 0.65) 62%,
+      transparent 75%,
+      rgba(180, 200, 140, 0.6) 88%,
       transparent 100%
     );
   background-size: 200% 200%;
-  animation: auroraWave2 8s ease-in-out infinite reverse;
+  animation: auroraWave2 7s ease-in-out infinite reverse;
   z-index: -2;
   pointer-events: none;
 }
