@@ -842,14 +842,14 @@ body::after {
   font-weight: 500;
   letter-spacing: 0.1em;
   margin-bottom: 8px;
-  color: var(--text-primary);
-  font-family: 'Roboto', sans-serif;
+  color: #ffd700;
+  font-family: 'Playfair Display', serif;
   text-transform: uppercase;
 }
 
 .footer-description {
   font-size: 14px;
-  color: var(--text-secondary);
+  color: rgba(255, 255, 255, 0.7);
   max-width: 280px;
   font-family: 'Roboto', sans-serif;
 }
@@ -858,7 +858,7 @@ body::after {
   font-size: 14px;
   font-weight: 500;
   margin-bottom: 10px;
-  color: var(--text-primary);
+  color: #ffd700;
   font-family: 'Roboto', sans-serif;
 }
 
@@ -872,7 +872,7 @@ body::after {
   display: flex;
   align-items: center;
   gap: 6px;
-  color: var(--text-secondary);
+  color: rgba(255, 255, 255, 0.7);
   text-decoration: none;
   font-size: 14px;
   font-weight: 400;
@@ -881,19 +881,19 @@ body::after {
 }
 
 .footer-link:hover {
-  color: var(--text-primary);
+  color: #ffd700;
 }
 
 .footer-text {
   font-size: 14px;
-  color: var(--text-secondary);
+  color: rgba(255, 255, 255, 0.7);
   font-family: 'Roboto', sans-serif;
   line-height: 1.6;
 }
 
 .footer-note {
   font-size: 13px;
-  color: var(--text-light);
+  color: rgba(255, 255, 255, 0.5);
   font-family: 'Roboto', sans-serif;
   font-style: italic;
   margin-top: 4px;
@@ -907,13 +907,13 @@ body::after {
 
 .footer-bottom {
   padding-top: 20px;
-  border-top: 1px solid var(--border-light);
+  border-top: 1px solid rgba(255, 215, 0, 0.1);
   text-align: center;
 }
 
 .footer-copyright {
   font-size: 13px;
-  color: var(--text-light);
+  color: rgba(255, 255, 255, 0.5);
   font-family: 'Roboto', sans-serif;
 }
 
