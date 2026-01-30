@@ -91,20 +91,6 @@ const Home = () => {
 function App() {
   return (
     <div className="App">
-      {/* Sparkle Layer */}
-      <div className="sparkle-layer"></div>
-      
-      {/* Floating Particles */}
-      <div className="floating-particles">
-        <div className="particle"></div>
-        <div className="particle"></div>
-        <div className="particle"></div>
-        <div className="particle"></div>
-        <div className="particle"></div>
-        <div className="particle"></div>
-        <div className="particle"></div>
-        <div className="particle"></div>
-      </div>
       <div className="shimmer-line"></div>
       
       <BrowserRouter>
