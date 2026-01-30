@@ -40,14 +40,14 @@ body {
   font-family: 'Roboto', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
-  background: linear-gradient(135deg, #2c3e50 0%, #34495e 50%, #2c3e50 100%);
+  background: linear-gradient(135deg, #f5f0eb 0%, #e8e0d8 50%, #f5f0eb 100%);
   color: var(--text-primary);
   min-height: 100vh;
   position: relative;
   overflow-x: hidden;
 }
 
-/* Northern Lights Aurora Effect */
+/* Soft Aurora Effect */
 body::before {
   content: '';
   position: fixed;
@@ -58,11 +58,11 @@ body::before {
   background: 
     linear-gradient(125deg, 
       transparent 0%, 
-      rgba(100, 200, 255, 0.08) 20%, 
+      rgba(200, 180, 170, 0.15) 20%, 
       transparent 40%,
-      rgba(150, 100, 255, 0.06) 60%,
+      rgba(180, 170, 190, 0.12) 60%,
       transparent 80%,
-      rgba(100, 255, 200, 0.05) 100%
+      rgba(170, 185, 180, 0.1) 100%
     );
   background-size: 400% 400%;
   animation: aurora 15s ease-in-out infinite;
@@ -80,9 +80,9 @@ body::after {
   background: 
     linear-gradient(45deg, 
       transparent 0%, 
-      rgba(120, 200, 255, 0.06) 25%, 
+      rgba(210, 190, 180, 0.1) 25%, 
       transparent 50%,
-      rgba(200, 150, 255, 0.05) 75%,
+      rgba(190, 180, 200, 0.08) 75%,
       transparent 100%
     );
   background-size: 300% 300%;
@@ -133,7 +133,7 @@ body::after {
   }
 }
 
-/* Diamond Sparkle Overlay */
+/* Diamond Sparkle Overlay - Floating White Stars */
 .sparkle-layer {
   position: fixed;
   top: 0;
@@ -141,32 +141,32 @@ body::after {
   right: 0;
   bottom: 0;
   background-image: 
-    radial-gradient(2px 2px at 20px 30px, rgba(255, 255, 255, 0.9), transparent),
-    radial-gradient(2px 2px at 40px 70px, rgba(200, 200, 200, 0.7), transparent),
-    radial-gradient(2px 2px at 50px 160px, rgba(255, 255, 255, 0.8), transparent),
-    radial-gradient(2px 2px at 90px 40px, rgba(220, 220, 220, 0.9), transparent),
-    radial-gradient(2px 2px at 130px 80px, rgba(255, 255, 255, 0.7), transparent),
-    radial-gradient(2px 2px at 160px 120px, rgba(200, 200, 200, 0.6), transparent),
-    radial-gradient(3px 3px at 200px 50px, rgba(255, 255, 255, 1), transparent),
-    radial-gradient(2px 2px at 250px 90px, rgba(220, 220, 220, 0.8), transparent),
-    radial-gradient(2px 2px at 300px 150px, rgba(255, 255, 255, 0.7), transparent),
-    radial-gradient(2px 2px at 350px 30px, rgba(200, 200, 200, 0.8), transparent),
-    radial-gradient(3px 3px at 400px 100px, rgba(255, 255, 255, 0.9), transparent),
-    radial-gradient(2px 2px at 450px 60px, rgba(220, 220, 220, 0.7), transparent),
-    radial-gradient(2px 2px at 500px 140px, rgba(255, 255, 255, 0.8), transparent),
-    radial-gradient(2px 2px at 550px 80px, rgba(200, 200, 200, 0.6), transparent),
-    radial-gradient(2px 2px at 600px 120px, rgba(255, 255, 255, 0.7), transparent);
+    radial-gradient(2px 2px at 20px 30px, rgba(120, 100, 90, 0.6), transparent),
+    radial-gradient(2px 2px at 40px 70px, rgba(100, 90, 80, 0.5), transparent),
+    radial-gradient(2px 2px at 50px 160px, rgba(130, 110, 100, 0.5), transparent),
+    radial-gradient(2px 2px at 90px 40px, rgba(110, 100, 90, 0.6), transparent),
+    radial-gradient(2px 2px at 130px 80px, rgba(120, 100, 90, 0.5), transparent),
+    radial-gradient(2px 2px at 160px 120px, rgba(100, 90, 80, 0.4), transparent),
+    radial-gradient(3px 3px at 200px 50px, rgba(130, 120, 110, 0.7), transparent),
+    radial-gradient(2px 2px at 250px 90px, rgba(110, 100, 90, 0.5), transparent),
+    radial-gradient(2px 2px at 300px 150px, rgba(120, 100, 90, 0.5), transparent),
+    radial-gradient(2px 2px at 350px 30px, rgba(100, 90, 80, 0.5), transparent),
+    radial-gradient(3px 3px at 400px 100px, rgba(130, 110, 100, 0.6), transparent),
+    radial-gradient(2px 2px at 450px 60px, rgba(110, 100, 90, 0.5), transparent),
+    radial-gradient(2px 2px at 500px 140px, rgba(120, 100, 90, 0.5), transparent),
+    radial-gradient(2px 2px at 550px 80px, rgba(100, 90, 80, 0.4), transparent),
+    radial-gradient(2px 2px at 600px 120px, rgba(120, 100, 90, 0.5), transparent);
   background-size: 650px 200px;
   animation: sparkle 4s linear infinite;
   z-index: -1;
   pointer-events: none;
-  opacity: 0.6;
+  opacity: 0.7;
 }
 
 @keyframes sparkle {
-  0% { opacity: 0.4; transform: translateY(0); }
-  50% { opacity: 0.7; }
-  100% { opacity: 0.4; transform: translateY(-10px); }
+  0% { opacity: 0.5; transform: translateY(0); }
+  50% { opacity: 0.8; }
+  100% { opacity: 0.5; transform: translateY(-10px); }
 }
 
 /* Floating Diamond Particles */
