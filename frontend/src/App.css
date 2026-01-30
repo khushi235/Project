@@ -828,7 +828,9 @@ body::after {
 
 /* Footer */
 .footer {
-  background: rgba(255, 255, 255, 0.95);
+  background: rgba(255, 255, 255, 0.4);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
   border-top: 1px solid rgba(180, 160, 150, 0.2);
   padding: 36px 0 20px;
   margin-top: 30px;
