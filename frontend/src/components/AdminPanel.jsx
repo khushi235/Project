@@ -9,6 +9,14 @@ const API = `${BACKEND_URL}/api`;
 // Categories that use subcategory pricing
 const PRICING_CATEGORIES = ['necklace', 'bracelet', 'bangle'];
 
+// Helper to ensure price has $ sign
+const formatPrice = (price) => {
+  if (!price) return '';
+  const priceStr = String(price).trim();
+  if (priceStr.includes('$')) return priceStr;
+  return `$${priceStr}`;
+};
+
 const AdminPanel = ({ onClose, onLogout }) => {
   const [activeTab, setActiveTab] = useState('products');
   const [products, setProducts] = useState([]);
