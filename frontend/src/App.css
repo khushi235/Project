@@ -554,10 +554,18 @@ body::after {
 
 /* About Section */
 .about-section {
-  background: white;
-  border-radius: 12px;
-  margin: 0 40px;
+  background: rgba(255, 255, 255, 0.85);
+  backdrop-filter: blur(20px);
+  -webkit-backdrop-filter: blur(20px);
+  border-radius: 20px;
+  margin: 20px 40px;
   padding: 40px 32px;
+  box-shadow: 0 8px 40px rgba(44, 62, 80, 0.1), inset 0 0 0 1px rgba(255, 255, 255, 0.5);
+  transition: all 0.3s ease;
+}
+
+.about-section:hover {
+  box-shadow: 0 12px 50px rgba(44, 62, 80, 0.12), inset 0 0 0 1px rgba(255, 255, 255, 0.7);
 }
 
 .about-with-image {
