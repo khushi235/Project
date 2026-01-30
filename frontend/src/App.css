@@ -475,19 +475,19 @@ body::after {
   margin-bottom: 24px;
   flex-wrap: wrap;
   padding: 12px 24px;
-  background: rgba(44, 62, 80, 0.9);
+  background: rgba(255, 255, 255, 0.85);
   backdrop-filter: blur(10px);
   -webkit-backdrop-filter: blur(10px);
   border-radius: 50px;
   width: fit-content;
   margin-left: auto;
   margin-right: auto;
-  box-shadow: 0 4px 30px rgba(0, 0, 0, 0.3), inset 0 1px 0 rgba(255, 255, 255, 0.05);
-  border: 1px solid rgba(255, 255, 255, 0.1);
+  box-shadow: 0 4px 30px rgba(100, 80, 70, 0.1);
+  border: 1px solid rgba(180, 160, 150, 0.2);
 }
 
 .category-filter:hover {
-  box-shadow: 0 8px 40px rgba(0, 0, 0, 0.4), inset 0 1px 0 rgba(255, 255, 255, 0.08);
+  box-shadow: 0 8px 40px rgba(100, 80, 70, 0.15);
 }
 
 .category-btn {
