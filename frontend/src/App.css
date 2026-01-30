@@ -543,7 +543,7 @@ body::after {
   align-items: center;
   gap: 6px;
   padding: 6px 14px;
-  background: rgba(30, 30, 30, 0.6);
+  background: rgba(44, 62, 80, 0.6);
   border: 1px dashed rgba(255, 255, 255, 0.3);
   border-radius: 20px;
   font-size: 13px;
@@ -563,7 +563,7 @@ body::after {
 
 .subcategory-checkbox-label.checked {
   background: linear-gradient(135deg, #fff 0%, #ccc 100%);
-  color: #1a1a1a;
+  color: #2c3e50;
   border-color: #fff;
   border-style: solid;
 }
@@ -576,7 +576,7 @@ body::after {
 }
 
 .subcategory-checkbox-label.checked .subcategory-checkbox {
-  accent-color: #1a1a1a;
+  accent-color: #2c3e50;
 }
 
 .no-products {
