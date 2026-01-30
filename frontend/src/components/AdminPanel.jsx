@@ -57,8 +57,13 @@ const AdminPanel = ({ onClose, onLogout }) => {
     image_url: '',
     price_table: []
   });
-  const [newPriceRow, setNewPriceRow] = useState({ cttw: '', price: '' });
+  const [newPriceRow, setNewPriceRow] = useState({ cttw: '', price_hi_si: '', price_fg_si: '' });
   const [editingPricing, setEditingPricing] = useState(null);
+
+  // Check if category needs two price columns (necklace, bracelet)
+  const needsTwoPriceColumns = (categoryId) => {
+    return ['necklace', 'bracelet'].includes(categoryId);
+  };
 
   useEffect(() => {
     fetchData();
