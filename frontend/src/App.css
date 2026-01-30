@@ -155,9 +155,9 @@ body::after {
 
 .particle {
   position: absolute;
-  background: linear-gradient(135deg, rgba(255, 255, 255, 0.9), rgba(255, 215, 0, 0.6));
+  background: linear-gradient(135deg, rgba(255, 255, 255, 0.95), rgba(200, 200, 200, 0.7));
   border-radius: 50%;
-  box-shadow: 0 0 15px rgba(255, 215, 0, 0.4), 0 0 30px rgba(255, 255, 255, 0.2);
+  box-shadow: 0 0 15px rgba(255, 255, 255, 0.5), 0 0 30px rgba(255, 255, 255, 0.3);
   animation: floatSparkle 15s ease-in-out infinite;
 }
 
@@ -199,9 +199,9 @@ body::after {
   background: linear-gradient(
     90deg, 
     transparent 0%, 
-    rgba(255, 215, 0, 0.03) 25%,
-    rgba(255, 255, 255, 0.08) 50%,
-    rgba(255, 215, 0, 0.03) 75%,
+    rgba(255, 255, 255, 0.03) 25%,
+    rgba(255, 255, 255, 0.1) 50%,
+    rgba(255, 255, 255, 0.03) 75%,
     transparent 100%
   );
   animation: diamondShimmer 5s ease-in-out infinite;
