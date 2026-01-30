@@ -23,7 +23,8 @@ db = client[os.environ.get('DB_NAME')]
 
 class PriceRow(BaseModel):
     cttw: str
-    price: str
+    price_hi_si: str = ""
+    price_fg_si: str = ""
 
 class SubcategoryPricingCreate(BaseModel):
     category_id: str
