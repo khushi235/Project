@@ -25,6 +25,9 @@ class PriceRow(BaseModel):
     cttw: str
     price_hi_si: str = ""
     price_fg_si: str = ""
+    price_all_way: str = ""
+    price_half_way: str = ""
+    price: str = ""  # Legacy field for backwards compatibility
 
 class SubcategoryPricingCreate(BaseModel):
     category_id: str
