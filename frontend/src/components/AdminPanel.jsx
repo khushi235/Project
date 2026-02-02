@@ -7,7 +7,7 @@ const BACKEND_URL = process.env.REACT_APP_BACKEND_URL;
 const API = `${BACKEND_URL}/api`;
 
 // Categories that use subcategory pricing
-const PRICING_CATEGORIES = ['necklace', 'bracelet', 'bangle'];
+const PRICING_CATEGORIES = ['necklace', 'bracelet', 'bangle', 'pendant'];
 
 // Helper to ensure price has $ sign
 const formatPrice = (price) => {
