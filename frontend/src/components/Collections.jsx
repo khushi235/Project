@@ -125,7 +125,7 @@ const Collections = () => {
 
   const currentCategory = categories.find(cat => cat.id === selectedCategory);
   const hasSubcategories = currentCategory && currentCategory.subcategories.length > 0;
-  const isPricingCategory = PRICING_CATEGORIES.includes(selectedCategory);
+  const isPricingCategory = isPricingCategoryById(selectedCategory, categories);
 
   // Get pricing data for current category
   const categoryPricingData = subcategoryPricing.filter(p => p.category_id === selectedCategory);
