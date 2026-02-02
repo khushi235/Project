@@ -140,29 +140,71 @@ const Collections = () => {
 
   const currentCategory = categories.find(cat => cat.id === selectedCategory);
   const hasSubcategories = currentCategory && currentCategory.subcategories.length > 0;
-  const isPricingCategory = isPricingCategoryById(selectedCategory, categories);
+  const isPricingOnly = isPricingOnlyCategory(selectedCategory);
+  const isMixed = isMixedCategory(selectedCategory, categories);
 
   // Get pricing data for current category
   const categoryPricingData = subcategoryPricing.filter(p => p.category_id === selectedCategory);
 
-  // Helper to check if a product's category is a pricing category
-  const isProductInPricingCategory = (product) => {
-    if (PRICING_CATEGORIES.includes(product.category)) return true;
+  // Check if selected subcategories include only "Fancy" (product subcategory)
+  const showingFancyOnly = selectedSubcategories.length > 0 && 
+    selectedSubcategories.every(sub => PRODUCT_SUBCATEGORIES.includes(sub.toLowerCase()));
+  
+  // Check if selected subcategories include any pricing subcategories
+  const showingPricingSubcategories = selectedSubcategories.length === 0 || 
+    selectedSubcategories.some(sub => !PRODUCT_SUBCATEGORIES.includes(sub.toLowerCase()));
+
+  // Helper to check if a product's category should be excluded from "All Collections"
+  const shouldExcludeFromAll = (product) => {
+    if (PRICING_ONLY_CATEGORIES.includes(product.category)) return true;
+    // For mixed categories, only exclude non-Fancy products
+    if (MIXED_CATEGORIES.includes(product.category)) {
+      return !PRODUCT_SUBCATEGORIES.includes(product.subcategory?.toLowerCase());
+    }
+    // Check Earrings
     const cat = categories.find(c => c.id === product.category);
-    if (cat && cat.name.toLowerCase() === 'earrings') return true;
+    if (cat && cat.name.toLowerCase() === 'earrings') {
+      return !PRODUCT_SUBCATEGORIES.includes(product.subcategory?.toLowerCase());
+    }
     return false;
   };
 
-  // Filter products for non-pricing categories
+  // Filter products
   const filteredProducts = products.filter(product => {
     if (selectedCategory === 'all') {
-      // For "All Collections", only show products from non-pricing categories
-      return !isProductInPricingCategory(product);
+      // For "All Collections", exclude pricing-only categories and non-Fancy from mixed categories
+      return !shouldExcludeFromAll(product);
     }
-    if (isPricingCategory) return false; // Don't show individual products for pricing categories
+    
+    // For pricing-only categories, don't show any products
+    if (isPricingOnly) return false;
+    
+    // For mixed categories
+    if (isMixed) {
+      if (product.category !== selectedCategory) return false;
+      // If no subcategory filter, only show Fancy products
+      if (selectedSubcategories.length === 0) return false;
+      // If Fancy is selected, show Fancy products
+      if (selectedSubcategories.some(sub => PRODUCT_SUBCATEGORIES.includes(sub.toLowerCase()))) {
+        return PRODUCT_SUBCATEGORIES.includes(product.subcategory?.toLowerCase());
+      }
+      return false;
+    }
+    
+    // For regular categories (like Rings)
     if (product.category !== selectedCategory) return false;
     if (selectedSubcategories.length === 0) return true;
     return selectedSubcategories.includes(product.subcategory);
+  });
+
+  // Filter pricing data based on selected subcategories
+  const filteredPricingData = categoryPricingData.filter(pricing => {
+    if (selectedSubcategories.length === 0) return true;
+    // Check if this pricing's subcategory is selected
+    return selectedSubcategories.some(sub => 
+      pricing.subcategory_id?.toLowerCase() === sub.toLowerCase() ||
+      pricing.subcategory_name?.toLowerCase() === sub.toLowerCase()
+    );
   });
 
   // Get all pricing data for "All Collections" view
