@@ -295,10 +295,15 @@ const AdminPanel = ({ onClose, onLogout }) => {
       toast.error('Please fill in CTTW');
       return;
     }
-    // For necklace/bracelet, at least one price should be filled
-    // For bangles, price_fg_si is used as the single price
-    if (needsTwoPriceColumns(pricingForm.category_id)) {
+    
+    // Validate based on category type
+    if (needsClarityColumns(pricingForm.category_id)) {
       if (!newPriceRow.price_hi_si && !newPriceRow.price_fg_si) {
+        toast.error('Please fill in at least one price');
+        return;
+      }
+    } else if (isBangleCategory(pricingForm.category_id)) {
+      if (!newPriceRow.price_all_way && !newPriceRow.price_half_way) {
         toast.error('Please fill in at least one price');
         return;
       }
@@ -308,11 +313,12 @@ const AdminPanel = ({ onClose, onLogout }) => {
         return;
       }
     }
+    
     setPricingForm({
       ...pricingForm,
       price_table: [...pricingForm.price_table, newPriceRow]
     });
-    setNewPriceRow({ cttw: '', price_hi_si: '', price_fg_si: '' });
+    setNewPriceRow({ cttw: '', price_hi_si: '', price_fg_si: '', price_all_way: '', price_half_way: '' });
   };
 
   const handleRemovePriceRow = (index) => {
