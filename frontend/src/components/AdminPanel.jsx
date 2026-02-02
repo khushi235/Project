@@ -639,7 +639,10 @@ const AdminPanel = ({ onClose, onLogout }) => {
 
                       <div className="form-group">
                         <label className="form-label">
-                          Price Table {needsTwoPriceColumns(pricingForm.category_id) ? '(CTTW, HI-SI Price, FG-SI Price)' : '(CTTW & Price)'}
+                          Price Table 
+                          {needsClarityColumns(pricingForm.category_id) && ' (CTTW, HI-SI Price, FG-SI Price)'}
+                          {isBangleCategory(pricingForm.category_id) && ' (CTTW, All the Way, Half Way)'}
+                          {!needsClarityColumns(pricingForm.category_id) && !isBangleCategory(pricingForm.category_id) && ' (CTTW & Price)'}
                         </label>
                         <div className="price-row-input">
                           <input
@@ -649,7 +652,7 @@ const AdminPanel = ({ onClose, onLogout }) => {
                             value={newPriceRow.cttw}
                             onChange={(e) => setNewPriceRow({ ...newPriceRow, cttw: e.target.value })}
                           />
-                          {needsTwoPriceColumns(pricingForm.category_id) ? (
+                          {needsClarityColumns(pricingForm.category_id) ? (
                             <>
                               <input
                                 type="text"
@@ -664,6 +667,23 @@ const AdminPanel = ({ onClose, onLogout }) => {
                                 placeholder="FG-SI Price"
                                 value={newPriceRow.price_fg_si}
                                 onChange={(e) => setNewPriceRow({ ...newPriceRow, price_fg_si: e.target.value })}
+                              />
+                            </>
+                          ) : isBangleCategory(pricingForm.category_id) ? (
+                            <>
+                              <input
+                                type="text"
+                                className="form-input"
+                                placeholder="All the Way Price"
+                                value={newPriceRow.price_all_way}
+                                onChange={(e) => setNewPriceRow({ ...newPriceRow, price_all_way: e.target.value })}
+                              />
+                              <input
+                                type="text"
+                                className="form-input"
+                                placeholder="Half Way Price"
+                                value={newPriceRow.price_half_way}
+                                onChange={(e) => setNewPriceRow({ ...newPriceRow, price_half_way: e.target.value })}
                               />
                             </>
                           ) : (
@@ -685,8 +705,10 @@ const AdminPanel = ({ onClose, onLogout }) => {
                               <div key={index} className="price-row-item">
                                 <span>
                                   <strong>{row.cttw}</strong> cttw
-                                  {needsTwoPriceColumns(pricingForm.category_id) ? (
+                                  {needsClarityColumns(pricingForm.category_id) ? (
                                     <> - HI-SI: {formatPrice(row.price_hi_si) || '-'} | FG-SI: {formatPrice(row.price_fg_si) || '-'}</>
+                                  ) : isBangleCategory(pricingForm.category_id) ? (
+                                    <> - All Way: {formatPrice(row.price_all_way) || '-'} | Half: {formatPrice(row.price_half_way) || '-'}</>
                                   ) : (
                                     <> - {formatPrice(row.price_fg_si || row.price)}</>
                                   )}
