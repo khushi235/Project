@@ -28,9 +28,14 @@ const sortPriceTable = (priceTable) => {
   return [...priceTable].sort((a, b) => extractNumericCttw(a.cttw) - extractNumericCttw(b.cttw));
 };
 
-// Check if category needs two price columns
-const needsTwoPriceColumns = (categoryId) => {
+// Check if category needs two price columns (clarity-based)
+const needsClarityColumns = (categoryId) => {
   return ['necklace', 'bracelet'].includes(categoryId);
+};
+
+// Check if this is a bangle (style-based columns)
+const isBangleCategory = (categoryId) => {
+  return categoryId === 'bangle';
 };
 
 const PriceQuoteModal = ({ pricing, onClose }) => {
@@ -38,7 +43,8 @@ const PriceQuoteModal = ({ pricing, onClose }) => {
 
   // Sort the price table by CTTW numerically
   const sortedPriceTable = sortPriceTable(pricing.price_table);
-  const showTwoColumns = needsTwoPriceColumns(pricing.category_id);
+  const showClarityColumns = needsClarityColumns(pricing.category_id);
+  const isBangle = isBangleCategory(pricing.category_id);
 
   return (
     <div className="price-quote-overlay" onClick={onClose}>
@@ -65,7 +71,12 @@ const PriceQuoteModal = ({ pricing, onClose }) => {
                 <thead>
                   <tr>
                     <th>CTTW</th>
-                    {showTwoColumns ? (
+                    {isBangle ? (
+                      <>
+                        <th>All the Way</th>
+                        <th>Half Way</th>
+                      </>
+                    ) : showClarityColumns ? (
                       <>
                         <th>Price (HI-SI)</th>
                         <th>Price (FG-SI)</th>
@@ -79,7 +90,12 @@ const PriceQuoteModal = ({ pricing, onClose }) => {
                   {sortedPriceTable.map((row, index) => (
                     <tr key={index}>
                       <td>{row.cttw}</td>
-                      {showTwoColumns ? (
+                      {isBangle ? (
+                        <>
+                          <td>{formatPrice(row.price_all_way)}</td>
+                          <td>{formatPrice(row.price_half_way)}</td>
+                        </>
+                      ) : showClarityColumns ? (
                         <>
                           <td>{formatPrice(row.price_hi_si)}</td>
                           <td>{formatPrice(row.price_fg_si || row.price)}</td>
