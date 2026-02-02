@@ -33,11 +33,16 @@ const needsClarityColumns = (categoryId) => {
   return categoryId === 'necklace';
 };
 
+// Check if string looks like a UUID
+const isUUID = (str) => {
+  return /^[0-9a-f]{8}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{12}$/i.test(str);
+};
+
 // Check if category uses single HI-SI price column (bracelet, pendant, earring)
-const needsSinglePriceColumn = (categoryId, categoryName = '') => {
+const needsSinglePriceColumn = (categoryId) => {
   if (['bracelet', 'pendant', 'earring'].includes(categoryId)) return true;
-  // Handle UUID-based earring category
-  if (categoryName && categoryName.toLowerCase() === 'earrings') return true;
+  // Handle UUID-based categories (like earrings) - they use single column
+  if (isUUID(categoryId)) return true;
   return false;
 };
 
