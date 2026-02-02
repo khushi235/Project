@@ -65,9 +65,9 @@ const AdminPanel = ({ onClose, onLogout }) => {
     return categoryId === 'necklace';
   };
 
-  // Check if category uses single HI-SI price column (bracelet)
+  // Check if category uses single HI-SI price column (bracelet, pendant, earring)
   const needsSinglePriceColumn = (categoryId) => {
-    return categoryId === 'bracelet';
+    return ['bracelet', 'pendant', 'earring'].includes(categoryId);
   };
 
   // Check if category is bangle (uses All the Way / Half Way columns)
