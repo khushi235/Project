@@ -87,7 +87,7 @@ const PriceQuoteModal = ({ pricing, onClose }) => {
                         <th>Price (FG-SI)</th>
                       </>
                     ) : (
-                      <th>Price</th>
+                      <th>Price (HI-SI)</th>
                     )}
                   </tr>
                 </thead>
@@ -106,7 +106,7 @@ const PriceQuoteModal = ({ pricing, onClose }) => {
                           <td>{formatPrice(row.price_fg_si || row.price)}</td>
                         </>
                       ) : (
-                        <td>{formatPrice(row.price_fg_si || row.price)}</td>
+                        <td>{formatPrice(row.price_hi_si || row.price_fg_si || row.price)}</td>
                       )}
                     </tr>
                   ))}
