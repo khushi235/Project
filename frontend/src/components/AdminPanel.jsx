@@ -60,9 +60,14 @@ const AdminPanel = ({ onClose, onLogout }) => {
   const [newPriceRow, setNewPriceRow] = useState({ cttw: '', price_hi_si: '', price_fg_si: '', price_all_way: '', price_half_way: '' });
   const [editingPricing, setEditingPricing] = useState(null);
 
-  // Check if category needs two price columns for clarity (necklace, bracelet)
+  // Check if category needs two price columns for clarity (necklace only)
   const needsClarityColumns = (categoryId) => {
-    return ['necklace', 'bracelet'].includes(categoryId);
+    return categoryId === 'necklace';
+  };
+
+  // Check if category uses single HI-SI price column (bracelet)
+  const needsSinglePriceColumn = (categoryId) => {
+    return categoryId === 'bracelet';
   };
 
   // Check if category is bangle (uses All the Way / Half Way columns)
