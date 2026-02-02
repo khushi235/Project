@@ -28,9 +28,14 @@ const sortPriceTable = (priceTable) => {
   return [...priceTable].sort((a, b) => extractNumericCttw(a.cttw) - extractNumericCttw(b.cttw));
 };
 
-// Check if category needs two price columns (clarity-based)
+// Check if category needs two price columns for clarity (necklace only)
 const needsClarityColumns = (categoryId) => {
-  return ['necklace', 'bracelet'].includes(categoryId);
+  return categoryId === 'necklace';
+};
+
+// Check if category uses single HI-SI price column (bracelet)
+const needsSinglePriceColumn = (categoryId) => {
+  return categoryId === 'bracelet';
 };
 
 // Check if this is a bangle (style-based columns)
