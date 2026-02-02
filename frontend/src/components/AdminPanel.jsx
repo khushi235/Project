@@ -57,12 +57,17 @@ const AdminPanel = ({ onClose, onLogout }) => {
     image_url: '',
     price_table: []
   });
-  const [newPriceRow, setNewPriceRow] = useState({ cttw: '', price_hi_si: '', price_fg_si: '' });
+  const [newPriceRow, setNewPriceRow] = useState({ cttw: '', price_hi_si: '', price_fg_si: '', price_all_way: '', price_half_way: '' });
   const [editingPricing, setEditingPricing] = useState(null);
 
-  // Check if category needs two price columns (necklace, bracelet)
-  const needsTwoPriceColumns = (categoryId) => {
+  // Check if category needs two price columns for clarity (necklace, bracelet)
+  const needsClarityColumns = (categoryId) => {
     return ['necklace', 'bracelet'].includes(categoryId);
+  };
+
+  // Check if category is bangle (uses All the Way / Half Way columns)
+  const isBangleCategory = (categoryId) => {
+    return categoryId === 'bangle';
   };
 
   useEffect(() => {
