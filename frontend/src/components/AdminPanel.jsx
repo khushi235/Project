@@ -312,6 +312,11 @@ const AdminPanel = ({ onClose, onLogout }) => {
         toast.error('Please fill in at least one price');
         return;
       }
+    } else if (needsSinglePriceColumn(pricingForm.category_id)) {
+      if (!newPriceRow.price_hi_si) {
+        toast.error('Please fill in the price');
+        return;
+      }
     } else {
       if (!newPriceRow.price_fg_si) {
         toast.error('Please fill in the price');
