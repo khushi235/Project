@@ -33,9 +33,9 @@ const needsClarityColumns = (categoryId) => {
   return categoryId === 'necklace';
 };
 
-// Check if category uses single HI-SI price column (bracelet)
+// Check if category uses single HI-SI price column (bracelet, pendant, earring)
 const needsSinglePriceColumn = (categoryId) => {
-  return categoryId === 'bracelet';
+  return ['bracelet', 'pendant', 'earring'].includes(categoryId);
 };
 
 // Check if this is a bangle (style-based columns)
