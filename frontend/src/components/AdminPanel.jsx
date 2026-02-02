@@ -651,8 +651,9 @@ const AdminPanel = ({ onClose, onLogout }) => {
                         <label className="form-label">
                           Price Table 
                           {needsClarityColumns(pricingForm.category_id) && ' (CTTW, HI-SI Price, FG-SI Price)'}
+                          {needsSinglePriceColumn(pricingForm.category_id) && ' (CTTW, HI-SI Price)'}
                           {isBangleCategory(pricingForm.category_id) && ' (CTTW, All the Way, Half Way)'}
-                          {!needsClarityColumns(pricingForm.category_id) && !isBangleCategory(pricingForm.category_id) && ' (CTTW & Price)'}
+                          {!needsClarityColumns(pricingForm.category_id) && !needsSinglePriceColumn(pricingForm.category_id) && !isBangleCategory(pricingForm.category_id) && ' (CTTW & Price)'}
                         </label>
                         <div className="price-row-input">
                           <input
@@ -679,6 +680,14 @@ const AdminPanel = ({ onClose, onLogout }) => {
                                 onChange={(e) => setNewPriceRow({ ...newPriceRow, price_fg_si: e.target.value })}
                               />
                             </>
+                          ) : needsSinglePriceColumn(pricingForm.category_id) ? (
+                            <input
+                              type="text"
+                              className="form-input"
+                              placeholder="HI-SI Price"
+                              value={newPriceRow.price_hi_si}
+                              onChange={(e) => setNewPriceRow({ ...newPriceRow, price_hi_si: e.target.value })}
+                            />
                           ) : isBangleCategory(pricingForm.category_id) ? (
                             <>
                               <input
@@ -717,6 +726,8 @@ const AdminPanel = ({ onClose, onLogout }) => {
                                   <strong>{row.cttw}</strong> cttw
                                   {needsClarityColumns(pricingForm.category_id) ? (
                                     <> - HI-SI: {formatPrice(row.price_hi_si) || '-'} | FG-SI: {formatPrice(row.price_fg_si) || '-'}</>
+                                  ) : needsSinglePriceColumn(pricingForm.category_id) ? (
+                                    <> - HI-SI: {formatPrice(row.price_hi_si) || '-'}</>
                                   ) : isBangleCategory(pricingForm.category_id) ? (
                                     <> - All Way: {formatPrice(row.price_all_way) || '-'} | Half: {formatPrice(row.price_half_way) || '-'}</>
                                   ) : (
