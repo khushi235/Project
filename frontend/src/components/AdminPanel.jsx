@@ -536,7 +536,7 @@ const AdminPanel = ({ onClose, onLogout }) => {
 
                   <div className="admin-list-container">
                     <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginBottom: '16px' }}>
-                      <h3 className="heading-3">All Products ({products.filter(p => !PRICING_CATEGORIES.includes(p.category)).length})</h3>
+                      <h3 className="heading-3">All Products ({products.filter(p => !PRICING_CATEGORIES.includes(p.category) && !categories.find(c => c.id === p.category && c.name.toLowerCase() === 'earrings')).length})</h3>
                       <div style={{ display: 'flex', gap: '8px', alignItems: 'center' }}>
                         <label className="body-small" style={{ color: 'var(--text-secondary)' }}>Sort by:</label>
                         <select 
