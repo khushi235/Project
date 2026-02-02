@@ -130,11 +130,19 @@ const Collections = () => {
   // Get pricing data for current category
   const categoryPricingData = subcategoryPricing.filter(p => p.category_id === selectedCategory);
 
+  // Helper to check if a product's category is a pricing category
+  const isProductInPricingCategory = (product) => {
+    if (PRICING_CATEGORIES.includes(product.category)) return true;
+    const cat = categories.find(c => c.id === product.category);
+    if (cat && cat.name.toLowerCase() === 'earrings') return true;
+    return false;
+  };
+
   // Filter products for non-pricing categories
   const filteredProducts = products.filter(product => {
     if (selectedCategory === 'all') {
       // For "All Collections", only show products from non-pricing categories
-      return !PRICING_CATEGORIES.includes(product.category);
+      return !isProductInPricingCategory(product);
     }
     if (isPricingCategory) return false; // Don't show individual products for pricing categories
     if (product.category !== selectedCategory) return false;
