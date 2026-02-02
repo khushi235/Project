@@ -34,8 +34,11 @@ const needsClarityColumns = (categoryId) => {
 };
 
 // Check if category uses single HI-SI price column (bracelet, pendant, earring)
-const needsSinglePriceColumn = (categoryId) => {
-  return ['bracelet', 'pendant', 'earring'].includes(categoryId);
+const needsSinglePriceColumn = (categoryId, categoryName = '') => {
+  if (['bracelet', 'pendant', 'earring'].includes(categoryId)) return true;
+  // Handle UUID-based earring category
+  if (categoryName && categoryName.toLowerCase() === 'earrings') return true;
+  return false;
 };
 
 // Check if this is a bangle (style-based columns)
