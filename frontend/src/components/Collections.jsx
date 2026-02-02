@@ -6,15 +6,30 @@ import PriceQuoteModal from './PriceQuoteModal';
 const BACKEND_URL = process.env.REACT_APP_BACKEND_URL;
 const API = `${BACKEND_URL}/api`;
 
-// Categories that use subcategory pricing layout (by ID or name pattern)
-const PRICING_CATEGORIES = ['necklace', 'bracelet', 'bangle', 'pendant'];
+// Categories that ONLY use pricing layout (no product items)
+const PRICING_ONLY_CATEGORIES = ['necklace', 'bracelet', 'bangle'];
 
-// Helper to check if a category uses pricing layout
-const isPricingCategoryById = (categoryId, categories) => {
-  if (PRICING_CATEGORIES.includes(categoryId)) return true;
-  // Check if it's the Earrings category (has UUID)
+// Categories that have MIXED content (price tables + Fancy products)
+const MIXED_CATEGORIES = ['pendant'];
+
+// Subcategories that show products instead of price tables
+const PRODUCT_SUBCATEGORIES = ['fancy', 'fn'];
+
+// Helper to check if a category is Earrings (has UUID)
+const isEarringsCategory = (categoryId, categories) => {
   const category = categories.find(c => c.id === categoryId);
-  if (category && category.name.toLowerCase() === 'earrings') return true;
+  return category && category.name.toLowerCase() === 'earrings';
+};
+
+// Helper to check if category uses ONLY pricing layout
+const isPricingOnlyCategory = (categoryId) => {
+  return PRICING_ONLY_CATEGORIES.includes(categoryId);
+};
+
+// Helper to check if category has mixed content (price tables + products)
+const isMixedCategory = (categoryId, categories) => {
+  if (MIXED_CATEGORIES.includes(categoryId)) return true;
+  if (isEarringsCategory(categoryId, categories)) return true;
   return false;
 };
 
