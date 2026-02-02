@@ -256,8 +256,8 @@ const Collections = () => {
           ))}
         </div>
 
-        {/* Subcategory Filter with Checkboxes - Only for non-pricing categories */}
-        {hasSubcategories && !isPricingCategory && (
+        {/* Subcategory Filter with Checkboxes - For non-pricing-only categories with subcategories */}
+        {hasSubcategories && !isPricingOnly && (
           <div className="subcategory-filter">
             {currentCategory.subcategories.map(subcategory => {
               const isChecked = selectedSubcategories.includes(subcategory.id);
@@ -280,8 +280,8 @@ const Collections = () => {
           </div>
         )}
 
-        {/* Subcategory Pricing Cards - For Necklaces, Bracelets, Bangles */}
-        {isPricingCategory && (
+        {/* Subcategory Pricing Cards - For pricing-only categories (Necklaces, Bracelets, Bangles) */}
+        {isPricingOnly && (
           <div className="grid-product-showcase">
             {categoryPricingData.length > 0 ? (
               categoryPricingData.map(pricing => (
@@ -313,8 +313,62 @@ const Collections = () => {
           </div>
         )}
 
-        {/* Regular Product Grid - For Rings, Pendants, and All Collections */}
-        {!isPricingCategory && (
+        {/* Mixed Category Content - For Pendants and Earrings */}
+        {isMixed && (
+          <div className="grid-product-showcase">
+            {/* Show price quote cards for non-Fancy subcategories */}
+            {showingPricingSubcategories && filteredPricingData.map(pricing => (
+              <div key={pricing.id} className="product-card hover-lift" data-testid={`pricing-card-${pricing.id}`}>
+                <div className="product-card-image-wrapper">
+                  <img 
+                    className="product-card-image" 
+                    src={pricing.image_url} 
+                    alt={pricing.subcategory_name}
+                    loading="lazy"
+                  />
+                </div>
+                <div className="product-card-content">
+                  <h3 className="product-card-title">{pricing.subcategory_name}</h3>
+                  <button 
+                    className="btn-price-quote"
+                    onClick={() => handleShowPriceQuote(pricing)}
+                  >
+                    Show Price Quote
+                  </button>
+                </div>
+              </div>
+            ))}
+
+            {/* Show product cards for Fancy subcategory */}
+            {filteredProducts.map(product => (
+              <div key={product.id} className="product-card hover-lift" data-testid={`product-card-${product.id}`}>
+                <div className="product-card-image-wrapper">
+                  <img 
+                    className="product-card-image" 
+                    src={product.imageUrl || 'https://via.placeholder.com/300x300?text=Diamond'} 
+                    alt={product.name}
+                    loading="lazy"
+                  />
+                </div>
+                <div className="product-card-content">
+                  <h3 className="product-card-title">{product.name}</h3>
+                  <p className="product-card-weight">{product.details}</p>
+                  <p className="product-card-price">{formatPrice(product.price)}</p>
+                </div>
+              </div>
+            ))}
+
+            {/* Show message if no items */}
+            {filteredPricingData.length === 0 && filteredProducts.length === 0 && (
+              <div className="no-products">
+                <p className="body-large">No items available. Select a subcategory to view items.</p>
+              </div>
+            )}
+          </div>
+        )}
+
+        {/* Regular Product Grid - For Rings and All Collections */}
+        {!isPricingOnly && !isMixed && (
           <div className="grid-product-showcase">
             {/* Show pricing cards in All Collections */}
             {selectedCategory === 'all' && allPricingData.map(pricing => (
