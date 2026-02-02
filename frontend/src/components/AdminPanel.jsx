@@ -344,7 +344,10 @@ const AdminPanel = ({ onClose, onLogout }) => {
   };
 
   const getPricingCategories = () => {
-    return categories.filter(c => PRICING_CATEGORIES.includes(c.id));
+    return categories.filter(c => 
+      PRICING_CATEGORIES.includes(c.id) || 
+      c.name.toLowerCase() === 'earrings'
+    );
   };
 
   const getSortedProducts = () => {
