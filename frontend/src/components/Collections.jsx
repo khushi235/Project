@@ -6,8 +6,17 @@ import PriceQuoteModal from './PriceQuoteModal';
 const BACKEND_URL = process.env.REACT_APP_BACKEND_URL;
 const API = `${BACKEND_URL}/api`;
 
-// Categories that use subcategory pricing layout
-const PRICING_CATEGORIES = ['necklace', 'bracelet', 'bangle', 'pendant', 'earring'];
+// Categories that use subcategory pricing layout (by ID or name pattern)
+const PRICING_CATEGORIES = ['necklace', 'bracelet', 'bangle', 'pendant'];
+
+// Helper to check if a category uses pricing layout
+const isPricingCategoryById = (categoryId, categories) => {
+  if (PRICING_CATEGORIES.includes(categoryId)) return true;
+  // Check if it's the Earrings category (has UUID)
+  const category = categories.find(c => c.id === categoryId);
+  if (category && category.name.toLowerCase() === 'earrings') return true;
+  return false;
+};
 
 // Helper to ensure price has $ sign
 const formatPrice = (price) => {
