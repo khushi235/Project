@@ -20,6 +20,67 @@ const formatPrice = (price) => {
   return priceStr;
 };
 
+// Helper to merge bangle pricing data (All the Way + Half Way into single table)
+const mergeBanglePricing = (pricingData) => {
+  const banglePricing = pricingData.filter(p => p.category_id === 'bangle');
+  const otherPricing = pricingData.filter(p => p.category_id !== 'bangle');
+  
+  if (banglePricing.length === 0) return pricingData;
+  
+  // Find All the Way and Half Way data
+  const allTheWay = banglePricing.find(p => 
+    p.subcategory_name?.toLowerCase().includes('all') || 
+    p.subcategory_id?.toLowerCase().includes('all')
+  );
+  const halfWay = banglePricing.find(p => 
+    p.subcategory_name?.toLowerCase().includes('half') || 
+    p.subcategory_id?.toLowerCase().includes('half')
+  );
+  
+  // Merge price tables by CTTW
+  const cttwMap = new Map();
+  
+  // Add All the Way prices
+  if (allTheWay?.price_table) {
+    allTheWay.price_table.forEach(row => {
+      const cttw = row.cttw;
+      cttwMap.set(cttw, {
+        cttw,
+        price_all_way: row.price_fg_si || row.price || '',
+        price_half_way: ''
+      });
+    });
+  }
+  
+  // Add Half Way prices
+  if (halfWay?.price_table) {
+    halfWay.price_table.forEach(row => {
+      const cttw = row.cttw;
+      if (cttwMap.has(cttw)) {
+        cttwMap.get(cttw).price_half_way = row.price_fg_si || row.price || '';
+      } else {
+        cttwMap.set(cttw, {
+          cttw,
+          price_all_way: '',
+          price_half_way: row.price_fg_si || row.price || ''
+        });
+      }
+    });
+  }
+  
+  // Create merged bangle entry
+  const mergedBangle = {
+    id: 'bangle-merged',
+    category_id: 'bangle',
+    subcategory_id: 'bangle',
+    subcategory_name: 'Bangles',
+    image_url: allTheWay?.image_url || halfWay?.image_url || '',
+    price_table: Array.from(cttwMap.values())
+  };
+  
+  return [...otherPricing, mergedBangle];
+};
+
 const Collections = () => {
   const [selectedCategory, setSelectedCategory] = useState('all');
   const [selectedSubcategories, setSelectedSubcategories] = useState([]);
@@ -42,7 +103,9 @@ const Collections = () => {
       ]);
       setProducts(productsRes.data);
       setCategories(categoriesRes.data);
-      setSubcategoryPricing(pricingRes.data);
+      // Merge bangle pricing data
+      const mergedPricing = mergeBanglePricing(pricingRes.data);
+      setSubcategoryPricing(mergedPricing);
     } catch (error) {
       console.error('Error fetching data:', error);
       toast.error('Failed to load products');
