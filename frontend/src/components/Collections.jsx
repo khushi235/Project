@@ -155,39 +155,56 @@ const Collections = () => {
   const showingPricingSubcategories = selectedSubcategories.length === 0 || 
     selectedSubcategories.some(sub => !PRODUCT_SUBCATEGORIES.includes(sub.toLowerCase()));
 
+  // Helper to check if a product's subcategory is a "Fancy" type
+  const isFancyProduct = (product) => {
+    return PRODUCT_SUBCATEGORIES.includes(product.subcategory?.toLowerCase());
+  };
+
   // Helper to check if a product's category should be excluded from "All Collections"
   const shouldExcludeFromAll = (product) => {
-    if (PRICING_ONLY_CATEGORIES.includes(product.category)) return true;
-    // For mixed categories, only exclude non-Fancy products
+    // For pricing categories, only show Fancy products in All Collections
+    if (PRICING_ONLY_CATEGORIES.includes(product.category)) {
+      return !isFancyProduct(product);
+    }
+    // For mixed categories, only show Fancy products
     if (MIXED_CATEGORIES.includes(product.category)) {
-      return !PRODUCT_SUBCATEGORIES.includes(product.subcategory?.toLowerCase());
+      return !isFancyProduct(product);
     }
     // Check Earrings
     const cat = categories.find(c => c.id === product.category);
     if (cat && cat.name.toLowerCase() === 'earrings') {
-      return !PRODUCT_SUBCATEGORIES.includes(product.subcategory?.toLowerCase());
+      return !isFancyProduct(product);
     }
     return false;
   };
 
+  // Get Fancy products for pricing-only categories
+  const fancyProductsForPricingCategory = products.filter(product => {
+    if (product.category !== selectedCategory) return false;
+    return isFancyProduct(product);
+  });
+
   // Filter products
   const filteredProducts = products.filter(product => {
     if (selectedCategory === 'all') {
-      // For "All Collections", exclude pricing-only categories and non-Fancy from mixed categories
+      // For "All Collections", show Fancy products from all categories + regular products from non-pricing categories
       return !shouldExcludeFromAll(product);
     }
     
-    // For pricing-only categories, don't show any products
-    if (isPricingOnly) return false;
+    // For pricing-only categories, show Fancy products
+    if (isPricingOnly) {
+      if (product.category !== selectedCategory) return false;
+      return isFancyProduct(product);
+    }
     
     // For mixed categories
     if (isMixed) {
       if (product.category !== selectedCategory) return false;
-      // If no subcategory filter, only show Fancy products
+      // If no subcategory filter, show nothing (will show price cards)
       if (selectedSubcategories.length === 0) return false;
       // If Fancy is selected, show Fancy products
       if (selectedSubcategories.some(sub => PRODUCT_SUBCATEGORIES.includes(sub.toLowerCase()))) {
-        return PRODUCT_SUBCATEGORIES.includes(product.subcategory?.toLowerCase());
+        return isFancyProduct(product);
       }
       return false;
     }
