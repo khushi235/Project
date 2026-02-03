@@ -442,7 +442,7 @@ const AdminPanel = ({ onClose, onLogout }) => {
                             required
                           >
                             <option value="">Select Category</option>
-                            {categories.filter(c => c.id !== 'all' && !PRICING_CATEGORIES.includes(c.id) && c.name.toLowerCase() !== 'earrings').map(cat => (
+                            {categories.filter(c => c.id !== 'all').map(cat => (
                               <option key={cat.id} value={cat.id}>{cat.name}</option>
                             ))}
                           </select>
