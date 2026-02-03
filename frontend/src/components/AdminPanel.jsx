@@ -36,7 +36,7 @@ const AdminPanel = ({ onClose, onLogout }) => {
     subcategory: '',
     price: '',
     details: '',
-    image: ''
+    imageUrl: ''
   });
   const [editingProduct, setEditingProduct] = useState(null);
   const [uploading, setUploading] = useState(false);
