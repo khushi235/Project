@@ -125,7 +125,7 @@ const AdminPanel = ({ onClose, onLogout }) => {
       if (forPricing) {
         setPricingForm({ ...pricingForm, image_url: imageUrl });
       } else {
-        setProductForm({ ...productForm, image: imageUrl });
+        setProductForm({ ...productForm, imageUrl: imageUrl });
       }
       toast.success('Image uploaded successfully');
     } catch (error) {
