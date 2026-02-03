@@ -684,6 +684,7 @@ const AdminPanel = ({ onClose, onLogout }) => {
                           {needsSinglePriceColumn(pricingForm.category_id) && ' (CTTW, HI-SI Price)'}
                           {isBangleCategory(pricingForm.category_id) && ' (CTTW, All the Way, Half Way)'}
                           {!needsClarityColumns(pricingForm.category_id) && !needsSinglePriceColumn(pricingForm.category_id) && !isBangleCategory(pricingForm.category_id) && ' (CTTW & Price)'}
+                          {editingPriceRowIndex !== null && <span style={{color: '#6b5b52', marginLeft: '8px'}}>(Editing row {editingPriceRowIndex + 1})</span>}
                         </label>
                         <div className="price-row-input">
                           <input
@@ -744,14 +745,25 @@ const AdminPanel = ({ onClose, onLogout }) => {
                               onChange={(e) => setNewPriceRow({ ...newPriceRow, price_fg_si: e.target.value })}
                             />
                           )}
-                          <button type="button" onClick={handleAddPriceRow} className="btn-icon-add">
-                            <Plus size={20} />
-                          </button>
+                          {editingPriceRowIndex !== null ? (
+                            <>
+                              <button type="button" onClick={handleUpdatePriceRow} className="btn-icon-add" title="Update">
+                                <Check size={20} />
+                              </button>
+                              <button type="button" onClick={handleCancelEditPriceRow} className="btn-remove" title="Cancel" style={{padding: '10px'}}>
+                                <X size={20} />
+                              </button>
+                            </>
+                          ) : (
+                            <button type="button" onClick={handleAddPriceRow} className="btn-icon-add" title="Add">
+                              <Plus size={20} />
+                            </button>
+                          )}
                         </div>
                         {pricingForm.price_table.length > 0 && (
                           <div className="price-rows-list">
                             {pricingForm.price_table.map((row, index) => (
-                              <div key={index} className="price-row-item">
+                              <div key={index} className={`price-row-item ${editingPriceRowIndex === index ? 'editing' : ''}`}>
                                 <span>
                                   <strong>{row.cttw}</strong> cttw
                                   {needsClarityColumns(pricingForm.category_id) ? (
@@ -764,9 +776,14 @@ const AdminPanel = ({ onClose, onLogout }) => {
                                     <> - {formatPrice(row.price_fg_si || row.price)}</>
                                   )}
                                 </span>
-                                <button type="button" onClick={() => handleRemovePriceRow(index)} className="btn-remove">
-                                  <X size={16} />
-                                </button>
+                                <div style={{display: 'flex', gap: '4px'}}>
+                                  <button type="button" onClick={() => handleEditPriceRow(index)} className="btn-edit-row" title="Edit">
+                                    <Edit2 size={14} />
+                                  </button>
+                                  <button type="button" onClick={() => handleRemovePriceRow(index)} className="btn-remove" title="Delete">
+                                    <X size={16} />
+                                  </button>
+                                </div>
                               </div>
                             ))}
                           </div>
