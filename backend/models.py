@@ -28,10 +28,11 @@ class ProductModel(BaseModel):
     name: str
     category: str
     subcategory: str
-    description: str
+    description: Optional[str] = ""
     price: str
-    image: str
-    details: str
+    image: Optional[str] = ""
+    imageUrl: Optional[str] = ""
+    details: Optional[str] = ""
     created_at: datetime = Field(default_factory=datetime.utcnow)
     updated_at: datetime = Field(default_factory=datetime.utcnow)
 
@@ -39,10 +40,11 @@ class ProductCreate(BaseModel):
     name: str
     category: str
     subcategory: str
-    description: str
+    description: Optional[str] = ""
     price: str
-    image: str
-    details: str
+    image: Optional[str] = ""
+    imageUrl: Optional[str] = ""
+    details: Optional[str] = ""
 
 class ProductUpdate(BaseModel):
     name: Optional[str] = None
@@ -51,6 +53,7 @@ class ProductUpdate(BaseModel):
     description: Optional[str] = None
     price: Optional[str] = None
     image: Optional[str] = None
+    imageUrl: Optional[str] = None
     details: Optional[str] = None
 
 # Contact Form Model
