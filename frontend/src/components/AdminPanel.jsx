@@ -551,7 +551,7 @@ const AdminPanel = ({ onClose, onLogout }) => {
                       </div>
                     </div>
                     <div className="admin-product-grid">
-                      {getSortedProducts().filter(p => !PRICING_CATEGORIES.includes(p.category) && !categories.find(c => c.id === p.category && c.name.toLowerCase() === 'earrings')).map(product => (
+                      {getSortedProducts().map(product => (
                         <div key={product.id} className="admin-product-card">
                           <div className="admin-product-badge">
                             <button onClick={() => handleEditProduct(product)} className="admin-edit-badge" title="Edit Product">
