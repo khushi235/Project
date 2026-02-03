@@ -146,7 +146,7 @@ const AdminPanel = ({ onClose, onLogout }) => {
         await axios.post(`${API}/products`, productForm);
         toast.success('Product added successfully');
       }
-      setProductForm({ name: '', category: '', subcategory: '', price: '', details: '', image: '' });
+      setProductForm({ name: '', category: '', subcategory: '', price: '', details: '', imageUrl: '' });
       setEditingProduct(null);
       fetchData();
     } catch (error) {
@@ -524,7 +524,7 @@ const AdminPanel = ({ onClose, onLogout }) => {
                             className="btn-secondary"
                             onClick={() => {
                               setEditingProduct(null);
-                              setProductForm({ name: '', category: '', subcategory: '', price: '', details: '', image: '' });
+                              setProductForm({ name: '', category: '', subcategory: '', price: '', details: '', imageUrl: '' });
                             }}
                           >
                             Cancel
