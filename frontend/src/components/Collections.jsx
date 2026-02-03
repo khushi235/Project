@@ -301,29 +301,49 @@ const Collections = () => {
         {/* Subcategory Pricing Cards - For pricing-only categories (Necklaces, Bracelets, Bangles) */}
         {isPricingOnly && (
           <div className="grid-product-showcase">
-            {categoryPricingData.length > 0 ? (
-              categoryPricingData.map(pricing => (
-                <div key={pricing.id} className="product-card hover-lift" data-testid={`pricing-card-${pricing.id}`}>
-                  <div className="product-card-image-wrapper">
-                    <img 
-                      className="product-card-image" 
-                      src={pricing.image_url} 
-                      alt={pricing.subcategory_name}
-                      loading="lazy"
-                    />
-                  </div>
-                  <div className="product-card-content">
-                    <h3 className="product-card-title">{pricing.subcategory_name}</h3>
-                    <button 
-                      className="btn-price-quote"
-                      onClick={() => handleShowPriceQuote(pricing)}
-                    >
-                      Show Price Quote
-                    </button>
-                  </div>
+            {/* Price quote cards */}
+            {categoryPricingData.map(pricing => (
+              <div key={pricing.id} className="product-card hover-lift" data-testid={`pricing-card-${pricing.id}`}>
+                <div className="product-card-image-wrapper">
+                  <img 
+                    className="product-card-image" 
+                    src={pricing.image_url} 
+                    alt={pricing.subcategory_name}
+                    loading="lazy"
+                  />
                 </div>
-              ))
-            ) : (
+                <div className="product-card-content">
+                  <h3 className="product-card-title">{pricing.subcategory_name}</h3>
+                  <button 
+                    className="btn-price-quote"
+                    onClick={() => handleShowPriceQuote(pricing)}
+                  >
+                    Show Price Quote
+                  </button>
+                </div>
+              </div>
+            ))}
+
+            {/* Fancy product cards */}
+            {filteredProducts.map(product => (
+              <div key={product.id} className="product-card hover-lift" data-testid={`product-card-${product.id}`}>
+                <div className="product-card-image-wrapper">
+                  <img 
+                    className="product-card-image" 
+                    src={product.imageUrl || 'https://via.placeholder.com/300x300?text=Diamond'} 
+                    alt={product.name}
+                    loading="lazy"
+                  />
+                </div>
+                <div className="product-card-content">
+                  <h3 className="product-card-title">{product.name}</h3>
+                  <p className="product-card-weight">{product.details}</p>
+                  <p className="product-card-price">{formatPrice(product.price)}</p>
+                </div>
+              </div>
+            ))}
+
+            {categoryPricingData.length === 0 && filteredProducts.length === 0 && (
               <div className="no-products">
                 <p className="body-large">No items available in this category yet.</p>
               </div>
