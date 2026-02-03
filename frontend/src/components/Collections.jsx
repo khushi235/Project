@@ -6,14 +6,15 @@ import PriceQuoteModal from './PriceQuoteModal';
 const BACKEND_URL = process.env.REACT_APP_BACKEND_URL;
 const API = `${BACKEND_URL}/api`;
 
-// Categories that ONLY use pricing layout (no product items)
+// Categories that ONLY use pricing layout (no subcategory filters shown)
+// But they CAN have Fancy products
 const PRICING_ONLY_CATEGORIES = ['necklace', 'bracelet', 'bangle'];
 
-// Categories that have MIXED content (price tables + Fancy products)
+// Categories that have MIXED content with subcategory filters visible
 const MIXED_CATEGORIES = ['pendant'];
 
 // Subcategories that show products instead of price tables
-const PRODUCT_SUBCATEGORIES = ['fancy', 'fn'];
+const PRODUCT_SUBCATEGORIES = ['fancy', 'fn', 'fancy rings', 'fancy with color diamond', 'fancy designs'];
 
 // Helper to check if a category is Earrings (has UUID)
 const isEarringsCategory = (categoryId, categories) => {
