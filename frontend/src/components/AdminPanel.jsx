@@ -505,9 +505,9 @@ const AdminPanel = ({ onClose, onLogout }) => {
                             <Upload size={20} />
                             {uploading ? 'Uploading...' : 'Upload Image'}
                           </label>
-                          {productForm.image && (
+                          {productForm.imageUrl && (
                             <div className="image-preview">
-                              <img src={productForm.image} alt="Preview" />
+                              <img src={productForm.imageUrl} alt="Preview" />
                             </div>
                           )}
                         </div>
