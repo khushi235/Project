@@ -337,6 +337,33 @@ const AdminPanel = ({ onClose, onLogout }) => {
     setPricingForm({ ...pricingForm, price_table: updated });
   };
 
+  const [editingPriceRowIndex, setEditingPriceRowIndex] = useState(null);
+
+  const handleEditPriceRow = (index) => {
+    const row = pricingForm.price_table[index];
+    setNewPriceRow({ ...row });
+    setEditingPriceRowIndex(index);
+  };
+
+  const handleUpdatePriceRow = () => {
+    if (!newPriceRow.cttw) {
+      toast.error('Please fill in CTTW');
+      return;
+    }
+    
+    const updated = [...pricingForm.price_table];
+    updated[editingPriceRowIndex] = { ...newPriceRow };
+    setPricingForm({ ...pricingForm, price_table: updated });
+    setNewPriceRow({ cttw: '', price_hi_si: '', price_fg_si: '', price_all_way: '', price_half_way: '' });
+    setEditingPriceRowIndex(null);
+    toast.success('Price row updated');
+  };
+
+  const handleCancelEditPriceRow = () => {
+    setNewPriceRow({ cttw: '', price_hi_si: '', price_fg_si: '', price_all_way: '', price_half_way: '' });
+    setEditingPriceRowIndex(null);
+  };
+
   const getSubcategories = (forPricing = false) => {
     const categoryId = forPricing ? pricingForm.category_id : productForm.category;
     const cat = categories.find(c => c.id === categoryId);
