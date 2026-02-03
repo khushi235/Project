@@ -163,7 +163,7 @@ const AdminPanel = ({ onClose, onLogout }) => {
       subcategory: product.subcategory,
       price: product.price,
       details: product.details,
-      image: product.image
+      imageUrl: product.imageUrl || product.image || ''
     });
   };
 
