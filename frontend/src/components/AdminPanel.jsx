@@ -416,7 +416,7 @@ const AdminPanel = ({ onClose, onLogout }) => {
                   <div className="admin-form-container">
                     <h3 className="heading-3">{editingProduct ? 'Edit Product' : 'Add New Product'}</h3>
                     <p className="body-small" style={{ marginBottom: '16px', color: 'var(--text-light)' }}>
-                      For Rings & Pendants only. Use "Price Tables" tab for Necklaces, Bracelets & Bangles.
+                      Add individual products to any category. Select "Fancy" subcategory for custom/unique items.
                     </p>
                     <form onSubmit={handleProductSubmit} className="admin-form">
                       <div className="form-row">
