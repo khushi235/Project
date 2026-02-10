@@ -6,6 +6,22 @@ import { toast } from 'sonner';
 const BACKEND_URL = process.env.REACT_APP_BACKEND_URL;
 const API = `${BACKEND_URL}/api`;
 
+// Helper to normalize image URLs to use current domain
+const normalizeImageUrl = (url) => {
+  if (!url) return '';
+  // If it's a relative URL, prepend the backend URL
+  if (url.startsWith('/api/uploads/')) {
+    return `${BACKEND_URL}${url}`;
+  }
+  // If it contains /api/uploads/, extract and reconstruct with current domain
+  if (url.includes('/api/uploads/')) {
+    const filename = url.split('/api/uploads/').pop();
+    return `${BACKEND_URL}/api/uploads/${filename}`;
+  }
+  // Return as-is for external URLs
+  return url;
+};
+
 // Categories that use subcategory pricing
 const PRICING_CATEGORIES = ['necklace', 'bracelet', 'bangle', 'pendant'];
 
