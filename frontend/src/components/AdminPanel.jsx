@@ -687,7 +687,7 @@ const AdminPanel = ({ onClose, onLogout }) => {
                           </label>
                           {pricingForm.image_url && (
                             <div className="image-preview">
-                              <img src={pricingForm.image_url} alt="Preview" />
+                              <img src={normalizeImageUrl(pricingForm.image_url)} alt="Preview" />
                             </div>
                           )}
                         </div>
