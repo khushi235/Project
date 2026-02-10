@@ -323,7 +323,7 @@ const Collections = () => {
                 <div className="product-card-image-wrapper">
                   <img 
                     className="product-card-image" 
-                    src={pricing.image_url} 
+                    src={normalizeImageUrl(pricing.image_url)} 
                     alt={pricing.subcategory_name}
                     loading="lazy"
                   />
@@ -376,7 +376,7 @@ const Collections = () => {
                 <div className="product-card-image-wrapper">
                   <img 
                     className="product-card-image" 
-                    src={pricing.image_url} 
+                    src={normalizeImageUrl(pricing.image_url)} 
                     alt={pricing.subcategory_name}
                     loading="lazy"
                   />
@@ -430,7 +430,7 @@ const Collections = () => {
                 <div className="product-card-image-wrapper">
                   <img 
                     className="product-card-image" 
-                    src={pricing.image_url} 
+                    src={normalizeImageUrl(pricing.image_url)} 
                     alt={pricing.subcategory_name}
                     loading="lazy"
                   />
