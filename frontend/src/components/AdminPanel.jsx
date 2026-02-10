@@ -605,7 +605,7 @@ const AdminPanel = ({ onClose, onLogout }) => {
                               <Trash2 size={14} />
                             </button>
                           </div>
-                          <img src={normalizeImageUrl(product.image)} alt={product.name} className="admin-product-image" />
+                          <img src={normalizeImageUrl(product.imageUrl || product.image)} alt={product.name} className="admin-product-image" />
                           <div className="admin-product-info">
                             <h4>{product.name}</h4>
                             <p className="body-small">{product.details}</p>
