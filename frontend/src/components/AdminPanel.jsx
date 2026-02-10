@@ -832,7 +832,7 @@ const AdminPanel = ({ onClose, onLogout }) => {
                     <div className="admin-pricing-grid">
                       {subcategoryPricing.map(pricing => (
                         <div key={pricing.id} className="admin-pricing-card">
-                          <img src={pricing.image_url} alt={pricing.subcategory_name} className="admin-pricing-image" />
+                          <img src={normalizeImageUrl(pricing.image_url)} alt={pricing.subcategory_name} className="admin-pricing-image" />
                           <div className="admin-pricing-info">
                             <h4>{pricing.subcategory_name}</h4>
                             <p className="admin-pricing-table-preview">
