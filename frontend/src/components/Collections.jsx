@@ -346,7 +346,7 @@ const Collections = () => {
                 <div className="product-card-image-wrapper">
                   <img 
                     className="product-card-image" 
-                    src={product.imageUrl || 'https://via.placeholder.com/300x300?text=Diamond'} 
+                    src={normalizeImageUrl(product.imageUrl) || 'https://via.placeholder.com/300x300?text=Diamond'} 
                     alt={product.name}
                     loading="lazy"
                   />
@@ -399,7 +399,7 @@ const Collections = () => {
                 <div className="product-card-image-wrapper">
                   <img 
                     className="product-card-image" 
-                    src={product.imageUrl || 'https://via.placeholder.com/300x300?text=Diamond'} 
+                    src={normalizeImageUrl(product.imageUrl) || 'https://via.placeholder.com/300x300?text=Diamond'} 
                     alt={product.name}
                     loading="lazy"
                   />
