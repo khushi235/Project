@@ -87,7 +87,7 @@ const PriceQuoteModal = ({ pricing, onClose }) => {
         <div className="price-quote-content">
           <div className="price-quote-image-container">
             <img 
-              src={pricing.image_url} 
+              src={normalizeImageUrl(pricing.image_url)} 
               alt={pricing.subcategory_name}
               className="price-quote-image"
             />
