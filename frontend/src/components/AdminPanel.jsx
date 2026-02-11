@@ -627,7 +627,7 @@ const AdminPanel = ({ onClose, onLogout }) => {
                   <div className="admin-form-container">
                     <h3 className="heading-3">{editingPricing ? 'Edit Price Table' : 'Add New Price Table'}</h3>
                     <p className="body-small" style={{ marginBottom: '16px', color: 'var(--text-light)' }}>
-                      For Necklaces, Bracelets, Bangles, Pendants & Earrings
+                      For Necklaces, Bracelets, Bangles, Pendants, Rings & Earrings
                     </p>
                     <form onSubmit={handlePricingSubmit} className="admin-form">
                       <div className="form-row">
