@@ -104,8 +104,8 @@ const PriceQuoteModal = ({ pricing, onClose }) => {
                     <th>CTTW</th>
                     {isBangle ? (
                       <>
-                        <th>All the Way</th>
-                        <th>Half Way</th>
+                        <th>All the Way (FG-SI)</th>
+                        <th>Half Way (FG-SI)</th>
                       </>
                     ) : showClarityColumns ? (
                       <>
@@ -113,7 +113,7 @@ const PriceQuoteModal = ({ pricing, onClose }) => {
                         <th>Price (FG-SI)</th>
                       </>
                     ) : (
-                      <th>Price (HI-SI)</th>
+                      <th>Price ({usesFGSI(pricing.subcategory_name) ? 'FG-SI' : 'HI-SI'})</th>
                     )}
                   </tr>
                 </thead>
