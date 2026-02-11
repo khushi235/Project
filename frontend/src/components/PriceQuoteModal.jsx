@@ -69,6 +69,16 @@ const isBangleCategory = (categoryId) => {
   return categoryId === 'bangle';
 };
 
+// Check if subcategory uses FG-SI instead of HI-SI
+const usesFGSI = (subcategoryName) => {
+  if (!subcategoryName) return false;
+  const name = subcategoryName.toLowerCase();
+  // Hoops, Diamond by Yard, Cluster use FG-SI
+  return name.includes('hoop') || 
+         name.includes('diamond by yard') || 
+         name.includes('cluster');
+};
+
 const PriceQuoteModal = ({ pricing, onClose }) => {
   if (!pricing) return null;
 
