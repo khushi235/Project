@@ -96,7 +96,7 @@ const mergeBanglePricing = (pricingData) => {
 
 const Collections = () => {
   const [selectedCategory, setSelectedCategory] = useState('all');
-  const [selectedSubcategories, setSelectedSubcategories] = useState([]);
+  const [selectedSubcategory, setSelectedSubcategory] = useState(null);
   const [products, setProducts] = useState([]);
   const [categories, setCategories] = useState([]);
   const [subcategoryPricing, setSubcategoryPricing] = useState([]);
@@ -128,107 +128,44 @@ const Collections = () => {
   };
 
   const currentCategory = categories.find(cat => cat.id === selectedCategory);
-  const hasSubcategories = currentCategory && currentCategory.subcategories.length > 0;
-  const isPricingOnly = isPricingOnlyCategory(selectedCategory);
-  const isMixed = isMixedCategory(selectedCategory, categories);
+  const hasSubcategories = currentCategory && currentCategory.subcategories && currentCategory.subcategories.length > 0;
 
-  // Get pricing data for current category
-  const categoryPricingData = subcategoryPricing.filter(p => p.category_id === selectedCategory);
-
-  // Check if selected subcategories include only "Fancy" (product subcategory)
-  const showingFancyOnly = selectedSubcategories.length > 0 && 
-    selectedSubcategories.every(sub => PRODUCT_SUBCATEGORIES.includes(sub.toLowerCase()));
-  
-  // Check if selected subcategories include any pricing subcategories
-  const showingPricingSubcategories = selectedSubcategories.length === 0 || 
-    selectedSubcategories.some(sub => !PRODUCT_SUBCATEGORIES.includes(sub.toLowerCase()));
-
-  // Helper to check if a product's subcategory is a "Fancy" type
-  const isFancyProduct = (product) => {
-    return PRODUCT_SUBCATEGORIES.includes(product.subcategory?.toLowerCase());
-  };
-
-  // Helper to check if a product's category should be excluded from "All Collections"
-  const shouldExcludeFromAll = (product) => {
-    // For pricing categories, only show Fancy products in All Collections
-    if (PRICING_ONLY_CATEGORIES.includes(product.category)) {
-      return !isFancyProduct(product);
-    }
-    // For mixed categories, only show Fancy products
-    if (MIXED_CATEGORIES.includes(product.category)) {
-      return !isFancyProduct(product);
-    }
-    // Check Earrings
-    const cat = categories.find(c => c.id === product.category);
-    if (cat && cat.name.toLowerCase() === 'earrings') {
-      return !isFancyProduct(product);
-    }
-    return false;
-  };
-
-  // Get Fancy products for pricing-only categories
-  const fancyProductsForPricingCategory = products.filter(product => {
-    if (product.category !== selectedCategory) return false;
-    return isFancyProduct(product);
-  });
-
-  // Filter products
+  // SIMPLIFIED FILTERING LOGIC:
+  // 1. "All Collection" (selectedCategory === 'all') -> Show ALL products
+  // 2. Category selected (no subcategory) -> Show ALL products in that category
+  // 3. Subcategory selected -> Show ONLY products with that subcategory
   const filteredProducts = products.filter(product => {
+    // "All Collection" - show ALL products regardless of category or subcategory
     if (selectedCategory === 'all') {
-      // For "All Collections", show Fancy products from all categories + regular products from non-pricing categories
-      return !shouldExcludeFromAll(product);
+      return true;
     }
     
-    // For pricing-only categories, show Fancy products
-    if (isPricingOnly) {
-      if (product.category !== selectedCategory) return false;
-      return isFancyProduct(product);
-    }
-    
-    // For mixed categories
-    if (isMixed) {
-      if (product.category !== selectedCategory) return false;
-      // If no subcategory filter, show nothing (will show price cards)
-      if (selectedSubcategories.length === 0) return false;
-      // If Fancy is selected, show Fancy products
-      if (selectedSubcategories.some(sub => PRODUCT_SUBCATEGORIES.includes(sub.toLowerCase()))) {
-        return isFancyProduct(product);
-      }
+    // Category selected - filter by product.category
+    if (product.category !== selectedCategory) {
       return false;
     }
     
-    // For regular categories (like Rings)
-    if (product.category !== selectedCategory) return false;
-    if (selectedSubcategories.length === 0) return true;
-    return selectedSubcategories.includes(product.subcategory);
+    // If a subcategory is selected, filter by product.subcategory
+    if (selectedSubcategory) {
+      return product.subcategory === selectedSubcategory;
+    }
+    
+    // No subcategory filter - show all products in the category
+    return true;
   });
-
-  // Filter pricing data based on selected subcategories
-  const filteredPricingData = categoryPricingData.filter(pricing => {
-    if (selectedSubcategories.length === 0) return true;
-    // Check if this pricing's subcategory is selected
-    return selectedSubcategories.some(sub => 
-      pricing.subcategory_id?.toLowerCase() === sub.toLowerCase() ||
-      pricing.subcategory_name?.toLowerCase() === sub.toLowerCase()
-    );
-  });
-
-  // Get all pricing data for "All Collections" view
-  const allPricingData = selectedCategory === 'all' ? subcategoryPricing : [];
 
   const handleCategoryChange = (categoryId) => {
     setSelectedCategory(categoryId);
-    setSelectedSubcategories([]);
+    setSelectedSubcategory(null); // Reset subcategory when category changes
   };
 
-  const handleSubcategoryToggle = (subcategoryId) => {
-    setSelectedSubcategories(prev => {
-      if (prev.includes(subcategoryId)) {
-        return prev.filter(id => id !== subcategoryId);
-      } else {
-        return [...prev, subcategoryId];
-      }
-    });
+  const handleSubcategoryClick = (subcategoryId) => {
+    // Toggle: if same subcategory clicked, deselect it
+    if (selectedSubcategory === subcategoryId) {
+      setSelectedSubcategory(null);
+    } else {
+      setSelectedSubcategory(subcategoryId);
+    }
   };
 
   const handleShowPriceQuote = (pricing) => {
@@ -262,58 +199,34 @@ const Collections = () => {
           ))}
         </div>
 
-        {/* Subcategory Filter with Checkboxes - For non-pricing-only categories with subcategories */}
-        {hasSubcategories && !isPricingOnly && (
+        {/* Subcategory Filter - Show for categories with subcategories */}
+        {hasSubcategories && (
           <div className="subcategory-filter">
             {currentCategory.subcategories.map(subcategory => {
-              const isChecked = selectedSubcategories.includes(subcategory.id);
+              const isSelected = selectedSubcategory === subcategory.id;
               return (
-                <label 
+                <button 
                   key={subcategory.id}
-                  className={`subcategory-checkbox-label ${isChecked ? 'checked' : ''}`}
-                  data-testid={`subcategory-checkbox-${subcategory.id}`}
+                  className={`subcategory-btn ${isSelected ? 'active' : ''}`}
+                  onClick={() => handleSubcategoryClick(subcategory.id)}
+                  data-testid={`subcategory-btn-${subcategory.id}`}
                 >
-                  <input
-                    type="checkbox"
-                    className="subcategory-checkbox"
-                    checked={isChecked}
-                    onChange={() => handleSubcategoryToggle(subcategory.id)}
-                  />
                   {subcategory.name}
-                </label>
+                </button>
               );
             })}
           </div>
         )}
 
-        {/* Subcategory Pricing Cards - For pricing-only categories (Necklaces, Bracelets, Bangles) */}
-        {isPricingOnly && (
-          <div className="grid-product-showcase">
-            {/* Price quote cards */}
-            {categoryPricingData.map(pricing => (
-              <div key={pricing.id} className="product-card hover-lift" data-testid={`pricing-card-${pricing.id}`}>
-                <div className="product-card-image-wrapper">
-                  <img 
-                    className="product-card-image" 
-                    src={normalizeImageUrl(pricing.image_url)} 
-                    alt={pricing.subcategory_name}
-                    loading="lazy"
-                  />
-                </div>
-                <div className="product-card-content">
-                  <h3 className="product-card-title">{pricing.subcategory_name}</h3>
-                  <button 
-                    className="btn-price-quote"
-                    onClick={() => handleShowPriceQuote(pricing)}
-                  >
-                    Show Price Quote
-                  </button>
-                </div>
-              </div>
-            ))}
-
-            {/* Fancy product cards */}
-            {filteredProducts.map(product => (
+        {/* Product Grid - Show all filtered products */}
+        <div className="grid-product-showcase">
+          {filteredProducts.map(product => {
+            // Format details: convert "X.X ct total weight" to "X.X cttw"
+            const formattedDetails = product.details 
+              ? product.details.replace('ct total weight', 'cttw')
+              : '';
+            
+            return (
               <div key={product.id} className="product-card hover-lift" data-testid={`product-card-${product.id}`}>
                 <div className="product-card-image-wrapper">
                   <img 
@@ -325,134 +238,20 @@ const Collections = () => {
                 </div>
                 <div className="product-card-content">
                   <h3 className="product-card-title">{product.name}</h3>
-                  <p className="product-card-weight">{product.details}</p>
+                  <p className="product-card-details body-small">{formattedDetails}</p>
                   <p className="product-card-price">{formatPrice(product.price)}</p>
                 </div>
               </div>
-            ))}
-
-            {categoryPricingData.length === 0 && filteredProducts.length === 0 && (
-              <div className="no-products">
-                <p className="body-large">No items available in this category yet.</p>
-              </div>
-            )}
-          </div>
-        )}
-
-        {/* Mixed Category Content - For Pendants and Earrings */}
-        {isMixed && (
-          <div className="grid-product-showcase">
-            {/* Show price quote cards for non-Fancy subcategories */}
-            {showingPricingSubcategories && filteredPricingData.map(pricing => (
-              <div key={pricing.id} className="product-card hover-lift" data-testid={`pricing-card-${pricing.id}`}>
-                <div className="product-card-image-wrapper">
-                  <img 
-                    className="product-card-image" 
-                    src={normalizeImageUrl(pricing.image_url)} 
-                    alt={pricing.subcategory_name}
-                    loading="lazy"
-                  />
-                </div>
-                <div className="product-card-content">
-                  <h3 className="product-card-title">{pricing.subcategory_name}</h3>
-                  <button 
-                    className="btn-price-quote"
-                    onClick={() => handleShowPriceQuote(pricing)}
-                  >
-                    Show Price Quote
-                  </button>
-                </div>
-              </div>
-            ))}
-
-            {/* Show product cards for Fancy subcategory */}
-            {filteredProducts.map(product => (
-              <div key={product.id} className="product-card hover-lift" data-testid={`product-card-${product.id}`}>
-                <div className="product-card-image-wrapper">
-                  <img 
-                    className="product-card-image" 
-                    src={normalizeImageUrl(product.imageUrl || product.image) || 'https://via.placeholder.com/300x300?text=Diamond'} 
-                    alt={product.name}
-                    loading="lazy"
-                  />
-                </div>
-                <div className="product-card-content">
-                  <h3 className="product-card-title">{product.name}</h3>
-                  <p className="product-card-weight">{product.details}</p>
-                  <p className="product-card-price">{formatPrice(product.price)}</p>
-                </div>
-              </div>
-            ))}
-
-            {/* Show message if no items */}
-            {filteredPricingData.length === 0 && filteredProducts.length === 0 && (
-              <div className="no-products">
-                <p className="body-large">No items available. Select a subcategory to view items.</p>
-              </div>
-            )}
-          </div>
-        )}
-
-        {/* Regular Product Grid - For Rings and All Collections */}
-        {!isPricingOnly && !isMixed && (
-          <div className="grid-product-showcase">
-            {/* Show pricing cards in All Collections */}
-            {selectedCategory === 'all' && allPricingData.map(pricing => (
-              <div key={pricing.id} className="product-card hover-lift" data-testid={`pricing-card-${pricing.id}`}>
-                <div className="product-card-image-wrapper">
-                  <img 
-                    className="product-card-image" 
-                    src={normalizeImageUrl(pricing.image_url)} 
-                    alt={pricing.subcategory_name}
-                    loading="lazy"
-                  />
-                </div>
-                <div className="product-card-content">
-                  <h3 className="product-card-title">{pricing.subcategory_name}</h3>
-                  <button 
-                    className="btn-price-quote"
-                    onClick={() => handleShowPriceQuote(pricing)}
-                  >
-                    Show Price Quote
-                  </button>
-                </div>
-              </div>
-            ))}
-            
-            {/* Show regular products */}
-            {filteredProducts.map(product => {
-              // Format details: convert "X.X ct total weight" to "X.X cttw"
-              const formattedDetails = product.details 
-                ? product.details.replace('ct total weight', 'cttw')
-                : '';
-              
-              return (
-                <div key={product.id} className="product-card hover-lift" data-testid={`product-card-${product.id}`}>
-                  <div className="product-card-image-wrapper">
-                    <img 
-                      className="product-card-image" 
-                      src={normalizeImageUrl(product.imageUrl || product.image) || 'https://via.placeholder.com/300x300?text=Diamond'} 
-                      alt={product.name}
-                      loading="lazy"
-                    />
-                  </div>
-                  <div className="product-card-content">
-                    <h3 className="product-card-title">{product.name}</h3>
-                    <p className="product-card-details body-small">{formattedDetails}</p>
-                    <p className="product-card-price">{formatPrice(product.price)}</p>
-                  </div>
-                </div>
-              );
-            })}
-            
-            {/* No items message */}
-            {filteredProducts.length === 0 && allPricingData.length === 0 && (
-              <div className="no-products">
-                <p className="body-large">No products found in this category.</p>
-              </div>
-            )}
-          </div>
-        )}
+            );
+          })}
+          
+          {/* No items message */}
+          {filteredProducts.length === 0 && (
+            <div className="no-products">
+              <p className="body-large">No products found in this selection.</p>
+            </div>
+          )}
+        </div>
       </div>
 
       {/* Price Quote Modal */}
