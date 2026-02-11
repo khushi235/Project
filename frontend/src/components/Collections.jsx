@@ -459,7 +459,7 @@ const Collections = () => {
                   <div className="product-card-image-wrapper">
                     <img 
                       className="product-card-image" 
-                      src={product.image} 
+                      src={normalizeImageUrl(product.imageUrl || product.image) || 'https://via.placeholder.com/300x300?text=Diamond'} 
                       alt={product.name}
                       loading="lazy"
                     />
