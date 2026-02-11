@@ -130,37 +130,61 @@ const Collections = () => {
   const currentCategory = categories.find(cat => cat.id === selectedCategory);
   const hasSubcategories = currentCategory && currentCategory.subcategories && currentCategory.subcategories.length > 0;
 
-  // SIMPLIFIED FILTERING LOGIC:
-  // 1. "All Collection" (selectedCategory === 'all') -> Show ALL products
-  // 2. Category selected (no subcategory) -> Show ALL products in that category
+  // PRODUCT FILTERING LOGIC:
+  // 1. "All Collection" -> Show ALL products
+  // 2. Category selected -> Show ALL products in that category
   // 3. Subcategory selected -> Show ONLY products with that subcategory
   const filteredProducts = products.filter(product => {
-    // "All Collection" - show ALL products regardless of category or subcategory
     if (selectedCategory === 'all') {
       return true;
     }
     
-    // Category selected - filter by product.category
     if (product.category !== selectedCategory) {
       return false;
     }
     
-    // If a subcategory is selected, filter by product.subcategory
     if (selectedSubcategory) {
       return product.subcategory === selectedSubcategory;
     }
     
-    // No subcategory filter - show all products in the category
+    return true;
+  });
+
+  // PRICE TABLE FILTERING LOGIC:
+  // 1. "All Collection" -> Show ALL price tables
+  // 2. Category selected -> Show price tables for that category
+  // 3. Subcategory selected -> Show price table for that subcategory (if exists)
+  const filteredPricingData = subcategoryPricing.filter(pricing => {
+    // Filter out bangle sub-entries (we use merged bangle)
+    if (pricing.category_id === 'bangle' && pricing.id !== 'bangle-merged') {
+      return false;
+    }
+    
+    if (selectedCategory === 'all') {
+      return true;
+    }
+    
+    if (pricing.category_id !== selectedCategory) {
+      return false;
+    }
+    
+    if (selectedSubcategory) {
+      // Match by subcategory_id or subcategory_name (case-insensitive)
+      const subId = pricing.subcategory_id?.toLowerCase() || '';
+      const subName = pricing.subcategory_name?.toLowerCase() || '';
+      const selected = selectedSubcategory.toLowerCase();
+      return subId === selected || subName === selected || subId.includes(selected) || subName.includes(selected);
+    }
+    
     return true;
   });
 
   const handleCategoryChange = (categoryId) => {
     setSelectedCategory(categoryId);
-    setSelectedSubcategory(null); // Reset subcategory when category changes
+    setSelectedSubcategory(null);
   };
 
   const handleSubcategoryClick = (subcategoryId) => {
-    // Toggle: if same subcategory clicked, deselect it
     if (selectedSubcategory === subcategoryId) {
       setSelectedSubcategory(null);
     } else {
@@ -218,10 +242,34 @@ const Collections = () => {
           </div>
         )}
 
-        {/* Product Grid - Show all filtered products */}
+        {/* Combined Grid - Price Tables + Products */}
         <div className="grid-product-showcase">
+          {/* Price Quote Cards - Show cards with "Show Price Quote" button */}
+          {filteredPricingData.map(pricing => (
+            <div key={pricing.id} className="product-card hover-lift" data-testid={`pricing-card-${pricing.id}`}>
+              <div className="product-card-image-wrapper">
+                <img 
+                  className="product-card-image" 
+                  src={normalizeImageUrl(pricing.image_url)} 
+                  alt={pricing.subcategory_name}
+                  loading="lazy"
+                />
+              </div>
+              <div className="product-card-content">
+                <h3 className="product-card-title">{pricing.subcategory_name}</h3>
+                <button 
+                  className="btn-price-quote"
+                  onClick={() => handleShowPriceQuote(pricing)}
+                  data-testid={`show-price-quote-${pricing.id}`}
+                >
+                  Show Price Quote
+                </button>
+              </div>
+            </div>
+          ))}
+
+          {/* Product Cards */}
           {filteredProducts.map(product => {
-            // Format details: convert "X.X ct total weight" to "X.X cttw"
             const formattedDetails = product.details 
               ? product.details.replace('ct total weight', 'cttw')
               : '';
@@ -246,9 +294,9 @@ const Collections = () => {
           })}
           
           {/* No items message */}
-          {filteredProducts.length === 0 && (
+          {filteredProducts.length === 0 && filteredPricingData.length === 0 && (
             <div className="no-products">
-              <p className="body-large">No products found in this selection.</p>
+              <p className="body-large">No items found in this selection.</p>
             </div>
           )}
         </div>
