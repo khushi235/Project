@@ -559,7 +559,7 @@ body::after {
   }
 }
 
-/* Subcategory Filter - Checkbox Style (Compact) */
+/* Subcategory Filter - Button Style */
 .subcategory-filter {
   display: flex;
   justify-content: center;
@@ -569,6 +569,34 @@ body::after {
   padding: 0 20px;
 }
 
+.subcategory-btn {
+  padding: 8px 18px;
+  background: rgba(255, 255, 255, 0.7);
+  border: 1px dashed rgba(90, 74, 66, 0.3);
+  border-radius: 20px;
+  font-size: 13px;
+  font-weight: 400;
+  color: #6b5b52;
+  cursor: pointer;
+  transition: all 0.2s ease;
+  font-family: 'Roboto', sans-serif;
+}
+
+.subcategory-btn:hover {
+  border-color: #5a4a42;
+  border-style: solid;
+  color: #5a4a42;
+  background: rgba(255, 255, 255, 0.9);
+}
+
+.subcategory-btn.active {
+  background: linear-gradient(135deg, #6b5b52 0%, #5a4a42 100%);
+  color: #fff;
+  border-color: #5a4a42;
+  border-style: solid;
+}
+
+/* Legacy checkbox styles (for backward compatibility) */
 .subcategory-checkbox-label {
   display: flex;
   align-items: center;
