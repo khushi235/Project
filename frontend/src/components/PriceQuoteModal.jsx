@@ -56,9 +56,9 @@ const isUUID = (str) => {
   return /^[0-9a-f]{8}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{12}$/i.test(str);
 };
 
-// Check if category uses single HI-SI price column (bracelet, pendant, earring)
+// Check if category uses single HI-SI price column (bracelet, pendant, earring, ring)
 const needsSinglePriceColumn = (categoryId) => {
-  if (['bracelet', 'pendant', 'earring'].includes(categoryId)) return true;
+  if (['bracelet', 'pendant', 'earring', 'ring'].includes(categoryId)) return true;
   // Handle UUID-based categories (like earrings) - they use single column
   if (isUUID(categoryId)) return true;
   return false;
