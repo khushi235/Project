@@ -40,54 +40,17 @@ const mergeBanglePricing = (pricingData) => {
   
   if (banglePricing.length === 0) return pricingData;
   
-  // Find All the Way and Half Way data
-  const allTheWay = banglePricing.find(p => 
-    p.subcategory_name?.toLowerCase().includes('all') || 
-    p.subcategory_id?.toLowerCase().includes('all')
-  );
-  const halfWay = banglePricing.find(p => 
-    p.subcategory_name?.toLowerCase().includes('half') || 
-    p.subcategory_id?.toLowerCase().includes('half')
-  );
+  // For bangles, each entry already has both price_all_way and price_half_way in each row
+  // Just use the first bangle entry's price table directly
+  const firstBangle = banglePricing[0];
   
-  // Merge price tables by CTTW
-  const cttwMap = new Map();
-  
-  // Add All the Way prices
-  if (allTheWay?.price_table) {
-    allTheWay.price_table.forEach(row => {
-      const cttw = row.cttw;
-      cttwMap.set(cttw, {
-        cttw,
-        price_all_way: row.price_fg_si || row.price || '',
-        price_half_way: ''
-      });
-    });
-  }
-  
-  // Add Half Way prices
-  if (halfWay?.price_table) {
-    halfWay.price_table.forEach(row => {
-      const cttw = row.cttw;
-      if (cttwMap.has(cttw)) {
-        cttwMap.get(cttw).price_half_way = row.price_fg_si || row.price || '';
-      } else {
-        cttwMap.set(cttw, {
-          cttw,
-          price_all_way: '',
-          price_half_way: row.price_fg_si || row.price || ''
-        });
-      }
-    });
-  }
-  
-  // Create merged bangle entry
+  // Create merged bangle entry using the existing price table structure
   const mergedBangle = {
     id: 'bangle-merged',
     category_id: 'bangle',
     subcategory_id: 'bangle',
     subcategory_name: 'Bangles',
-    image_url: allTheWay?.image_url || halfWay?.image_url || '',
+    image_url: firstBangle?.image_url || '',
     price_table: Array.from(cttwMap.values())
   };
   
