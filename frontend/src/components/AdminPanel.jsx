@@ -23,7 +23,7 @@ const normalizeImageUrl = (url) => {
 };
 
 // Categories that use subcategory pricing
-const PRICING_CATEGORIES = ['necklace', 'bracelet', 'bangle', 'pendant'];
+const PRICING_CATEGORIES = ['necklace', 'bracelet', 'bangle', 'pendant', 'ring'];
 
 // Helper to ensure price has $ sign
 const formatPrice = (price) => {
