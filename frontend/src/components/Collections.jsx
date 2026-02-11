@@ -51,7 +51,7 @@ const mergeBanglePricing = (pricingData) => {
     subcategory_id: 'bangle',
     subcategory_name: 'Bangles',
     image_url: firstBangle?.image_url || '',
-    price_table: Array.from(cttwMap.values())
+    price_table: firstBangle?.price_table || []
   };
   
   return [...otherPricing, mergedBangle];
