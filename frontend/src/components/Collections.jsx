@@ -22,34 +22,6 @@ const normalizeImageUrl = (url) => {
   return url;
 };
 
-// Categories that ONLY use pricing layout (no subcategory filters shown)
-// But they CAN have Fancy products
-const PRICING_ONLY_CATEGORIES = ['necklace', 'bracelet', 'bangle'];
-
-// Categories that have MIXED content with subcategory filters visible
-const MIXED_CATEGORIES = ['pendant'];
-
-// Subcategories that show products instead of price tables
-const PRODUCT_SUBCATEGORIES = ['fancy', 'fn', 'fancy rings', 'fancy with color diamond', 'fancy designs'];
-
-// Helper to check if a category is Earrings (has UUID)
-const isEarringsCategory = (categoryId, categories) => {
-  const category = categories.find(c => c.id === categoryId);
-  return category && category.name.toLowerCase() === 'earrings';
-};
-
-// Helper to check if category uses ONLY pricing layout
-const isPricingOnlyCategory = (categoryId) => {
-  return PRICING_ONLY_CATEGORIES.includes(categoryId);
-};
-
-// Helper to check if category has mixed content (price tables + products)
-const isMixedCategory = (categoryId, categories) => {
-  if (MIXED_CATEGORIES.includes(categoryId)) return true;
-  if (isEarringsCategory(categoryId, categories)) return true;
-  return false;
-};
-
 // Helper to ensure price has $ sign
 const formatPrice = (price) => {
   if (!price) return '';
